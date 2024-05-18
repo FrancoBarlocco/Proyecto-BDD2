@@ -1,0 +1,94 @@
+CREATE DATABASE proyectoBDD2;
+
+USE proyectoBDD2;
+
+-- Table Team
+CREATE TABLE Team (
+    TeamId INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Flag VARCHAR(100)
+);
+
+-- Table Matches
+CREATE TABLE Matches (
+    MatchId INT PRIMARY KEY,
+    Location VARCHAR(100),
+    Date DATE,
+    TeamAResult INT,
+    TeamBResult INT
+);
+
+-- Table Student
+CREATE TABLE Student (
+    Id INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    Password VARCHAR(100),
+    Major VARCHAR(100),
+    ChampionTeamId INT,
+    RunnerUpTeamId INT,
+    FOREIGN KEY (ChampionTeamId) REFERENCES Team(TeamId),
+    FOREIGN KEY (RunnerUpTeamId) REFERENCES Team(TeamId)
+);
+
+-- Table Administrator
+CREATE TABLE Admin (
+    Id INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    Password VARCHAR(100)
+);
+
+-- Table Predicts
+CREATE TABLE Predicts (
+    UserId INT,
+    MatchId INT,
+    TeamAGoals INT,
+    TeamBGoals INT,
+    Score INT,
+    PRIMARY KEY (UserId, MatchId),
+    FOREIGN KEY (UserId) REFERENCES Student(Id),
+    FOREIGN KEY (MatchId) REFERENCES Matches(MatchId)
+);
+
+-- Table IsVisitor
+CREATE TABLE visitant (
+    MatchId INT,
+    TeamId INT,
+    Visitor BOOLEAN,
+    PRIMARY KEY (MatchId, TeamId),
+    FOREIGN KEY (MatchId) REFERENCES Matches(MatchId),
+    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
+);
+
+-- Table IsHome
+CREATE TABLE local (
+    MatchId INT,
+    TeamId INT,
+    Home BOOLEAN,
+    PRIMARY KEY (MatchId, TeamId),
+    FOREIGN KEY (MatchId) REFERENCES Matches(MatchId),
+    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
+);
+
+-- Table ChoosesChampion
+CREATE TABLE ChooseChampion (
+    StudentId INT,
+    ChampionTeamId INT,
+    PRIMARY KEY (StudentId, ChampionTeamId),
+    FOREIGN KEY (StudentId) REFERENCES Student(Id),
+    FOREIGN KEY (ChampionTeamId) REFERENCES Team(TeamId)
+);
+
+-- Table ChoosesRunnerUp
+CREATE TABLE ChooseSubChampion (
+    StudentId INT,
+    TeamId INT,
+    PRIMARY KEY (StudentId, TeamId),
+    FOREIGN KEY (StudentId) REFERENCES Student(Id),
+    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
+);
+
+show tables
