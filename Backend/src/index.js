@@ -18,5 +18,4 @@ connection.connect((err) => {
   console.log('Conexión exitosa a MySQL');
 });
 
-// No olvides cerrar la conexión cuando hayas terminado
 connection.end();
