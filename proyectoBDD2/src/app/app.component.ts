@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component'; // Asegúrate de ajustar la ruta según tu estructura de archivos
+import { LoginComponent } from './components/login/login.component'; // Asegúrate de ajustar la ruta según tu estructura de archivos
 
 @Component({
   selector: 'app-root',

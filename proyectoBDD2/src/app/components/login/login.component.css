@@ -1,0 +1,60 @@
+/* Estilos generales */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Elimina el scroll */
+}
+
+/* Estilos para la pantalla de login */
+.login {
+  background-image: url('/assets/images/copaamerica.png');
+  background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+  background-position: center; /* Centra la imagen horizontal y verticalmente */
+  height: 100vh; /* Altura completa de la ventana */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+/* Estilos para el formulario personalizado */
+.custom-form {
+  min-width: 300px;
+  max-width: 60%;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2rem 3rem;
+  border-radius: 2.5rem;
+  background-color: #ecf0f3;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+  color: black;
+  backdrop-filter: blur(10px);
+}
+
+.custom-form input {
+  display: block;
+  margin: 2rem 0;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: none;
+  background: #ebf5fc;
+}
+
+.custom-form button {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #bcd8c1;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
