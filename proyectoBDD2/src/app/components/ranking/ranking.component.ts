@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ranking',
-  standalone: true,
-  imports: [],
   templateUrl: './ranking.component.html',
-  styleUrl: './ranking.component.css'
+  styleUrl: './ranking.component.css',
+  standalone:true
 })
 export class RankingComponent {
 

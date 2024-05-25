@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './components/login/login.component'; // Asegúrate de ajustar la ruta según tu estructura de archivos
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
-  template: '<app-login></app-login>',
-  standalone: true,
-  imports: [CommonModule, LoginComponent]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  standalone:true
 })
-export class AppComponent {}
+export class AppComponent { }
