@@ -1,4 +1,4 @@
-import connection from "../db/connection";
+import connection from '../db/connection';
 import { Request, Response } from 'express';
 
 
@@ -7,29 +7,17 @@ import { Request, Response } from 'express';
 
 class studentController {
     
-    public static getStudents()
-    {
-        const query = 'SELECT * FROM Student';
-        connection.query(query, (err, results) => {
-          if (err) {
-            console.error('Error al ejecutar la consulta:', err);
-            return;
-          }
-          console.log('Alumnos en la tabla Student:');
-          (results as any[]).forEach((row) => {
-            console.log(row);
-          });
-        });
-    }
+   // public static getStudents()
+
 }
-   
     export const getStudentByCi = async (req: Request, res: Response) => {
         const { ci } = req.params; // Asume que la cédula viene como parámetro de ruta
+        console.log('llegooooo')
         try {
-          const results = await connection.query('SELECT * FROM Student WHERE Ci = ?', [ci]);
+          const results = await connection.query('SELECT * FROM Student WHERE Ci = ?', [12345678]);
           if (results) {
             console.log('Alumno encontrado:');
-            console.log(results);
+            console.log(results[0]);
             res.json(results);
           } else {
             console.log('No se encontró ningún alumno con la cédula proporcionada.');
@@ -40,5 +28,6 @@ class studentController {
           res.status(500).json({ msg: 'Error interno del servidor' });
         }
       };
+
 export default studentController;
 
