@@ -1,14 +1,7 @@
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 import Config from './config';
 
-const connection = mysql.createConnection(Config.dbConfig);
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error al conectar a MySQL:', err);
-    return;
-  }
-  console.log('Conexión exitosa a MySQL');
-});
+const connection = mysql.createPool(Config.dbConfig);
 
 export default connection;
