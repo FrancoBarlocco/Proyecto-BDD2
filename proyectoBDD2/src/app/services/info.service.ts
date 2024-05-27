@@ -20,9 +20,10 @@ export class InfoService {
 
   getStadiums(): Stadium[] {
     return [
-      new Stadium('Stadium 1', 'City 1', 50000, '/assets/images/estadio1.webp'),
-      new Stadium('Stadium 2', 'City 2', 40000, '/assets/images/estadio1.webp'),
-      // Agrega más datos de ejemplo aquí
+      new Stadium('Stadium 1', 'City 1', 50000, '/assets/images/Stadiums/Allegiant Stadium.webp'),
+      new Stadium('Stadium 2', 'City 2', 40000, '/assets/images/Stadiums/NRG.webp'),
+      new Stadium('Stadium 1', 'City 1', 50000, '/assets/images/Stadiums/Levis.webp'),
+      new Stadium('Stadium 2', 'City 2', 40000, '/assets/images/Stadiums/Q2.webp'),
     ];
   }
 }
