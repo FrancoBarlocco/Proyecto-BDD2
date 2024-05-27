@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from '../../services/info.service';
 import { Fixture } from '../../models/fixture';
-import { Stadium } from '../../models/fixture';
+import { Stadium } from '../../models/stadium';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 
