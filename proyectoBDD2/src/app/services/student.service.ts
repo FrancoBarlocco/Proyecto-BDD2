@@ -13,6 +13,10 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   findUserByCi(ci: number): Observable<Student> {
-    return this.http.get<Student>(this.apiUrl + '/getStudentByCi');
+    return this.http.get<Student>(`${this.apiUrl}/getStudentByCi/${ci}`);
+}
+
+getStudens() {
+  return this.http.get<Student>(this.apiUrl + '/getStudents');
 }
 }

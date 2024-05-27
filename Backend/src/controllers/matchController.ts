@@ -1,12 +1,12 @@
 import connection from '../db/connection';
 import { Request, Response } from 'express';
 
-class studentController {
+class matchController {
 }
-    export const getStudentByCi = async (req: Request, res: Response) => {
-        const { ci } = req.params; // Asume que la cédula viene como parámetro de ruta
+    export const getMatchById = async (req: Request, res: Response) => {
+        const { id } = req.params; // Asume que la cédula viene como parámetro de ruta
         try {
-          const results = await connection.query('SELECT * FROM Student WHERE Ci = ?', [ci]);
+          const results = await connection.query('SELECT * FROM Matches WHERE MatchId = ?', [id]);
            console.log(results);
             res.json(results);
           }
@@ -16,10 +16,10 @@ class studentController {
         }
       }
 
-      export const getStudents = async (req: Request, res: Response) => {
+      export const getMatches = async (req: Request, res: Response) => {
         const { ci } = req.params; // Asume que la cédula viene como parámetro de ruta
         try {
-          const results = await connection.query('SELECT * FROM Student');
+          const results = await connection.query('SELECT * FROM Matches');
             console.log(results)
             res.json(results);
           }
@@ -29,5 +29,5 @@ class studentController {
         }
       }
 
-export default studentController;
+export default matchController;
 

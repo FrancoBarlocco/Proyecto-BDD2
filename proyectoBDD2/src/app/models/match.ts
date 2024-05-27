@@ -1,4 +1,4 @@
-export class Matches {
+export class Match {
     matchId : number;
     location : string;
     date : Date;
