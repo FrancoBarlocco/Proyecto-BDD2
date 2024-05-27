@@ -6,7 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { InitComponent } from './components/init/init.component';
 import { HomeComponent } from './components/home/home.component';
 import { RankingComponent } from './components/ranking/ranking.component';
-import { UserInfoComponent } from './components/user-info/user-info.component';
+import { InfoComponent } from './components/user-info/user-info.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 
 export const routes: Routes = [
@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'ranking', component: RankingComponent },
-  { path: 'info', component: UserInfoComponent },
+  { path: 'info', component: InfoComponent },
   { path: 'statistics', component: StatisticsComponent },
 ];
 

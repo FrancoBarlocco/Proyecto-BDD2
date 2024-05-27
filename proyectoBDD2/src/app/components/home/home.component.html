@@ -1,17 +1,23 @@
+<!-- home.component.html -->
 <div class="home-container">
   <app-navbar></app-navbar>
-  
-  <h1>Bienvenido a la Penca de la Copa América 2024</h1>
   
   <div class="matches-container">
     <div *ngFor="let match of matches" class="card">
       <div class="match-info">
-        <div>
-          <h3>Equipo {{ match.team1 }} vs Equipo {{ match.team2 }}</h3>
-          <p>{{ match.date }}</p>
-          <p>{{ match.location }}</p>
+        <div class="team-info">
+          <img src="{{ match.team1Badge }}" alt="Team 1 Badge" class="team-badge">
+          <p>Equipo {{ match.team1 }}</p>
         </div>
-        <img src="/assets/images/match.png" alt="Match {{ match.team1 }} vs {{ match.team2 }}">
+        <p class="vs">vs</p>
+        <div class="team-info">
+          <img src="{{ match.team2Badge }}" alt="Team 2 Badge" class="team-badge">
+          <p>Equipo {{ match.team2 }}</p>
+        </div>
+      </div>
+      <div class="match-details">
+        <p>{{ match.date }}</p>
+        <p>{{ match.location }}</p>
       </div>
     </div>
   </div>
