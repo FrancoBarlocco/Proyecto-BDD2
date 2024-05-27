@@ -14,22 +14,22 @@ CREATE TABLE Matches (
     MatchId INT PRIMARY KEY,
     Location VARCHAR(100),
     Date DATE,
-    TeamAResult INT,
-    TeamBResult INT
+    LocalTeamResult INT,
+    VisitantTeamResult INT
 );
 
 -- Table Student
 CREATE TABLE Student (
-    Id INT PRIMARY KEY,
+    Id INT PRIMARY KEY, cedula
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Email VARCHAR(100),
     Password VARCHAR(100),
     Major VARCHAR(100),
     ChampionTeamId INT,
-    RunnerUpTeamId INT,
+    SubChampionTeamId INT,
     FOREIGN KEY (ChampionTeamId) REFERENCES Team(TeamId),
-    FOREIGN KEY (RunnerUpTeamId) REFERENCES Team(TeamId)
+    FOREIGN KEY (subChampionTeamId) REFERENCES Team(TeamId)
 );
 
 -- Table Administrator
@@ -51,44 +51,6 @@ CREATE TABLE Predicts (
     PRIMARY KEY (UserId, MatchId),
     FOREIGN KEY (UserId) REFERENCES Student(Id),
     FOREIGN KEY (MatchId) REFERENCES Matches(MatchId)
-);
-
--- Table IsVisitor
-CREATE TABLE visitant (
-    MatchId INT,
-    TeamId INT,
-    Visitor BOOLEAN,
-    PRIMARY KEY (MatchId, TeamId),
-    FOREIGN KEY (MatchId) REFERENCES Matches(MatchId),
-    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
-);
-
--- Table IsHome
-CREATE TABLE local (
-    MatchId INT,
-    TeamId INT,
-    Home BOOLEAN,
-    PRIMARY KEY (MatchId, TeamId),
-    FOREIGN KEY (MatchId) REFERENCES Matches(MatchId),
-    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
-);
-
--- Table ChoosesChampion
-CREATE TABLE ChooseChampion (
-    StudentId INT,
-    ChampionTeamId INT,
-    PRIMARY KEY (StudentId, ChampionTeamId),
-    FOREIGN KEY (StudentId) REFERENCES Student(Id),
-    FOREIGN KEY (ChampionTeamId) REFERENCES Team(TeamId)
-);
-
--- Table ChoosesRunnerUp
-CREATE TABLE ChooseSubChampion (
-    StudentId INT,
-    TeamId INT,
-    PRIMARY KEY (StudentId, TeamId),
-    FOREIGN KEY (StudentId) REFERENCES Student(Id),
-    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
 );
 
 show tables
