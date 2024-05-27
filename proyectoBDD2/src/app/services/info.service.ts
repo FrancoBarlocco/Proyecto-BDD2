@@ -1,7 +1,7 @@
 // src/app/services/info.service.ts
 import { Injectable } from '@angular/core';
 import { Fixture } from '../models/fixture';
-import { Stadium } from '..//models/fixture';
+import { Stadium } from '..//models/stadium';
 
 @Injectable({
   providedIn: 'root'

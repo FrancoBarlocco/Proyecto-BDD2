@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Student } from '../models/student';
+import { HttpClient } from '@angular/common/http';
+import { Ranking } from '../models/ranking';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RankingService {
+  apiUrl = 'http://localhost:5050/api/ranking';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getRanking(): Student[] {
-    return [
-      new Student('Juan Pérez', 150),
-      new Student('María López', 145),
-      new Student('Carlos García', 140),
-    ];
+  getRanking(): Promise<Ranking[]> {
+    return firstValueFrom(this.http.get<Ranking[]>(this.apiUrl + '/getRanking'));
   }
 }

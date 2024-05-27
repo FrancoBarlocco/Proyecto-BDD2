@@ -14,11 +14,5 @@ export class RegisterComponent {
   telefono: string = '';
 
   register() {
-    // Aquí puedes implementar la lógica de registro
-    console.log('Nombre:', this.nombre);
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Carrera:', this.carrera);
-    console.log('Teléfono:', this.telefono);
   }
 }
