@@ -4,6 +4,9 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
   }
+  app-navbar {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+  }
   
   .ranking-container {
     display: flex;

@@ -27,7 +27,26 @@ h1 {
   color: #116ac9;
   text-align: center;
   margin-bottom: 2rem;
+}/* home.component.css */
+
+/* Resto de estilos permanecen igual */
+
+/* Ajustes para la barra de navegación */
+app-navbar {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
 }
+
+/* Ajustes para hacer responsive */
+@media (max-width: 768px) {
+  app-navbar {
+    position: relative; /* Añadido para corregir posibles problemas de superposición */
+  }
+
+  .home-container {
+    padding-top: 5rem; /* Añadido espacio superior para compensar la barra de navegación */
+  }
+}
+
 
 .matches-container {
   display: flex;
@@ -81,21 +100,6 @@ h1 {
   object-fit: cover; /* Asegura que la imagen mantenga su proporción */
 }
 
-@media (max-width: 768px) {
-  .team-badge {
-    width: 100px; /* Ajusta el tamaño de la imagen para pantallas medianas */
-    height: 100px; /* Ajusta el tamaño de la imagen para pantallas medianas */
-  }
-}
-
-@media (max-width: 480px) {
-  .team-badge {
-    width: 80px; /* Ajusta el tamaño de la imagen para pantallas pequeñas */
-    height: 80px; /* Ajusta el tamaño de la imagen para pantallas pequeñas */
-  }
-}
-
-
 .vs {
   font-size: 1.5rem;
   margin: 0 1rem;
@@ -108,6 +112,28 @@ h1 {
 }
 
 /* Media queries para hacerlo responsive */
+@media (max-width: 1024px) {
+  .card {
+    width: calc(50% - 1rem); /* Ajusta el ancho de las tarjetas para pantallas medianas */
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .team-badge {
+    width: 100px;
+    height: 100px;
+  }
+
+  .vs {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .match-details {
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 768px) {
   .card {
     width: calc(50% - 1rem); /* Ajusta el ancho de las tarjetas para pantallas medianas */

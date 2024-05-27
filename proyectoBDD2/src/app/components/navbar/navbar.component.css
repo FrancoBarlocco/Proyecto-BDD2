@@ -18,13 +18,12 @@
 }
 
 .logo {
-  width: auto; /* Ajusta automáticamente el ancho para mantener la proporción */
+  width: 250%; /* Ajusta el ancho del logo según sea necesario */
   height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
   object-fit: contain; /* Ajusta la imagen para adaptarse al contenedor sin deformarse */
 }
 
 .navbar .logo {
-  width: 30%; /* Tamaño relativo al ancho de la navbar */
   cursor: pointer;
   object-fit: cover;
 }
@@ -86,10 +85,6 @@
       padding: 0.5rem 2rem; /* Ajusta el padding horizontal */
   }
 
-  .navbar .logo {
-      width: 100px;
-  }
-
   .navbar ul {
       flex-direction: column;
       width: 100%;
@@ -105,11 +100,15 @@
       text-align: left;
       padding: 0.5rem;
   }
+
+  .logo {
+      width: 100px; /* Ajusta el ancho del logo según sea necesario */
+  }
 }
 
 @media (max-width: 480px) {
-  .navbar .logo {
-      width: 80px;
+  .logo {
+      width: 80px; /* Ajusta el ancho del logo según sea necesario */
   }
 
   .navbar ul li a {
