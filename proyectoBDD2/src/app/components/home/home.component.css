@@ -1,0 +1,184 @@
+/* home.component.css */
+body {
+  background-color: #f0f2f5; /* Fondo claro */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff; /* Fondo blanco para la caja */
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+  max-width: 1200px; /* Ancho máximo para pantallas grandes */
+}
+
+h1 {
+  color: #116ac9;
+  text-align: center;
+  margin-bottom: 2rem;
+}/* home.component.css */
+
+/* Resto de estilos permanecen igual */
+
+/* Ajustes para la barra de navegación */
+app-navbar {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+}
+
+/* Ajustes para hacer responsive */
+@media (max-width: 768px) {
+  app-navbar {
+    position: relative; /* Añadido para corregir posibles problemas de superposición */
+  }
+
+  .home-container {
+    padding-top: 5rem; /* Añadido espacio superior para compensar la barra de navegación */
+  }
+}
+
+
+.matches-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten a la siguiente fila */
+  justify-content: center; /* Centra las tarjetas en el contenedor */
+  gap: 1rem; /* Espacio entre las tarjetas */
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #d3d3d3; /* Borde gris */
+  border-radius: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem;
+  width: calc(50% - 2rem); /* Dos tarjetas por fila */
+  max-width: 450px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.match-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-badge {
+  width: 135px; /* Ajusta el tamaño de la imagen */
+  height: 135px; /* Ajusta el tamaño de la imagen */
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  border: 2px solid #116ac9; /* Borde azul alrededor de la imagen */
+  object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+}
+
+.vs {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  color: #116ac9; /* Color azul para el "vs" */
+}
+
+.match-details {
+  text-align: center;
+  margin-top: 0.5rem; /* Espacio arriba de los detalles del partido */
+}
+
+/* Media queries para hacerlo responsive */
+@media (max-width: 1024px) {
+  .card {
+    width: calc(50% - 1rem); /* Ajusta el ancho de las tarjetas para pantallas medianas */
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .team-badge {
+    width: 100px;
+    height: 100px;
+  }
+
+  .vs {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .match-details {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 1rem); /* Ajusta el ancho de las tarjetas para pantallas medianas */
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .team-badge {
+    width: 80px;
+    height: 80px;
+  }
+
+  .vs {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .match-details {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    padding: 1rem;
+  }
+
+  .card {
+    width: calc(100% - 1rem); /* Una tarjeta por fila en pantallas pequeñas */
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .team-badge {
+    width: 60px;
+    height: 60px;
+  }
+
+  .vs {
+    font-size: 1rem;
+    margin: 0.5rem;
+  }
+
+  .match-details {
+    font-size: 0.8rem;
+  }
+}

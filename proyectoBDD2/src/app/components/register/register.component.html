@@ -1,0 +1,39 @@
+<div class="register">
+    <form class="custom-form" method="post">
+        <div class="logo-container">
+            <img src="/assets/images/copa-america-2024-logo-png-transparente.png" alt="Copa America Logo" class="logo">
+        </div>
+        <h1>Registrarse</h1>
+        <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            required
+        />
+        <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+        />
+        <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            required
+        />
+        <input
+            type="text"
+            name="carrera"
+            placeholder="Carrera"
+            required
+        />
+        <input
+            type="tel"
+            name="telefono"
+            placeholder="Número de Teléfono"
+            required
+        />
+        <button type="submit" (click)="register()">Registrarse</button>
+    </form>
+</div>

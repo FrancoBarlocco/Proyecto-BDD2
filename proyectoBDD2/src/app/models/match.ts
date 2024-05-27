@@ -5,7 +5,6 @@ export class Match {
     localTeamResult : number;
     visitantTeamResult : number;
 
-
     constructor(matchId : number, location : string, date : Date, localTeamResult : number, visitantTeamResult : number) {
         this.matchId = matchId;
         this.location = location;

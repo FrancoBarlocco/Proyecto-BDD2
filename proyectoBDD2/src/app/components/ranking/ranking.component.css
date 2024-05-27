@@ -1,0 +1,50 @@
+body {
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  app-navbar {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+  }
+  
+  .ranking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  h1 {
+    color: #116ac9;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .ranking-table {
+    width: 70%;
+    border-collapse: collapse;
+  }
+  
+  .ranking-table th,
+  .ranking-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .ranking-table th {
+    background-color: #116ac9;
+    color: white;
+  }
+  
+  .ranking-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  

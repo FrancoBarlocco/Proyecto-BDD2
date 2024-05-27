@@ -1,0 +1,36 @@
+<!-- src/app/info/info.component.html -->
+<div class="info-container">
+    <app-navbar></app-navbar>
+    <h1>Información del Torneo</h1>
+    
+    <h2>Fixture</h2>
+    <table class="fixture-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Equipos</th>
+          <th>Estadio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fixture of fixtures">
+          <td>{{ fixture.date }}</td>
+          <td>{{ fixture.teams }}</td>
+          <td>{{ fixture.venue }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2>Estadios</h2>
+    <div class="stadiums-container">
+      <div *ngFor="let stadium of stadiums" class="stadium-card">
+        <img [src]="stadium.imageUrl" alt="{{ stadium.name }}" class="stadium-image">
+        <div class="stadium-info">
+          <h3>{{ stadium.name }}</h3>
+          <p>{{ stadium.city }}</p>
+          <p>Capacidad: {{ stadium.capacity }} espectadores</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,24 @@
+<!-- home.component.html -->
+<div class="home-container">
+  <app-navbar></app-navbar>
+  
+  <div class="matches-container">
+    <div *ngFor="let match of matches" class="card">
+      <div class="match-info">
+        <div class="team-info">
+          <img src="{{ match.team1Badge }}" alt="Team 1 Badge" class="team-badge">
+          <p>Equipo {{ match.team1 }}</p>
+        </div>
+        <p class="vs">vs</p>
+        <div class="team-info">
+          <img src="{{ match.team2Badge }}" alt="Team 2 Badge" class="team-badge">
+          <p>Equipo {{ match.team2 }}</p>
+        </div>
+      </div>
+      <div class="match-details">
+        <p>{{ match.date }}</p>
+        <p>{{ match.location }}</p>
+      </div>
+    </div>
+  </div>
+</div>

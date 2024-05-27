@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,8 +10,8 @@ import { Team } from '../models/team';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  standalone: true,
-  imports: [CommonModule, FormsModule]
+  standalone:true,
+  imports:[CommonModule, FormsModule]
 })
 export class LoginComponent {
   email: string = '';

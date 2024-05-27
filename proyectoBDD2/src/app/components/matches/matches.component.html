@@ -1,0 +1,12 @@
+<div class="matches-container">
+  <div *ngFor="let match of matches" class="card">
+    <div class="match-info">
+      <div>
+        <h3>Equipo {{ match.team1 }} vs Equipo {{ match.team2 }}</h3>
+        <p>{{ match.date }}</p>
+        <p>{{ match.location }}</p>
+      </div>
+      <img src="/assets/images/match.png" alt="Match {{ match.team1 }} vs {{ match.team2 }}">
+    </div>
+  </div>
+</div>

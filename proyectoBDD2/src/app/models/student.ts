@@ -1,4 +1,4 @@
-export class Student {
+/*export class Student {
     ci: Number;
     firstName : string;
     lastName : string;
@@ -16,5 +16,9 @@ export class Student {
         this.championTeamID = championTeamID
         this.subChampionTeamId = subChampionTeamId
     }
-}
-
+}*/
+// src/app/models/student.model.ts
+export class Student {
+    constructor(public name: string, public points: number) {}
+  }
+  
