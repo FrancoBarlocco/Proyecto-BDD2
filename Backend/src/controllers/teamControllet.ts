@@ -8,7 +8,7 @@ class teamController {
         try {
           const results = await connection.query('SELECT * FROM Team WHERE TeamId = ?', [id]);
            console.log(results);
-            res.json(results);
+            res.json(results[0]);
           }
         catch (error) {
           console.error('Error al ejecutar la consulta:', error);

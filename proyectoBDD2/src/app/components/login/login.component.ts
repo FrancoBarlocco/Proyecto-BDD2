@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StudentService } from '../../services/student.service';
-import { TeamService } from '../../services/teamService';
+import { TeamService } from '../../services/team.service';
 import { Team } from '../../models/team';
 
 @Component({
@@ -32,10 +32,11 @@ export class LoginComponent {
       //this.getStudents()
       // this.findUserByCi(12345678) 
       //this.getTeams()
-      this.getTeamById(1)
+      //this.getTeamById(1)
     }
   }
 
+  /*
   findUserByCi(ci: number) {
     this.studentService.findUserByCi(ci).then(data => {
       // Manejar la respuesta aquí
@@ -70,9 +71,11 @@ export class LoginComponent {
     this.teamService.getTeamById(id).then(data => {
       // Manejar la respuesta aquí
       console.log(data);
-    }).catch(error => {
+    }).catch(() => {
       console.log('errorrrr');
       // Manejar errores si es necesario
     });
   }
+
+  */
 }

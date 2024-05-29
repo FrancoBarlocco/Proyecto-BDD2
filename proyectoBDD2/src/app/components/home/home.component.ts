@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Match } from '../../models/match';
-import { MatchService } from '../../services/matchService';
-import { TeamService } from '../../services/teamService';
+import { MatchService } from '../../services/match.service';
+import { TeamService } from '../../services/team.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Team } from '../../models/team';

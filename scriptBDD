@@ -15,12 +15,14 @@ CREATE TABLE Matches (
     Location VARCHAR(100),
     Date DATE,
     LocalTeamResult INT,
-    VisitantTeamResult INT
+    VisitantTeamResult INT,
+    localTeamId INT,
+    visitantTeamId INT
 );
 
 -- Table Student
 CREATE TABLE Student (
-    Id INT PRIMARY KEY, cedula
+    Ci INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Email VARCHAR(100),
@@ -49,8 +51,38 @@ CREATE TABLE Predicts (
     TeamBGoals INT,
     Score INT,
     PRIMARY KEY (UserId, MatchId),
-    FOREIGN KEY (UserId) REFERENCES Student(Id),
+    FOREIGN KEY (UserId) REFERENCES Student(Ci),
     FOREIGN KEY (MatchId) REFERENCES Matches(MatchId)
 );
 
-show tables
+INSERT INTO Team (TeamId, Name, Flag)
+VALUES (1, 'Team A', 'flagA.png');
+
+
+INSERT INTO Student (Ci, FirstName, LastName, Email, Password, Major, ChampionTeamId, SubChampionTeamId)
+VALUES
+(12345678, 'Juan', 'Perez', 'juan.perez@example.com', 'password123', 'Computer Science', 1, 1),
+(87654321, 'Ana', 'Gomez', 'ana.gomez@example.com', 'password456', 'Mathematics', 1, 1),
+(11223344, 'Carlos', 'Lopez', 'carlos.lopez@example.com', 'password789', 'Physics', 1, 1);
+
+INSERT INTO Matches (MatchId, Location, Date, LocalTeamResult, VisitantTeamResult, localTeamId, visitantTeamId)
+VALUES
+(1, 'Buenos Aires', '2024-06-15', 3, 2, 1, 2),
+(2, 'Rio de Janeiro', '2024-06-16', 1, 1, 3, 4),
+(3, 'Santiago', '2024-06-17', 0, 0, 5, 6),
+(4, 'Lima', '2024-06-18', 2, 1, 7, 8),
+(5, 'Bogotá', '2024-06-19', 4, 3, 9, 10);
+
+INSERT INTO Team (TeamId, Name, Flag)
+VALUES
+(2, 'Brasil', 'brazil.png'),
+(3, 'Uruguay', 'uruguay.png'),
+(4, 'Chile', 'chile_flag.png'),
+(5, 'Perú', 'peru_flag.png'),
+(6, 'Colombia', 'colombia_flag.png'),
+(7, 'Paraguay', 'paraguay_flag.png'),
+(8, 'Ecuador', 'ecuador_flag.png'),
+(9, 'Venezuela', 'venezuela_flag.png'),
+(10, 'Bolivia', 'bolivia_flag.png');
+
+select * FROM Team
