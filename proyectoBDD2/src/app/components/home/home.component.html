@@ -6,13 +6,12 @@
     <div *ngFor="let match of matchesAndTeams" class="card">
       <div class="match-info">
         <div class="team-info">
-          
-          <img [src]="match.LocalTeamFlag" alt="{{ match.LocalTeamName }} Badge" class="team-badge">
+          <img [src]="'../assets/images/Flags/' + match.LocalTeamFlag" [alt]="match.LocalTeamName" class="team-badge">
           <p>{{ match.LocalTeamName }}</p>
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <img [src]="match.VisitantTeamFlag" alt="{{ match.VisitantTeamName }} Badge" class="team-badge">
+          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag"  [alt]="match.VisitantTeamName" class="team-badge">
           <p>{{ match.VisitantTeamName }}</p>
 
         </div>
