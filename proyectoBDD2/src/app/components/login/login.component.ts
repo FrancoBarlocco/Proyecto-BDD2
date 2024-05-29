@@ -71,7 +71,7 @@ export class LoginComponent {
     this.teamService.getTeamById(id).then(data => {
       // Manejar la respuesta aquí
       console.log(data);
-    }).catch(error => {
+    }).catch(() => {
       console.log('errorrrr');
       // Manejar errores si es necesario
     });

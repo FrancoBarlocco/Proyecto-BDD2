@@ -85,4 +85,8 @@ VALUES
 (9, 'Venezuela', 'venezuela_flag.png'),
 (10, 'Bolivia', 'bolivia_flag.png');
 
+<<<<<<< HEAD
 select * FROM Team
+=======
+select * FROM Team
+>>>>>>> c773e0d (Rename files)
