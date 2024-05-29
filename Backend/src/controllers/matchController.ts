@@ -50,4 +50,36 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
     }
 };
 
+export const savePredictions = async (req: Request, res: Response): Promise<void> => {
+  // Obtén los datos de la solicitud
+  const { userId, matchId, localPrediction, visitantPrediction } = req.body;
+
+  try {
+    // Realiza la inserción de predicciones en la base de datos
+    const query = `
+      INSERT INTO Predicts (UserId, MatchId, TeamAGoals, TeamBGoals, Score)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+    // Ejecuta la consulta preparada
+    await connection.query(query, [userId, matchId, localPrediction, visitantPrediction, 0]);
+
+    // Si la inserción fue exitosa, envía una respuesta de éxito
+    const response = {
+      success: true,
+      message: 'Predictions saved successfully.'
+    };
+    res.json(response);
+  } catch (error) {
+    // Si hay algún error, envía una respuesta de error
+    console.error('Error saving predictions:', error);
+    const response = {
+      success: false,
+      error: 'Failed to save predictions. Please try again later.'
+    };
+    res.status(500).json(response);
+  }
+};
+
+
+
 export default matchController;

@@ -10,5 +10,7 @@ export interface MatchAndTeams {
     VisitantTeamId: number;
     VisitantTeamName: string;
     VisitantTeamFlag: string;
+    localPrediction: number;
+    visitantPrediction: number;
   }
   

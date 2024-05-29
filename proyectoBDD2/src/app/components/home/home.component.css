@@ -47,6 +47,27 @@ app-navbar {
   }
 }
 
+.prediction-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+}
+
+.prediction-input {
+  margin: 5px; /* Ajusta el espacio entre los inputs según sea necesario */
+  padding: 5px; /* Ajusta el espacio interior de los inputs según sea necesario */
+  width: 60px; /* Ajusta el ancho de los inputs según sea necesario */
+  text-align: center;
+  border-radius: 2px black; /* Elimina el borde del input */
+  outline: none; /* Elimina el contorno del input */
+}
+
+.prediction-input::-webkit-inner-spin-button,
+.prediction-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Ajusta el margen de las flechas */
+}
 
 .matches-container {
   display: flex;
