@@ -5,6 +5,7 @@ import { TeamService } from '../../services/team.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Team } from '../../models/team';
+import { MatchAndTeams } from '../../models/matchAndTeams';
 
 @Component({
   selector: 'app-home',
@@ -14,37 +15,15 @@ import { Team } from '../../models/team';
   standalone: true
 })
 export class HomeComponent implements OnInit {
+  matchesAndTeams: MatchAndTeams[] = [];
 
-  matches: (Match & { localTeam?: Team; visitantTeam?: Team })[] = [];
+  constructor(private matchService: MatchService) {}
 
-  constructor(private matchesService: MatchService, private teamService: TeamService) {}
-
-  ngOnInit() {
-    this.matchesService.getMatches().then(response => {
-      if (Array.isArray(response) && Array.isArray(response[0])) {
-        this.matches = response[0];
-      } else {
-        console.error('Unexpected response format:', response);
-        return;
-      }
-
-      console.log(this.matches);
-      
-      });
-    };
-
-
-    getInfoTeams() {
-      this.matches.forEach(match => {
-        this.teamService.getTeamById(match.localTeamId).subscribe(localTeam => {
-          if (Array.isArray(localTeam)) {
-            match.localTeam = localTeam[0]; // Asigna el primer elemento del arreglo si la respuesta es un arreglo
-          } else {
-            match.localTeam = localTeam; // Asigna directamente si es un objeto
-          }
-          console.log('Local Team:', match.localTeam);
-        });
-  
-    })
+  ngOnInit(): void {
+    this.matchService.getMatchesAndTeams().then((data) => {
+      this.matchesAndTeams = data;
+    }).catch((error) => {
+      console.error('Error fetching matches and teams', error);
+    });
   }
 }

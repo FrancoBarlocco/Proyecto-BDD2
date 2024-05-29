@@ -3,19 +3,21 @@
   <app-navbar></app-navbar>
   
   <div class="matches-container">
-    <div *ngFor="let match of matches" class="card">
+    <div *ngFor="let match of matchesAndTeams" class="card">
       <div class="match-info">
         <div class="team-info">
-          <p>Equipo {{match.localTeam?.name }}</p>
+          <img [src]="match.LocalTeamFlag" alt="{{ match.LocalTeamName }} Badge" class="team-badge">
+          <p>{{ match.LocalTeamName }}</p>
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <p>Equipo {{ match.visitantTeam?.name}}</p>
+          <img [src]="match.VisitantTeamFlag" alt="{{ match.VisitantTeamName }} Badge" class="team-badge">
+          <p>{{ match.VisitantTeamName }}</p>
         </div>
       </div>
       <div class="match-details">
-        <p>{{ match.date }}</p>
-        <p>{{ match.location }}</p>
+        <p>{{ match.Date | date }}</p>
+        <p>{{ match.Location }}</p>
       </div>
     </div>
   </div>

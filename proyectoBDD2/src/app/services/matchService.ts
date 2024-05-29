@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Match } from '../models/match';
-import { firstValueFrom } from 'rxjs';
 import { MatchAndTeams } from '../models/matchAndTeams';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +24,3 @@ export class MatchService {
     return firstValueFrom(this.http.get<MatchAndTeams[]>(this.apiUrl + '/getMatchesAndTeams'));
   }
 }
-

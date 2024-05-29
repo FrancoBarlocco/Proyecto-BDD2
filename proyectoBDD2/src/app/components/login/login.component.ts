@@ -32,10 +32,11 @@ export class LoginComponent {
       //this.getStudents()
       // this.findUserByCi(12345678) 
       //this.getTeams()
-      this.getTeamById(1)
+      //this.getTeamById(1)
     }
   }
 
+  /*
   findUserByCi(ci: number) {
     this.studentService.findUserByCi(ci).then(data => {
       // Manejar la respuesta aquí
@@ -75,4 +76,6 @@ export class LoginComponent {
       // Manejar errores si es necesario
     });
   }
+
+  */
 }
