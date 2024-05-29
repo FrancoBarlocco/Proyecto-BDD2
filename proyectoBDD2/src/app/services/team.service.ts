@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../models/team';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TeamService {
     return firstValueFrom(this.http.get<Team[]>(this.apiUrl + '/getTeams'));
   }
 
-  getTeamById(id: number): Promise<Team> {
-    return firstValueFrom(this.http.get<Team>(`${this.apiUrl}/getTeamById/${id}`));
+  getTeamById(id: number): Observable<Team> {
+    return this.http.get<Team>(`${this.apiUrl}/getTeamById/${id}`);
   }
 }

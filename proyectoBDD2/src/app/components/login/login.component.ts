@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StudentService } from '../../services/student.service';
-import { TeamService } from '../../services/teamService';
+import { TeamService } from '../../services/team.service';
 import { Team } from '../../models/team';
 
 @Component({
