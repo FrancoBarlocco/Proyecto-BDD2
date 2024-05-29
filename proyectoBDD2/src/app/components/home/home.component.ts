@@ -5,6 +5,7 @@ import { TeamService } from '../../services/teamService';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Team } from '../../models/team';
+import { MatchAndTeams } from '../../models/matchAndTeams';
 
 @Component({
   selector: 'app-home',
@@ -14,23 +15,15 @@ import { Team } from '../../models/team';
   standalone: true
 })
 export class HomeComponent implements OnInit {
-  matches: Match[] = [];
-  localTeam!: Team;
-  visitantTeam!: Team;
+  matchesAndTeams: MatchAndTeams[] = [];
 
-  constructor(private matchesService: MatchService, private teamService: TeamService) {}
+  constructor(private matchService: MatchService) {}
 
-  ngOnInit() {
-    this.matchesService.getMatches().then(matches => {
-      this.matches = matches;
-      this.matches.forEach(match => {
-        this.teamService.getTeamById(match.localTeamId).then(localTeam => {
-          this.localTeam = localTeam;
-        });
-        this.teamService.getTeamById(match.visitantTeamId).then(visitantTeam => {
-          this.visitantTeam = visitantTeam;
-        });
-      });
+  ngOnInit(): void {
+    this.matchService.getMatchesAndTeams().then((data) => {
+      this.matchesAndTeams = data;
+    }).catch((error) => {
+      console.error('Error fetching matches and teams', error);
     });
   }
 }
