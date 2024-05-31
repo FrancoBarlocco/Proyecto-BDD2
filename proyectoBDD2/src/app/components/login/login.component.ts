@@ -46,6 +46,7 @@ export class LoginComponent {
       // Manejar errores si es necesario
     });
   }
+  
 
   getStudents() {
     this.studentService.getStudents().then(data => {
@@ -57,6 +58,7 @@ export class LoginComponent {
     });
   }
 
+  
   getTeams() {
     this.teamService.getTeams().then(data => {
       // Manejar la respuesta aquí

@@ -4,36 +4,62 @@
             <img src="/assets/images/copa-america-2024-logo-png-transparente.png" alt="Copa America Logo" class="logo">
         </div>
         <h1>Registrarse</h1>
+
         <input
             type="text"
-            name="nombre"
+            name="ci"
+            placeholder="Cedula de identidad"
+            [(ngModel)]="ci"
+        />
+        <input
+            type="text"
+            name="firstName"
             placeholder="Nombre"
-            required
+            [(ngModel)]="firstName"
+        />
+        <input
+            type="text"
+            name="lastName"
+            placeholder="Apellido"
+            [(ngModel)]="lastName"
         />
         <input
             type="email"
             name="email"
             placeholder="Email"
-            required
+            [(ngModel)]="email"
         />
+        <input
+            type="text"
+            name="contact"
+            placeholder="Número de Teléfono"
+            [(ngModel)]="contact"
+        />
+        <input
+            type="text"
+            name="career"
+            placeholder="Carrera"
+            [(ngModel)]="career"
+         />
         <input
             type="password"
             name="password"
             placeholder="Contraseña"
-            required
+            [(ngModel)]="password"
         />
         <input
             type="text"
-            name="carrera"
-            placeholder="Carrera"
-            required
+            name="championTeamId"
+            placeholder="Numero del primer equipo ganador"
+            [(ngModel)]="championTeamId"
         />
         <input
-            type="tel"
-            name="telefono"
-            placeholder="Número de Teléfono"
-            required
+            type="text"
+            name="subChampionTeamId"
+            placeholder="Numero del segundo equipo ganador"
+            [(ngModel)]="subChampionTeamId"
         />
+
         <button type="submit" (click)="register()">Registrarse</button>
     </form>
 </div>
