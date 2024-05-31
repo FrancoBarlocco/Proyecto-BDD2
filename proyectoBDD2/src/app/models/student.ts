@@ -6,8 +6,9 @@ export class Student {
     password : string
     championTeamID : string
     subChampionTeamId : string
+    Contact : string
 
-    constructor(ci: Number, firstName : string, lastName : string, email : string, password : string, championTeamID : string, subChampionTeamId : string) {
+    constructor(ci: Number, firstName : string, lastName : string, email : string, password : string, championTeamID : string, subChampionTeamId : string, Contact : string) {
         this.ci = ci;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -15,6 +16,7 @@ export class Student {
         this.password = password;
         this.championTeamID = championTeamID
         this.subChampionTeamId = subChampionTeamId
+        this.Contact = Contact
     }
 }
 /*
