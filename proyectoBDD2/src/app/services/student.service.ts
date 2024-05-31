@@ -18,4 +18,5 @@ export class StudentService {
   getStudents(): Promise<Student[]> {
     return firstValueFrom(this.http.get<Student[]>(this.apiUrl + '/getStudents'));
   }
+
 }

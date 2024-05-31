@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import RegisterService from '../../services/register.service';
-import internal from 'node:stream';
-
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 
 @Component({
   selector: 'app-register',
@@ -13,9 +11,8 @@ import { FormsModule } from '@angular/forms';
   standalone:true
 })
 
-
 export class RegisterComponent {
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService, private router : Router) { }
   ci : string = '';
   firstName: string = '';
   lastName : string = ''
@@ -32,17 +29,16 @@ export class RegisterComponent {
       response => {
         alert('Registrado correctamente!')
         console.log('Registrado correctamente!', response);
+        this.router.navigate(['/home']);
       },
       error => {
         if (error.status === 401) {
-          alert('El usuario ya está registrado!');
+          alert('El usuario no está registrado');
         } else {
           alert('An error occurred during registration');
         }
       }
     );
-  
-
   }
 }
 
