@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { StudentService } from '../../services/student.service';
 import { TeamService } from '../../services/team.service';
 import { Team } from '../../models/team';
+import LoginService from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,68 +18,41 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private studentService: StudentService, private teamService: TeamService) { }
+
+  /*  
+  asi se obtiene el userId de un estudiante en cualqueir componente 
+  
+    userId: string | null = '';
+
+    ngOnInit() {
+    this.userId = localStorage.getItem('ci');
+
+  }*/ 
+
+  userIds: string | null = '';
+
+  constructor(private loginService : LoginService,  private router: Router) { }
 
   login() {
-    console.log("prueba login")
-    if (this.email && this.password) {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-      // Aquí puedes agregar la lógica para autenticar al usuario
-    } else {
-      console.log('Please enter both email and password');
-
-      //prueba de endpoints
-
-      //this.getStudents()
-      // this.findUserByCi(12345678) 
-      //this.getTeams()
-      //this.getTeamById(1)
-    }
+      this.loginService.login(this.email, this.password).subscribe(
+        response => {
+          alert('Inicio de sesion exitoso')
+          localStorage.setItem('userId', response.userId) 
+          this.router.navigate(['/home']);
+        },
+        error => {
+          if (error.status === 401) {
+            alert('Datos incorrectos');
+          } else {
+            alert('An error occurred during registration');
+          }
+        }
+      );
   }
 
-  /*
-  findUserByCi(ci: number) {
-    this.studentService.findUserByCi(ci).then(data => {
-      // Manejar la respuesta aquí
-      console.log(data.ci);
-    }).catch(error => {
-      console.log('errorrrr');
-      // Manejar errores si es necesario
-    });
+  logout() {
+    localStorage.removeItem('userId');
   }
-  
-
-  getStudents() {
-    this.studentService.getStudents().then(data => {
-      // Manejar la respuesta aquí
-      console.log(data);
-    }).catch(error => {
-      console.log('errorrrr');
-      // Manejar errores si es necesario
-    });
-  }
-
-  
-  getTeams() {
-    this.teamService.getTeams().then(data => {
-      // Manejar la respuesta aquí
-      console.log(data);
-    }).catch(error => {
-      console.log('errorrrr');
-      // Manejar errores si es necesario
-    });
-  }
-
-  getTeamById(id: number) {
-    this.teamService.getTeamById(id).then(data => {
-      // Manejar la respuesta aquí
-      console.log(data);
-    }).catch(() => {
-      console.log('errorrrr');
-      // Manejar errores si es necesario
-    });
-  }
-
-  */
 }
+
+

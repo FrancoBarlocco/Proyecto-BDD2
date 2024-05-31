@@ -15,6 +15,9 @@ class Server {
         this.port = process.env.SERVER_PORT || 5050
         this.middlewares();
         this.routes();
+        const cookieParser = require('cookie-parser');
+
+        this.app.use(cookieParser());
     }
   
   
