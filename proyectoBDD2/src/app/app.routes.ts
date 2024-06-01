@@ -9,7 +9,9 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { InfoComponent } from './components/user-info/user-info.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { Router } from '@angular/router';
-
+import { InsertMatchComponent } from './components/insert-match/insert-match.component';
+import { InsertResultComponent } from './components/insert-result/insert-result.component';
+import path from 'path';
 
 
 const authGuard: CanActivateFn = (route, state) => {
@@ -34,6 +36,10 @@ export const routes: Routes = [
   { path: 'ranking', component: RankingComponent, canActivate: [authGuard] },
   { path: 'info', component: InfoComponent, canActivate: [authGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [authGuard] },
+  { path: 'insertMatch', component: InsertMatchComponent},
+  { path: 'insertResult', component: InsertResultComponent},
+
+
 ];
 
 @NgModule({

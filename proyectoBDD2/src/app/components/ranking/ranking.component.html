@@ -1,19 +1,23 @@
 <div class="ranking-container">
+  <ng-container *ngIf="isAdmin; else userNavbar">
+    <app-admin-navbar></app-admin-navbar>
+  </ng-container>
+  <ng-template #userNavbar>
     <app-navbar></app-navbar>
-    <h1>Ranking</h1>
-    <table class="ranking-table">
-      <thead>
-        <tr>
-          <th>Posición</th>
-          <th>Nombre</th>
-          <th>Puntos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let person of ranking; let i = index">
-          
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  </ng-template>
+
+  <h1>Ranking</h1>
+  <table class="ranking-table">
+    <thead>
+      <tr>
+        <th>Posición</th>
+        <th>Nombre</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of ranking; let i = index">
+      </tr>
+    </tbody>
+  </table>
+</div>
