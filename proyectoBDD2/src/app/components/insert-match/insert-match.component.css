@@ -8,7 +8,7 @@ body, html {
   font-family: 'Poppins', sans-serif;
 }
 
-.login {
+.forms {
   height: 100vh;
   display: flex;
   justify-content: center;  
