@@ -28,4 +28,14 @@ export class MatchService {
   savePredictions(userId: number, matchId: number, localPrediction: number, visitantPrediction: number): Promise<ApiResponse> {
     return firstValueFrom(this.http.post<ApiResponse>(`${this.apiUrl}/predictions/save`, {userId, matchId, localPrediction, visitantPrediction }));
   }
-}
+
+  postMatch(localTeam: string, visitantTeam: string, date: Date, city: string, stadium: string) {
+    const body = {localTeam, visitantTeam, date, city, stadium}
+    return this.http.post<Match>(`${this.apiUrl}/postMatch`, body);
+  }
+
+  updateMatchResult(matchId: number, localTeamResult: number, visitantTeamResult: number) {
+    const body = {localTeamResult, visitantTeamResult}
+    return this.http.post<Match>(`${this.apiUrl}/updateMatch/${matchId}`, body);
+  }
+  }

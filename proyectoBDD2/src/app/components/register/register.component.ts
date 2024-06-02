@@ -25,20 +25,20 @@ export class RegisterComponent {
 
   register() {
 
-    this.registerService.register(this.ci, this.firstName, this.lastName, this.email, this.password, this.career, this.championTeamId, this.subChampionTeamId, this.contact).subscribe(
-      response => {
-        alert('Registrado correctamente!')
+    this.registerService.register(this.ci, this.firstName, this.lastName, this.email, this.password, this.career, this.championTeamId, this.subChampionTeamId, this.contact).subscribe({
+      next: (response) => {
+        alert('Registrado correctamente!');
         console.log('Registrado correctamente!', response);
         this.router.navigate(['/home']);
       },
-      error => {
+      error: (error) => {
         if (error.status === 401) {
           alert('El usuario no está registrado');
         } else {
-          alert('An error occurred during registration');
+          alert('Ocurrió un error durante el registro');
         }
       }
-    );
+    });
   }
 }
 
