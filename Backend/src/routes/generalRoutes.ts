@@ -8,6 +8,8 @@ import { getMatches } from '../controllers/matchController';
 import { getMatchesAndTeams } from '../controllers/matchController';
 import { registerUser } from '../controllers/acessController';
 import { login } from '../controllers/acessController';
+import { postMatch } from '../controllers/matchController';
+import { updateMatchResult } from '../controllers/matchController';
 
 const router = Router();
 
@@ -20,5 +22,7 @@ router.get('/getMatches', getMatches);
 router.get('/getMatchesAndTeams', getMatchesAndTeams);
 router.post('/postStudent', registerUser);
 router.post('/getCredentials', login);
+router.post('/postMatch', postMatch);
+router.post('/updateMatch/:matchId', updateMatchResult);
 
 export default router;

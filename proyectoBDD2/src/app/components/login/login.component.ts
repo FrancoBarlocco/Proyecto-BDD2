@@ -38,7 +38,15 @@ export class LoginComponent {
         response => {
           alert('Inicio de sesion exitoso')
           localStorage.setItem('userId', response.userId) 
-          this.router.navigate(['/home']);
+          if(response.userType == 'admin') //es admin
+          {
+            this.router.navigate(['/insertMatch']);
+          }
+          else{ //es un usuario
+            this.router.navigate(['/home']);
+          }
+          
+          
         },
         error => {
           if (error.status === 401) {
