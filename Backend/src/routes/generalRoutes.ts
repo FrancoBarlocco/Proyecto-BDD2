@@ -10,6 +10,8 @@ import { registerUser } from '../controllers/acessController';
 import { login } from '../controllers/acessController';
 import { postMatch } from '../controllers/matchController';
 import { updateMatchResult } from '../controllers/matchController';
+import { getStadiumById } from '../controllers/stadiumController';
+import { getStadiums } from '../controllers/stadiumController';
 
 const router = Router();
 
@@ -24,5 +26,8 @@ router.post('/postStudent', registerUser);
 router.post('/getCredentials', login);
 router.post('/postMatch', postMatch);
 router.post('/updateMatch/:matchId', updateMatchResult);
+router.get('/getStadiumsById/:id', getStadiumById);
+router.get('/getStadiums', getStadiums);
+
 
 export default router;

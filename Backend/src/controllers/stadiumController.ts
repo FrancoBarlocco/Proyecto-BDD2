@@ -1,12 +1,12 @@
 import connection from '../db/connection';
 import { Request, Response } from 'express';
 
-class studentController {
+class stadiumController {
 }
-    export const getStudentByCi = async (req: Request, res: Response) => {
-        const { ci } = req.params; // Asume que la cédula viene como parámetro de ruta
+    export const getStadiumById = async (req: Request, res: Response) => {
+        const { id } = req.params; // Asume que id viene como parámetro de ruta
         try {
-          const results = await connection.query('SELECT * FROM Student WHERE Ci = ?', [ci]);
+          const results = await connection.query('SELECT * FROM Stadium WHERE Id = ?', [id]);
            console.log(results);
             res.json(results);
           }
@@ -16,11 +16,11 @@ class studentController {
         }
       }
 
-      export const getStudents = async (req: Request, res: Response) => {
+      export const getStadiums = async (req: Request, res: Response) => {
         try {
-          const results = await connection.query('SELECT * FROM Student');
+          const [results] : any[] = await connection.query('SELECT * FROM Stadium');
             console.log(results)
-            res.json(results);
+            res.json(results); //al hacer esto devuelvo solo los datos de la consulta, sin metadatos(por defecto)
           }
         catch (error) {
           console.error('Error al ejecutar la consulta:', error);
@@ -28,5 +28,5 @@ class studentController {
         }
       }
 
-export default studentController;
+export default stadiumController;
 
