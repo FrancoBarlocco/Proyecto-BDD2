@@ -6,6 +6,7 @@ import { TeamService } from '../../services/team.service';
 import { Team } from '../../models/team';
 import LoginService from '../../services/login.service';
 import { Router } from '@angular/router';
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,19 @@ export class LoginComponent {
       this.loginService.login(this.email, this.password).subscribe(
         response => {
           alert('Inicio de sesion exitoso')
-          localStorage.setItem('userId', response.userId) 
+          const userResponse = {
+            Ci: response.Ci,
+            FirstName: response.FirstName,
+            LastName: response.LastName,
+            Email: response.Email,
+            Career: response.Career,
+            ChampionTeamId: response.ChampionTeamId,
+            SubChampionTeamId: response.SubChampionTeamId,
+            Contact: response.Contact
+        };
+          this.loginService.setUser(userResponse);
+          //localStorage.setItem('user', response.user);
+          //console.log(localStorage.getItem("user"));
           if(response.userType == 'admin') //es admin
           {
             this.router.navigate(['/insertMatch']);
@@ -45,7 +58,6 @@ export class LoginComponent {
           else{ //es un usuario
             this.router.navigate(['/home']);
           }
-          
           
         },
         error => {

@@ -26,7 +26,8 @@ export class MatchService {
   }
 
   savePredictions(userId: number, matchId: number, localPrediction: number, visitantPrediction: number): Promise<ApiResponse> {
-    return firstValueFrom(this.http.post<ApiResponse>(`${this.apiUrl}/predictions/save`, {userId, matchId, localPrediction, visitantPrediction }));
+    const body = { userId, matchId, localPrediction, visitantPrediction };
+    return firstValueFrom(this.http.post<ApiResponse>(`${this.apiUrl}/savePredictions`, body));
   }
 
   postMatch(localTeam: string, visitantTeam: string, date: Date, city: string, stadium: string) {

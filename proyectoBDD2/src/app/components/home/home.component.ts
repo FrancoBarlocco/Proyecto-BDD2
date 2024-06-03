@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { Team } from '../../models/team';
 import { MatchAndTeams } from '../../models/matchAndTeams';
 import { FormsModule } from '@angular/forms';
+import { Student } from '../../models/student';
+import LoginService from '../../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +18,16 @@ import { FormsModule } from '@angular/forms';
   standalone: true
 })
 export class HomeComponent implements OnInit {
+  
+  user: any;
+  
   matchesAndTeams: MatchAndTeams[] = [];
 
-  constructor(private matchService: MatchService) { }
+  constructor(private matchService: MatchService, private loginService : LoginService) { }
 
   ngOnInit(): void {
+    this.user = this.loginService.getUser();
+    console.log(this.user.Ci);
     this.matchService.getMatchesAndTeams().then((data) => {
       this.matchesAndTeams = data;
     }).catch((error) => {
@@ -28,8 +35,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  savePredictions(userId:number, matchId: number, localPrediction: number, visitantPrediction: number): void {
-    this.matchService.savePredictions(userId,matchId, localPrediction, visitantPrediction)
+  savePredictions(matchId: number, localPrediction: number, visitantPrediction: number): void {
+    this.matchService.savePredictions(this.user.Ci,matchId,localPrediction, visitantPrediction)
       .then(response => {
         if (response.success) {
           console.log('Predictions saved successfully.');

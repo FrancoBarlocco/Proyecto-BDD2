@@ -114,7 +114,14 @@ export const registerUser = async (req: Request, res: Response) => {
                     msg: 'Logged in successfully!',
                     userId: user.Ci,
                     userType: userType, // student o admin
-                    user: userResponse
+                    Ci: user.Ci,
+                    FirstName: user.FirstName,
+                    LastName: user.LastName,
+                    Email: user.Email,
+                    Career: user.Career,
+                    ChampionTeamId: user.ChampionTeamId,
+                    SubChampionTeamId: user.SubChampionTeamId,
+                    Contact: user.Contact
                 });
             }
         } catch (error) {

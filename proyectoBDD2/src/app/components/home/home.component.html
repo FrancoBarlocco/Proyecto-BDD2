@@ -10,15 +10,20 @@
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag"  [alt]="match.VisitantTeamName" class="team-badge">
+          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName" class="team-badge">
           <p>{{ match.VisitantTeamName }}</p>
         </div>
       </div>
       <div class="prediction-inputs">
-        <!-- Input para la predicción del equipo local -->
-        <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
-        <!-- Input para la predicción del equipo visitante -->
-        <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
+        <!-- Condición para mostrar los inputs o los valores ingresados -->
+        <div>
+          <!-- Input para la predicción del equipo local -->
+          <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
+          <!-- Input para la predicción del equipo visitante -->
+          <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
+          <!-- Botón para ingresar predicción -->
+          <button class="submit-button" (click)="savePredictions(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
+        </div>
       </div>
       <div class="match-details">
         <p>{{ match.Date | date }}</p>

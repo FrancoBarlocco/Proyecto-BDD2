@@ -53,8 +53,10 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
 export const savePredictions = async (req: Request, res: Response): Promise<void> => {
   // Obtén los datos de la solicitud
   const { userId, matchId, localPrediction, visitantPrediction } = req.body;
+  console.log(userId);
 
   try {
+    console.log("ffoefjfefike")
     // Realiza la inserción de predicciones en la base de datos
     const query = `
       INSERT INTO Predicts (UserId, MatchId, TeamAGoals, TeamBGoals, Score)

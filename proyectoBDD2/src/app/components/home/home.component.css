@@ -47,6 +47,24 @@ app-navbar {
   }
 }
 
+/* Estilo para el botón de ingresar */
+.submit-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background-color: #116ac9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0d4a8b;
+}
+
+
 .prediction-inputs {
   display: flex;
   align-items: center;
