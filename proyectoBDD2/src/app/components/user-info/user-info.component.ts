@@ -5,6 +5,7 @@ import { Fixture } from '../../models/fixture';
 import { Stadium } from '../../models/stadium';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { StudentService } from '../../services/stadium.service';
 
 @Component({
   selector: 'app-info',
@@ -18,10 +19,18 @@ export class InfoComponent implements OnInit {
   fixtures!: Fixture[];
   stadiums!: Stadium[];
 
-  constructor(private infoService: InfoService) { }
+  constructor(private infoService: InfoService, private stadiumService : StudentService) { }
 
   ngOnInit(): void {
     this.fixtures = this.infoService.getFixtures();
-    this.stadiums = this.infoService.getStadiums();
+    
+    this.stadiumService.getStadiums().subscribe({
+      next: (data: Stadium[]) => {
+        this.stadiums = data;
+      },
+      error: (error) => {
+        console.error('Error cargando estadios', error);
+      }
+    });
   }
 }

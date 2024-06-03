@@ -38,4 +38,4 @@ export class MatchService {
     const body = {localTeamResult, visitantTeamResult}
     return this.http.post<Match>(`${this.apiUrl}/updateMatch/${matchId}`, body);
   }
-  }
+}

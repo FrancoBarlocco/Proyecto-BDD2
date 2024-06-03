@@ -19,9 +19,3 @@ export class Student {
         this.Contact = Contact
     }
 }
-/*
-// src/app/models/student.model.ts
-export class Student {
-    constructor(public name: string, public points: number) {}
-  }
-*/
