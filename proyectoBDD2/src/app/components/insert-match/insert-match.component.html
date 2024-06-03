@@ -35,7 +35,11 @@
         required
         [(ngModel)]="city"
     />
-    <select name="stadium" required [(ngModel)]="stadium">
+    
+    <select 
+    name="stadium" 
+    placeholder="Estadio" 
+    required [(ngModel)]="stadium">
       <option *ngFor="let stadium of stadiums" [value]="stadium.Name">{{ stadium.Name }}</option>
     </select>
 
