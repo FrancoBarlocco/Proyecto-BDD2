@@ -15,7 +15,7 @@ import { match } from 'assert';
 })
 export class InsertResultComponent {
 
-  matchId: number = 0;
+  matchId: number | null = null;
   localTeamResult: number | null = null;
   visitantTeamResult: number | null = null;
   matchesAndTeams: MatchAndTeams[] = [];
@@ -33,13 +33,24 @@ export class InsertResultComponent {
     });
   }
 
-
-
   insertResult() {
-    this.matchService.updateMatchResult(this.matchId, this.localTeamResult!, this.visitantTeamResult!).subscribe({
+
+    if (this.matchId === null) {
+      alert('Selecciona un partido.');
+      return;
+    }
+  
+    if (this.localTeamResult! < 0 || this.visitantTeamResult! < 0 || typeof this.localTeamResult !== 'number' || typeof this.visitantTeamResult !== 'number') {
+      alert('Ingresa datos válidos o completa todos los campos');
+      return;
+    }
+  
+    else{
+    this.matchService.updateMatchResult(this.matchId!, this.localTeamResult!, this.visitantTeamResult!).subscribe({
       next: (response) => {
         alert('Partido ingresado correctamente');
         console.log('Partido infresado correctamente!', response);
+        this.resetForm()
       },
       error: (error) => {
         if (error.status === 500) {
@@ -50,8 +61,9 @@ export class InsertResultComponent {
       }
     });
   }
+  }
   
-  myFunction(){
+  selectTeamNames(){
     this.matchesAndTeams.forEach(element => {
       if(element.MatchId == this.matchId){
         this.localTeam = element.LocalTeamName
@@ -59,5 +71,13 @@ export class InsertResultComponent {
       }
     });
     console.log(this.localTeam + this.visitantTeam + this.matchId)
+  }
+
+  resetForm() {
+    this.matchId = null;
+    this.localTeamResult = null;
+    this.visitantTeamResult = null;
+    this.localTeam = '';
+    this.visitantTeam = '';
   }
 }

@@ -9,31 +9,33 @@
     <h1>Ingresar Resultado</h1>
 
 
-    <select id ="select"
+    <select
       name="matchId" 
       required 
       [(ngModel)]="matchId"
-      (change)="myFunction()">
-      <option value="" disabled selected>Partido</option>
+      (change)="selectTeamNames()">
+      <option [ngValue]="null" disabled selected>Seleccionar partido</option>
       <option *ngFor="let match of matchesAndTeams" [value]="match.MatchId">{{ match.LocalTeamName }} - {{ match.VisitantTeamName }}</option>
   </select>
 
     <input
         type="number"
         name="localTeamResult"
-        [attr.placeholder]="localTeam"
+        [attr.placeholder]="'Resultado de ' + localTeam"
         required
         [(ngModel)]="localTeamResult"
+        min="0"
     />
 
     <input
         type="number"
         name="visitantTeamResult"
-        [attr.placeholder]="visitantTeam"
+        [attr.placeholder]="'Resultado de ' + visitantTeam"
         required
         [(ngModel)]="visitantTeamResult"
+        min="0"
     />
-    
+    <button type="submit" (click)="insertResult()">ingresar</button>
   </form>
 </div>
 </div>
