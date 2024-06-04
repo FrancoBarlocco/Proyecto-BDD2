@@ -10,15 +10,22 @@
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag"  [alt]="match.VisitantTeamName" class="team-badge">
+          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName" class="team-badge">
           <p>{{ match.VisitantTeamName }}</p>
         </div>
       </div>
       <div class="prediction-inputs">
-        <!-- Input para la predicción del equipo local -->
-        <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
-        <!-- Input para la predicción del equipo visitante -->
-        <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
+        <div *ngIf="match.LocalTeamResult != undefined && match.VisitantTeamResult != undefined">
+          <!-- Mostrar predicciones ingresadas -->
+          <p class="local">Local: {{ match.LocalTeamResult }}</p>
+          <p>Visitante: {{ match.VisitantTeamResult }}</p>
+        </div>
+        <div *ngIf="match.LocalTeamResult === undefined || match.VisitantTeamResult === undefined">
+          <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
+          <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
+          <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
+          <button class="submit-button" (click)="savePredictions(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
+        </div>
       </div>
       <div class="match-details">
         <p>{{ match.Date | date }}</p>

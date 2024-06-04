@@ -3,7 +3,7 @@ import { getStudentByCi } from '../controllers/studentController';
 import { getStudents } from '../controllers/studentController';
 import { getTeamById } from '../controllers/teamControllet';
 import { getTeams } from '../controllers/teamControllet';
-import { getMatchById } from '../controllers/matchController';
+import { getMatchById, getPredictions, savePredictions } from '../controllers/matchController';
 import { getMatches } from '../controllers/matchController';
 import { getMatchesAndTeams } from '../controllers/matchController';
 import { registerUser } from '../controllers/acessController';
@@ -26,6 +26,8 @@ router.post('/postStudent', registerUser);
 router.post('/getCredentials', login);
 router.post('/postMatch', postMatch);
 router.post('/updateMatch/:matchId', updateMatchResult);
+router.post('/savePredictions', savePredictions);
+router.get('/getPredictions/:userId', getPredictions);
 router.get('/getStadiumsById/:id', getStadiumById);
 router.get('/getStadiums', getStadiums);
 

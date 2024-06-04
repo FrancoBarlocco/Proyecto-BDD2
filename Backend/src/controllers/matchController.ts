@@ -53,6 +53,7 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
 export const savePredictions = async (req: Request, res: Response): Promise<void> => {
   // Obtén los datos de la solicitud
   const { userId, matchId, localPrediction, visitantPrediction } = req.body;
+  
 
   try {
     // Realiza la inserción de predicciones en la base de datos
@@ -133,6 +134,27 @@ export const updateMatchResult = async (req: Request, res: Response) => {
     res.status(500).json({ msg: 'Error interno del servidor' });
   }
 };
+
+export const getPredictions = async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Obtén el ID de usuario de la solicitud
+    const userId: number = parseInt(req.params.userId, 10);
+    // Consulta para obtener las predicciones del usuario
+    const query = `
+    SELECT MatchId, TeamAGoals, TeamBGoals
+    FROM Predicts
+    WHERE UserId = ?
+    `;
+
+    // Ejecuta la consulta preparada
+    const [rows] = await connection.query(query, [userId]);
+    // Enviar las predicciones como respuesta
+    res.json(rows);
+    
+  } catch (error) {
+    // Manejar errores
+    console.error('Error fetching predictions:', error);
+    res.status(500).json({ success: false, error: 'Failed to fetch predictions. Please try again later.' });
+  }
+};
 export default matchController;
-
-
