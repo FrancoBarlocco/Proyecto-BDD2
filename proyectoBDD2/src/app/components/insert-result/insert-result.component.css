@@ -50,13 +50,14 @@ body, html {
   color: #333;
 }
 
-.custom-form input {
+.custom-form input,
+.custom-form select {
   display: block;
   width: 70%; /* Ancho reducido */
   margin: 0 auto; /* Centrar horizontalmente */
   margin-bottom: 2rem; /* Aumenta la distancia entre los inputs */
   padding: 0.7rem;
-  border: 2px solid #ccc;
+  border: 2px solid hsl(0, 0%, 80%);
   border-radius: 0.5rem;
 }
 
@@ -89,3 +90,32 @@ body, html {
     max-width: 300px; /* Establece un ancho máximo */
   }
 }
+
+select {
+  /* Reset */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  width: 20rem;
+  padding: 1rem 4rem 1rem 1rem;
+  background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+  color: hsl(0, 1%, 67%);
+  border-radius: 0.25em;
+  cursor: pointer;
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
+  /* Remove focus outline */
+  &:focus {
+    outline: none;
+  }
+  /* <option> colors */
+  option {
+    color: inherit;
+    background-color: var(--option-bg);
+  }
+}
+
+

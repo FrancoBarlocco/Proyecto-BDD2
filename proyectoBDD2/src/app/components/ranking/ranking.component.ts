@@ -22,9 +22,9 @@ export class RankingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //si la id es 1 entonces es admin
+    //si la id es 53333 entonces es admin
     this.userId = localStorage.getItem('userId');
-    if(this.userId == '45') {
+    if(this.userId == '53333') {
       this.isAdmin = true
     }
 

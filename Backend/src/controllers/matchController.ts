@@ -34,7 +34,7 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
     try {
         const query = `
             SELECT 
-                Matches.MatchId, Matches.Location, Matches.Date, Matches.LocalTeamResult, Matches.VisitantTeamResult,
+                Matches.MatchId, Matches.Date, Matches.LocalTeamResult, Matches.VisitantTeamResult,
                 localTeam.TeamId AS LocalTeamId, localTeam.Name AS LocalTeamName, localTeam.Flag AS LocalTeamFlag,
                 visitantTeam.TeamId AS VisitantTeamId, visitantTeam.Name AS VisitantTeamName, visitantTeam.Flag AS VisitantTeamFlag
             FROM Matches
@@ -83,21 +83,21 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
 
 //Endpoint para agregar un partido a la tabla matches
 export const postMatch = async (req: Request, res: Response) => {
-  const { localTeam, visitantTeam, date, city, stadium} = req.body;
+  const { localTeam, visitantTeam, date, stadium} = req.body;
   const localTeamResult = 0;
   const visitantTeamResult = 0;
 
-  console.log(localTeam + visitantTeam + date + city + stadium )
+  console.log( date + '##################' )
 
-  if (!localTeam || !visitantTeam || !date || !city || !stadium) {
+  if (!localTeam || !visitantTeam || !date || !stadium) {
     return res.status(400).json({ msg: 'Faltan datos del partido' });
   }
   const query = `
-    INSERT INTO Matches (localTeamId, visitantTeamId, date, location, stadium, localTeamResult, visitantTeamResult)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO Matches (localTeamId, visitantTeamId, date, stadiumName, localTeamResult, visitantTeamResult)
+    VALUES (?, ?, ?, ?, ?, ?)
   `;
   try {
-    const result = await connection.query(query, [localTeam, visitantTeam, date, city, stadium, localTeamResult, visitantTeamResult]);
+    const result = await connection.query(query, [localTeam, visitantTeam, date, stadium, localTeamResult, visitantTeamResult]);
     console.log(result);
     res.status(201).json({ msg: 'Partido agregado exitosamente'});
   } catch (error) {

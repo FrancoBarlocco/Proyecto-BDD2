@@ -37,7 +37,7 @@ export const registerUser = async (req: Request, res: Response) => {
                 'INSERT INTO Student (Ci, FirstName, LastName, Email, Password, Career, ChampionTeamId, SubChampionTeamId, Contact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
                 [ci, FirstName, LastName, Email, hashedPassword, Career, championTeamId, subChampionTeamId, Contact]
                 
-                //para registrar a un admin
+                //para registrar a un admin 
                // 'INSERT INTO Admin (Ci, FirstName, LastName, Email, Password) VALUES (?, ?, ?, ?, ?)',
                 //[ci, FirstName, LastName, Email, hashedPassword]
             );

@@ -11,11 +11,12 @@ export class TeamService {
 
   constructor(private http: HttpClient) {}
 
-  getTeams(): Promise<Team[]> {
-    return firstValueFrom(this.http.get<Team[]>(this.apiUrl + '/getTeams'));
-  }
-
-  getTeamById(id: number): Observable<Team> {
-    return this.http.get<Team>(`${this.apiUrl}/getTeamById/${id}`);
-  }
+getTeams(): Observable<Team[]> {
+  return this.http.get<Team[]>(`${this.apiUrl}/getTeams`);
 }
+
+getTeamById(id: number): Observable<Team> {
+  return this.http.get<Team>(`${this.apiUrl}/getTeamById/${id}`);
+}
+}
+
