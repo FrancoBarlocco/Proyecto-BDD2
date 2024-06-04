@@ -17,11 +17,10 @@ class teamController {
       }
 
       export const getTeams = async (req: Request, res: Response) => {
-        const { ci } = req.params; // Asume que la cédula viene como parámetro de ruta
         try {
-          const results = await connection.query('SELECT * FROM Team');
+          const [results] : any[] = await connection.query('SELECT * FROM Team');    
             console.log(results)
-            res.json(results);
+            res.json(results);    //al hacer esto devuelvo solo los datos de la consulta, sin metadatos(por defecto)
           }
         catch (error) {
           console.error('Error al ejecutar la consulta:', error);
@@ -30,4 +29,3 @@ class teamController {
       }
 
 export default teamController;
-

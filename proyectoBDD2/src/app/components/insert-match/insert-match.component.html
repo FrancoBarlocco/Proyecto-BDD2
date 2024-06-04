@@ -7,20 +7,23 @@
       <img src="/assets/images/Banners/copa-america-2024-logo-png-transparente.png" alt="Copa America Logo" class="logo">
     </div>
     <h1>Ingresar partido</h1>
-    <input
-        type="text"
-        name="localTeam"
-        placeholder="Equipo local"
-        required
-        [(ngModel)]="localTeam"
-    />
-    <input
-        type="text"
-        name="visitantTeam"
-        placeholder="Equipo visitante"
-        required
-        [(ngModel)]="visitantTeam"
-    />
+
+    <select 
+    name="localTeam" 
+    required 
+    [(ngModel)]="localTeam">
+    <option value="" disabled selected>Equipo Local</option>
+    <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
+  </select>
+
+    <select 
+    name="visitantTeam" 
+    required 
+    [(ngModel)]="visitantTeam">
+    <option value="" disabled selected>Equipo visitante</option>
+    <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
+  </select>
+
     <input
         type="datetime-local"
         name="date"
@@ -28,20 +31,14 @@
         required
         [(ngModel)]="date"
     />
-    <input
-        type="text"
-        name="city"
-        placeholder="Ciudad"
-        required
-        [(ngModel)]="city"
-    />
     
     <select 
     name="stadium" 
-    placeholder="Estadio" 
-    required [(ngModel)]="stadium">
-      <option *ngFor="let stadium of stadiums" [value]="stadium.Name">{{ stadium.Name }}</option>
-    </select>
+    required 
+    [(ngModel)]="stadium">
+    <option value="" disabled selected>Estadio</option>
+    <option *ngFor="let stadium of stadiums" [value]="stadium.Name">{{ stadium.Name }}</option>
+  </select>
 
     <button type="submit" (click)="insertMatch()">ingresar</button>
   </form>
