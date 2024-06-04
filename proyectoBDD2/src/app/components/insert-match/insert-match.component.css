@@ -50,7 +50,8 @@ body, html {
   color: #333;
 }
 
-.custom-form input {
+.custom-form input,
+.custom-form select {
   display: block;
   width: 70%; /* Ancho reducido */
   margin: 0 auto; /* Centrar horizontalmente */

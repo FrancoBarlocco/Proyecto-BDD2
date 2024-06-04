@@ -35,13 +35,10 @@
         required
         [(ngModel)]="city"
     />
-    <input
-        type="text"
-        name="stadium"
-        placeholder="Estadio"
-        required
-        [(ngModel)]="stadium"
-    />
+    <select name="stadium" required [(ngModel)]="stadium">
+      <option *ngFor="let stadium of stadiums" [value]="stadium.Name">{{ stadium.Name }}</option>
+    </select>
+
     <button type="submit" (click)="insertMatch()">ingresar</button>
   </form>
 </div>
