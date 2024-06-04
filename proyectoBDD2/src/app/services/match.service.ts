@@ -39,4 +39,9 @@ export class MatchService {
     const body = {localTeamResult, visitantTeamResult}
     return this.http.post<Match>(`${this.apiUrl}/updateMatch/${matchId}`, body);
   }
+
+  getPredictions(userId: number): Promise<any> {  // Ajusta el tipo de retorno si tienes un modelo para las predicciones
+    console.log("fefe")
+    return firstValueFrom(this.http.get<any>(`${this.apiUrl}/getPredictions/${userId}`));
+  }
   }

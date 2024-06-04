@@ -72,6 +72,12 @@ app-navbar {
   margin-top: 20px; /* Ajusta el margen superior según sea necesario */
 }
 
+.local{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .prediction-input {
   margin: 5px; /* Ajusta el espacio entre los inputs según sea necesario */
   padding: 5px; /* Ajusta el espacio interior de los inputs según sea necesario */

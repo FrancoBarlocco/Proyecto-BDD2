@@ -15,13 +15,15 @@
         </div>
       </div>
       <div class="prediction-inputs">
-        <!-- Condición para mostrar los inputs o los valores ingresados -->
-        <div>
-          <!-- Input para la predicción del equipo local -->
+        <div *ngIf="match.LocalTeamResult != undefined && match.VisitantTeamResult != undefined">
+          <!-- Mostrar predicciones ingresadas -->
+          <p class="local">Local: {{ match.LocalTeamResult }}</p>
+          <p>Visitante: {{ match.VisitantTeamResult }}</p>
+        </div>
+        <div *ngIf="match.LocalTeamResult === undefined || match.VisitantTeamResult === undefined">
+          <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
           <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
-          <!-- Input para la predicción del equipo visitante -->
           <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
-          <!-- Botón para ingresar predicción -->
           <button class="submit-button" (click)="savePredictions(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
         </div>
       </div>

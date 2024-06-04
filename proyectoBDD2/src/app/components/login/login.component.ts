@@ -49,7 +49,7 @@ export class LoginComponent {
             Contact: response.Contact
         };
           this.loginService.setUser(userResponse);
-          //localStorage.setItem('user', response.user);
+          localStorage.setItem('user', response.userId);
           //console.log(localStorage.getItem("user"));
           if(response.userType == 'admin') //es admin
           {
