@@ -24,7 +24,7 @@
     <h2>Estadios</h2>
     <div class="stadiums-container">
       <div *ngFor="let stadium of stadiums" class="stadium-card">
-        <img [src]="stadium.Image" alt="{{ stadium.Name }}" class="stadium-image">
+        <img [src]="'../assets/images/Stadiums/' + stadium.Image" [alt]="stadium.Image" class="stadium-image">
         <div class="stadium-info">
           <h3>{{ stadium.Name }}</h3>
           <p>{{ stadium.City }}</p>
