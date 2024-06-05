@@ -19,7 +19,7 @@ export class LoginService {
   }
 
   getUser() {
-    return this.user;
+    return localStorage.getItem("userId");
   }
 
   isLoggedIn(): boolean {
