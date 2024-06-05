@@ -99,7 +99,7 @@ export const registerUser = async (req: Request, res: Response) => {
                     msg: 'Password is not correct'
                 });
             } else {
-                const userResponse = {
+                /*const userResponse = {
                     Ci: user.Ci,
                     FirstName: user.FirstName,
                     LastName: user.LastName,
@@ -108,20 +108,20 @@ export const registerUser = async (req: Request, res: Response) => {
                     ChampionTeamId: user.ChampionTeamId,
                     SubChampionTeamId: user.SubChampionTeamId,
                     Contact: user.Contact
-                };
+                };*/
     
                 return res.status(200).json({
                     msg: 'Logged in successfully!',
                     userId: user.Ci,
                     userType: userType, // student o admin
-                    Ci: user.Ci,
-                    FirstName: user.FirstName,
-                    LastName: user.LastName,
-                    Email: user.Email,
-                    Career: user.Career,
-                    ChampionTeamId: user.ChampionTeamId,
-                    SubChampionTeamId: user.SubChampionTeamId,
-                    Contact: user.Contact
+                    //Ci: user.Ci,
+                    //FirstName: user.FirstName,
+                    //LastName: user.LastName,
+                    //Email: user.Email,
+                    //Career: user.Career,
+                    //ChampionTeamId: user.ChampionTeamId,
+                    //SubChampionTeamId: user.SubChampionTeamId,
+                    //Contact: user.Contact
                 });
             }
         } catch (error) {
