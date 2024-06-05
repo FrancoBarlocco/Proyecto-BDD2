@@ -21,8 +21,9 @@ import { Predict } from '../../models/predict';
 export class HomeComponent implements OnInit {
 
   user: any;
-
+  predict = false;
   matchesAndTeams: MatchAndTeams[] = [];
+  predictions: Predict[] = [];
 
   constructor(private matchService: MatchService, private loginService: LoginService) { }
 
@@ -30,33 +31,37 @@ export class HomeComponent implements OnInit {
 
     this.matchService.getMatchesAndTeams().then((data) => {
       this.matchesAndTeams = data;
+      this.user = this.loginService.getUser();
+      console.log(this.user.Ci);
+      this.matchService.getPredictions(this.user.Ci).then((data) => {
+        this.predictions = data;
+        // Mapea las predicciones a los partidos
+        this.matchesAndTeams.forEach(match => {
+          this.predictions.forEach(element => {
+            if (element.MatchId == match.MatchId) {
+              match.predictionSubmitted = true;
+              match.localPrediction = element.TeamAGoals
+              match.visitantPrediction = element.TeamBGoals
+            }
+          });
+        })
+      });
     }).catch((error) => {
       console.error('Error fetching matches and teams', error);
     });
-
-    this.user = this.loginService.getUser();
-    console.log(this.user.Ci);
-    this.matchService.getPredictions(this.user.Ci).then((predictions: Predict[]) => {
-      // Mapea las predicciones a los partidos
-      this.matchesAndTeams.forEach(match => {
-        const prediction = predictions.find((p: Predict) => p.matchId === match.MatchId);
-        console.log(prediction?.teamAGoals);
-        if (prediction) {
-          console.log(prediction.teamAGoals);
-          match.localPrediction = prediction.teamAGoals;
-          match.visitantPrediction = prediction.teamBGoals;
-        }
-      });
-    });
-    
-
   }
 
   savePredictions(matchId: number, localPrediction: number, visitantPrediction: number): void {
     this.matchService.savePredictions(this.user.Ci, matchId, localPrediction, visitantPrediction)
       .then(response => {
         if (response.success) {
+          this.matchesAndTeams.forEach(match => {
+            if(match.MatchId == matchId){
+              match.predictionSubmitted = true;
+            }
+          })
           console.log('Predictions saved successfully.');
+          
           // Recargar los datos después de guardar las predicciones
           this.matchService.getMatchesAndTeams();
         } else {
