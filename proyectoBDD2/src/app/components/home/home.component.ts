@@ -32,8 +32,8 @@ export class HomeComponent implements OnInit {
     this.matchService.getMatchesAndTeams().then((data) => {
       this.matchesAndTeams = data;
       this.user = this.loginService.getUser();
-      console.log(this.user.Ci);
-      this.matchService.getPredictions(this.user.Ci).then((data) => {
+      console.log(this.user);
+      this.matchService.getPredictions(this.user).then((data) => {
         this.predictions = data;
         // Mapea las predicciones a los partidos
         this.matchesAndTeams.forEach(match => {
@@ -52,16 +52,16 @@ export class HomeComponent implements OnInit {
   }
 
   savePredictions(matchId: number, localPrediction: number, visitantPrediction: number): void {
-    this.matchService.savePredictions(this.user.Ci, matchId, localPrediction, visitantPrediction)
+    this.matchService.savePredictions(this.user, matchId, localPrediction, visitantPrediction)
       .then(response => {
         if (response.success) {
           this.matchesAndTeams.forEach(match => {
-            if(match.MatchId == matchId){
+            if (match.MatchId == matchId) {
               match.predictionSubmitted = true;
             }
           })
           console.log('Predictions saved successfully.');
-          
+
           // Recargar los datos después de guardar las predicciones
           this.matchService.getMatchesAndTeams();
         } else {
