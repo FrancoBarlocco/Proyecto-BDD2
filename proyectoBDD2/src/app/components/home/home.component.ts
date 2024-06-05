@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
     this.matchService.getMatchesAndTeams().then((data) => {
       this.matchesAndTeams = data;
       this.user = this.loginService.getUser();
-      console.log(this.user);
       this.matchService.getPredictions(this.user).then((data) => {
         this.predictions = data;
         // Mapea las predicciones a los partidos
@@ -61,7 +60,6 @@ export class HomeComponent implements OnInit {
             }
           })
           console.log('Predictions saved successfully.');
-
           // Recargar los datos después de guardar las predicciones
           this.matchService.getMatchesAndTeams();
         } else {
