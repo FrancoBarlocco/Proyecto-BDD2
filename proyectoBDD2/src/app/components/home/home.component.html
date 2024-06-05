@@ -15,12 +15,11 @@
         </div>
       </div>
       <div class="prediction-inputs">
-        <div *ngIf="match.LocalTeamResult != undefined && match.VisitantTeamResult != undefined">
+        <div *ngIf="match.predictionSubmitted">
           <!-- Mostrar predicciones ingresadas -->
-          <p class="local">Local: {{ match.LocalTeamResult }}</p>
-          <p>Visitante: {{ match.VisitantTeamResult }}</p>
+          <p>Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
         </div>
-        <div *ngIf="match.LocalTeamResult === undefined || match.VisitantTeamResult === undefined">
+        <div *ngIf="!match.predictionSubmitted">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
           <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
           <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
