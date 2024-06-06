@@ -40,5 +40,9 @@ export class RegisterComponent {
       }
     });
   }
+
+  goBack() {
+    this.router.navigate(['']); // Reemplaza '/home' con la ruta a la que quieres que el usuario vuelva
+  }
 }
 

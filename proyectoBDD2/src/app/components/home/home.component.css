@@ -29,11 +29,10 @@ h1 {
   margin-bottom: 2rem;
 }/* home.component.css */
 
-/* Resto de estilos permanecen igual */
 
 /* Ajustes para la barra de navegación */
 app-navbar {
-  width: 100%; /* Ocupa todo el ancho del contenedor */
+  width: 100%;
 }
 
 /* Ajustes para hacer responsive */
@@ -115,6 +114,10 @@ app-navbar {
   width: calc(50% - 2rem); /* Dos tarjetas por fila */
   max-width: 450px;
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.localTeam, .visitantTeam{
+  font-weight: bold;
 }
 
 .card:hover {

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
+/* src/app/login/login.component.css */
 body, html {
   margin: 0;
   padding: 0;
@@ -24,6 +23,21 @@ body, html {
   border-radius: 1rem;
   text-align: center;
   position: relative; /* Necesario para posicionar la imagen */
+}
+
+.back-button-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #116ac9;
+  cursor: pointer;
+  padding: 0;
 }
 
 .logo-container {
@@ -60,9 +74,8 @@ body, html {
   border-radius: 0.5rem;
 }
 
-
 .custom-form button {
-  width: 40%; /* Ancho reducido */
+  width: 100%; /* Ancho reducido */
   padding: 0.5rem; /* Reducción del padding */
   margin: 0 auto; /* Centrar horizontalmente */
   margin-top: 1.5rem; /* Aumenta la distancia entre el último input y el botón */
@@ -75,8 +88,6 @@ body, html {
   text-transform: uppercase;
   font-weight: bold;
 }
-
-
 
 .custom-form button:hover {
   background-color: #0056b3;
