@@ -74,10 +74,11 @@ body, html {
   color: #116ac9;
   cursor: pointer;
   padding: 0;
+  width: 100% !important;
 }
 
 .custom-form button {
-  width: 100%; /* Ancho ajustado */
+  width: 50%; /* Ancho ajustado */
   padding: 0.5rem; /* Ajusta el padding */
   margin: 0 auto; /* Centrar horizontalmente */
   margin-top: 1rem; /* Ajusta la distancia entre el último input y el botón */
