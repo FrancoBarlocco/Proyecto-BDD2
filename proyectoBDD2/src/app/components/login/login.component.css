@@ -31,14 +31,7 @@ body, html {
   left: 20px;
 }
 
-.back-button {
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  color: #116ac9;
-  cursor: pointer;
-  padding: 0;
-}
+
 
 .logo-container {
   display: flex;
@@ -51,7 +44,7 @@ body, html {
 }
 
 .logo {
-  width: 200px; /* Tamaño del logo aumentado */
+  width: 180px; /* Tamaño del logo aumentado */
   height: 180px; /* Tamaño del logo aumentado */
   border-radius: 50%;
   object-fit: cover;
@@ -75,7 +68,7 @@ body, html {
 }
 
 .custom-form button {
-  width: 100%; /* Ancho reducido */
+  width: 50%; /* Ancho reducido */
   padding: 0.5rem; /* Reducción del padding */
   margin: 0 auto; /* Centrar horizontalmente */
   margin-top: 1.5rem; /* Aumenta la distancia entre el último input y el botón */
@@ -91,6 +84,16 @@ body, html {
 
 .custom-form button:hover {
   background-color: #0056b3;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #116ac9;
+  cursor: pointer;
+  padding: 0;
+  width: 100% !important;
 }
 
 /* Consulta de medios para ajustar estilos en pantallas más pequeñas */
