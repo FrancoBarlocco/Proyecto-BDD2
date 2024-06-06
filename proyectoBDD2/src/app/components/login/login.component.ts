@@ -73,6 +73,10 @@ export class LoginComponent {
   logout() {
     localStorage.removeItem('userId');
   }
+
+  goBack() {
+    this.router.navigate(['']); // Reemplaza '/home' con la ruta a la que quieres que el usuario vuelva
+  }
 }
 
 

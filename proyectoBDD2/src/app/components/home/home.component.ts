@@ -70,4 +70,24 @@ export class HomeComponent implements OnInit {
         console.error('Error saving predictions:', error);
       });
   }
+
+  validateInput(event: any) {
+    const input = event.target;
+    if (input.value < 0) {
+      input.value = 0;
+    }
+  }
+  
+  onSubmit(matchId: number, localPrediction: number, visitantPrediction: number) {
+    if (this.isValidPrediction(localPrediction) && this.isValidPrediction(visitantPrediction)) {
+      this.savePredictions(matchId, localPrediction, visitantPrediction);
+    } else {
+      alert('Las predicciones deben ser números no negativos menores a 21.');
+    }
+  }
+  
+  isValidPrediction(value: number): boolean {
+    return value >= 0 && Number.isInteger(value) && value <=20 ;
+  }
+  
 }
