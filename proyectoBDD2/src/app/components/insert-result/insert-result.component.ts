@@ -48,8 +48,8 @@ export class InsertResultComponent {
     else{
     this.matchService.updateMatchResult(this.matchId!, this.localTeamResult!, this.visitantTeamResult!).subscribe({
       next: (response) => {
-        alert('Partido ingresado correctamente');
-        console.log('Partido infresado correctamente!', response);
+        alert('Resultado ingresado correctamente');
+        console.log('Resultado infresado correctamente!', response);
         this.resetForm()
       },
       error: (error) => {
