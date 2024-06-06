@@ -1,99 +1,92 @@
 /* src/app/info/info.component.css */
 body {
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  app-navbar {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-  }
-  
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 1200px;
-  }
-  
-  h1, h2 {
-    color: #116ac9;
-    text-align: center;
-  }
-  
-  .fixture-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 2rem;
-  }
-  
-  .fixture-table th,
-  .fixture-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .fixture-table th {
-    background-color: #116ac9;
-    color: white;
-  }
-  
-  .stadiums-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-  }
-  
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+app-navbar {
+  width: 100%;
+  /* Ocupa todo el ancho del contenedor */
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 1200px;
+}
+
+h1,
+h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #116ac9;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(36, 1, 141, 0.3); /* Añadir sombra al texto */
+}
+
+.Tournament-image, .Group-image, .Mascota-image {
+  width: 80%;
+  height: auto; /* Ajusta automáticamente la altura según el ancho */
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.stadiums-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.stadium-card {
+  background-color: #ffffff;
+  border: 1px solid #d3d3d3;
+  border-radius: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: calc(50% - 2rem);
+  max-width: 400px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.stadium-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stadium-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.stadium-info {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
   .stadium-card {
-    background-color: #ffffff;
-    border: 1px solid #d3d3d3;
-    border-radius: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    width: calc(50% - 2rem);
-    max-width: 400px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: center;
+    width: calc(100% - 1rem);
   }
-  
-  .stadium-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .stadium-image {
+}
+
+@media (max-width: 480px) {
+  .info-container {
     width: 100%;
-    height: 200px;
-    border-radius: 1rem;
-    object-fit: cover;
+    padding: 1rem;
   }
-  
-  .stadium-info {
-    margin-top: 1rem;
+
+  .stadium-image {
+    height: 150px;
   }
-  
-  @media (max-width: 768px) {
-    .stadium-card {
-      width: calc(100% - 1rem);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .info-container {
-      width: 100%;
-      padding: 1rem;
-    }
-    
-    .stadium-image {
-      height: 150px;
-    }
-  }
-  
+}

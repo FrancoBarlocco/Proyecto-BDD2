@@ -1,19 +1,22 @@
 <div class="home-container">
   <app-navbar></app-navbar>
-  
+
   <div class="matches-container">
     <div *ngFor="let match of matchesAndTeams" class="card">
       <div class="match-info">
         <div class="team-info">
           <img [src]="'../assets/images/Flags/' + match.LocalTeamFlag" [alt]="match.LocalTeamName" class="team-badge">
-          <p>{{ match.LocalTeamName }}</p>
+          <p class="localTeam">{{ match.LocalTeamName }}</p>
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName" class="team-badge">
-          <p>{{ match.VisitantTeamName }}</p>
+          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName"
+            class="team-badge">
+          <p class="visitantTeam">{{ match.VisitantTeamName }}</p>
         </div>
       </div>
+      <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult">Resultado: {{match.LocalTeamResult}} -
+        {{match.VisitantTeamResult}}</div>
       <div class="prediction-inputs">
         <div *ngIf="match.predictionSubmitted">
           <!-- Mostrar predicciones ingresadas -->
@@ -21,9 +24,13 @@
         </div>
         <div *ngIf="!match.predictionSubmitted">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
-          <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input">
-          <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input">
-          <button class="submit-button" (click)="savePredictions(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
+          <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input" min="0"
+            step="1" (input)="validateInput($event)">
+          <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input"
+            min="0" step="1" (input)="validateInput($event)">
+          <button class="submit-button"
+            (click)="onSubmit(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
+
         </div>
       </div>
       <div class="match-details">

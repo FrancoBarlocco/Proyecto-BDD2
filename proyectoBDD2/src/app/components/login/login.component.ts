@@ -49,7 +49,7 @@ export class LoginComponent {
             Contact: response.Contact
         };
           this.loginService.setUser(userResponse);
-          localStorage.setItem('user', response.userId);
+          localStorage.setItem('userId', response.userId);
           //console.log(localStorage.getItem("user"));
           if(response.userType == 'admin') //es admin
           {
@@ -72,6 +72,10 @@ export class LoginComponent {
 
   logout() {
     localStorage.removeItem('userId');
+  }
+
+  goBack() {
+    this.router.navigate(['']); // Reemplaza '/home' con la ruta a la que quieres que el usuario vuelva
   }
 }
 
