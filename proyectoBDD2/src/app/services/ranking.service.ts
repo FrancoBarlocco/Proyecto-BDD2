@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class RankingService {
-  apiUrl = 'http://localhost:5050/api/ranking';
+  apiUrl = 'http://localhost:5050/api/general';
 
   constructor(private http: HttpClient) { }
 

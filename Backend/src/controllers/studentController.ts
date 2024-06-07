@@ -6,7 +6,7 @@ class studentController {
     export const getStudentByCi = async (req: Request, res: Response) => {
         const { ci } = req.params; // Asume que la cédula viene como parámetro de ruta
         try {
-          const results = await connection.query('SELECT * FROM Student WHERE Ci = ?', [ci]);
+          const [results] = await connection.query('SELECT * FROM Student WHERE Ci = ?', [ci]);
            console.log(results);
             res.json(results);
           }

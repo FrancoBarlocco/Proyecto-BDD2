@@ -12,6 +12,7 @@ import { postMatch } from '../controllers/matchController';
 import { updateMatchResult } from '../controllers/matchController';
 import { getStadiumById } from '../controllers/stadiumController';
 import { getStadiums } from '../controllers/stadiumController';
+import { getRanking } from '../controllers/rankingController';
 
 const router = Router();
 
@@ -30,6 +31,7 @@ router.post('/savePredictions', savePredictions);
 router.get('/getPredictions/:userId', getPredictions);
 router.get('/getStadiumsById/:id', getStadiumById);
 router.get('/getStadiums', getStadiums);
+router.get('/getRanking', getRanking);
 
 
 export default router;

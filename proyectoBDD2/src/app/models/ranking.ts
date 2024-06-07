@@ -1,8 +1,8 @@
   export class Ranking {
     constructor(
-      public name: string,
-      public city: string,
-      public capacity: number,
-      public imageUrl: string
+      public UserId: number,
+      public FirstName: string,
+      public LastName: string,
+      public Points: string,
     ) {}
   }
