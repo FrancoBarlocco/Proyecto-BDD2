@@ -84,8 +84,6 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
 //Endpoint para agregar un partido a la tabla matches
 export const postMatch = async (req: Request, res: Response) => {
   const { localTeam, visitantTeam, date, stadium} = req.body;
-  const localTeamResult = 0;
-  const visitantTeamResult = 0;
 
   console.log( date + '##################' )
 
@@ -97,7 +95,7 @@ export const postMatch = async (req: Request, res: Response) => {
     VALUES (?, ?, ?, ?, ?, ?)
   `;
   try {
-    const result = await connection.query(query, [localTeam, visitantTeam, date, stadium, localTeamResult, visitantTeamResult]);
+    const result = await connection.query(query, [localTeam, visitantTeam, date, stadium, null, null]);
     console.log(result);
     res.status(201).json({ msg: 'Partido agregado exitosamente'});
   } catch (error) {

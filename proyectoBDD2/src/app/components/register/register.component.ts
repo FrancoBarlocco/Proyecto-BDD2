@@ -29,6 +29,7 @@ export class RegisterComponent {
       next: (response) => {
         alert('Registrado correctamente!');
         console.log('Registrado correctamente!', response);
+        localStorage.setItem('userId', this.ci);
         this.router.navigate(['/home']);
       },
       error: (error) => {
@@ -42,7 +43,8 @@ export class RegisterComponent {
   }
 
   goBack() {
-    this.router.navigate(['']); // Reemplaza '/home' con la ruta a la que quieres que el usuario vuelva
+    this.router.navigate(['']); 
+
   }
 }
 

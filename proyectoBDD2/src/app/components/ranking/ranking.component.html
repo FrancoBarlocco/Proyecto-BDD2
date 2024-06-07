@@ -17,6 +17,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let person of ranking; let i = index">
+        <td>{{ '#' + (i + 1) }}</td>
+        <td>{{ person.FirstName }} {{ person.LastName }}</td>
+        <td>{{ person.Points }}</td>
       </tr>
     </tbody>
   </table>
