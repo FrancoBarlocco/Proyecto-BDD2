@@ -30,8 +30,8 @@ export class MatchService {
     return firstValueFrom(this.http.post<ApiResponse>(`${this.apiUrl}/savePredictions`, body));
   }
 
-  postMatch(localTeam: number, visitantTeam: number, date: string, stadium: string, category: string) {
-    const body = {localTeam, visitantTeam, date, stadium, category}
+  postMatch(localTeam: number, visitantTeam: number, date: string, stadiumId: number, category: string) {
+    const body = {localTeam, visitantTeam, date, stadiumId, category}
 
     return this.http.post<Match>(`${this.apiUrl}/postMatch`, body);
   }

@@ -83,17 +83,17 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
 
 //Endpoint para agregar un partido a la tabla matches
 export const postMatch = async (req: Request, res: Response) => {
-  const { localTeam, visitantTeam, date, stadium, category} = req.body;
+  const { localTeam, visitantTeam, date, stadiumId, category} = req.body;
 
-  if (!localTeam || !visitantTeam || !date || !stadium) {
+  if (!localTeam || !visitantTeam || !date || !stadiumId) {
     return res.status(400).json({ msg: 'Faltan datos del partido' });
   }
   const query = `
-    INSERT INTO Matches (localTeamId, visitantTeamId, date, stadiumName, category, localTeamResult, visitantTeamResult)
+    INSERT INTO Matches (localTeamId, visitantTeamId, date, stadiumId, category, localTeamResult, visitantTeamResult)
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
   try {
-    const result = await connection.query(query, [localTeam, visitantTeam, date, stadium, category, null, null]);
+    const result = await connection.query(query, [localTeam, visitantTeam, date, stadiumId, category, null, null]);
     console.log(result);
     res.status(201).json({ msg: 'Partido agregado exitosamente'});
   } catch (error) {

@@ -53,7 +53,8 @@ export class InsertMatchComponent implements OnInit {
   insertMatch() {
     const localTeam = this.teams.find(team => team.Name === this.localTeam);
     const visitantTeam = this.teams.find(team => team.Name === this.visitantTeam);
-
+    const stadiumSelected = this.stadiums.find(stadium => stadium.Name === this.stadium);
+    
     if (!localTeam || !visitantTeam || !this.date || !this.stadium ) {
       alert('Selecciona todos los campos');
       return;
@@ -70,7 +71,7 @@ export class InsertMatchComponent implements OnInit {
 
     const date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    this.matchService.postMatch(localTeam!.TeamId, visitantTeam!.TeamId, date, this.stadium, this.categorySelected).subscribe({
+    this.matchService.postMatch(localTeam!.TeamId, visitantTeam!.TeamId, date, stadiumSelected!.stadiumId, this.categorySelected).subscribe({
       next: (response) => {
         alert('Partido ingresado correctamente');
         console.log('Partido infresado correctamente!', response);
