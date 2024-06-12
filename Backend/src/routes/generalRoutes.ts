@@ -33,5 +33,4 @@ router.get('/getStadiumsById/:id', getStadiumById);
 router.get('/getStadiums', getStadiums);
 router.get('/getRanking', getRanking);
 
-
 export default router;

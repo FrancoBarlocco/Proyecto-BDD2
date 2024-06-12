@@ -1,0 +1,86 @@
+import connection from '../db/connection';
+import { Request, Response } from 'express';
+import MailService from '../services/mailService';
+
+
+class predictController {
+}
+
+//TODO borrar de matches y usar esta implementacion 
+export const getPredictions = async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Obtén el ID de usuario de la solicitud
+    const userId: number = parseInt(req.params.userId, 10);
+    // Consulta para obtener las predicciones del usuario
+    const query = `
+    SELECT MatchId, TeamAGoals, TeamBGoals
+    FROM Predicts
+    WHERE UserId = ?
+    `;
+
+    // Ejecuta la consulta preparada
+    const [rows] = await connection.query(query, [userId]);
+    // Enviar las predicciones como respuesta
+    res.json(rows);
+    
+  } catch (error) {
+    // Manejar errores
+    console.error('Error fetching predictions:', error);
+    res.status(500).json({ success: false, error: 'Failed to fetch predictions. Please try again later.' });
+  }
+};
+
+export const sendEmails = async (): Promise<{ success: boolean, message?: string, error?: string }> => {
+  const mailService = new MailService();
+
+  try {
+    const query = `
+      SELECT s.Email, s.FirstName, m.MatchId, t1.Name as LocalTeam, t2.Name as VisitantTeam, m.Date as MatchDate
+      FROM Student s
+      CROSS JOIN Matches m
+      LEFT JOIN Predicts p ON s.Ci = p.UserId AND m.MatchId = p.MatchId
+      JOIN Team t1 ON m.localTeamId = t1.TeamId
+      JOIN Team t2 ON m.visitantTeamId = t2.TeamId
+      WHERE p.MatchId IS NULL;
+    `;
+    const [rows] = await connection.query(query);
+    const dataPredicts = rows as { Email: string, FirstName: string, MatchId: number, LocalTeam: string, VisitantTeam: string, MatchDate: string }[];
+
+    const studentEmails: { [email: string]: { FirstName: string, matches: string[] } } = {};
+
+    for (const data of dataPredicts) {
+      const { Email, FirstName, LocalTeam, VisitantTeam, MatchDate } = data;
+      const dateObject = new Date(MatchDate);
+      const formattedDate = dateObject.toLocaleString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'America/Montevideo'
+      });
+      const matchInfo = `${LocalTeam} vs ${VisitantTeam} el ${formattedDate}`;
+
+      if (!studentEmails[Email]) {
+        studentEmails[Email] = { FirstName, matches: [] };
+      }
+      studentEmails[Email].matches.push(matchInfo);
+    }
+
+    for (const email in studentEmails) {
+      const { FirstName, matches } = studentEmails[email];
+      const matchList = matches.join('\n');
+      const emailText = `Hola ${FirstName},\n\nNo olvides realizar tus predicciones para los siguientes partidos:\n\n${matchList}\n\n¡No te lo pierdas!`;
+
+      await mailService.sendMail(email, '¡No olvides realizar tu predicción!', emailText);
+    }
+
+    return { success: true, message: 'Emails sent successfully.' };
+  } catch (error) {
+    console.error('Error sending emails:', error);
+    return { success: false, error: 'Failed to send emails. Please try again later.' };
+  }
+};
+
+export default predictController;
