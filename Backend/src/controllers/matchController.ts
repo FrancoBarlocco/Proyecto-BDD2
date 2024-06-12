@@ -83,19 +83,17 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
 
 //Endpoint para agregar un partido a la tabla matches
 export const postMatch = async (req: Request, res: Response) => {
-  const { localTeam, visitantTeam, date, stadium} = req.body;
+  const { localTeam, visitantTeam, date, stadiumId, category} = req.body;
 
-  console.log( date + '##################' )
-
-  if (!localTeam || !visitantTeam || !date || !stadium) {
+  if (!localTeam || !visitantTeam || !date || !stadiumId) {
     return res.status(400).json({ msg: 'Faltan datos del partido' });
   }
   const query = `
-    INSERT INTO Matches (localTeamId, visitantTeamId, date, stadiumName, localTeamResult, visitantTeamResult)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO Matches (localTeamId, visitantTeamId, date, stadiumId, category, localTeamResult, visitantTeamResult)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
   try {
-    const result = await connection.query(query, [localTeam, visitantTeam, date, stadium, null, null]);
+    const result = await connection.query(query, [localTeam, visitantTeam, date, stadiumId, category, null, null]);
     console.log(result);
     res.status(201).json({ msg: 'Partido agregado exitosamente'});
   } catch (error) {
@@ -130,29 +128,6 @@ export const updateMatchResult = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error al ejecutar la actualización:', error);
     res.status(500).json({ msg: 'Error interno del servidor' });
-  }
-};
-
-export const getPredictions = async (req: Request, res: Response): Promise<void> => {
-  try {
-    // Obtén el ID de usuario de la solicitud
-    const userId: number = parseInt(req.params.userId, 10);
-    // Consulta para obtener las predicciones del usuario
-    const query = `
-    SELECT MatchId, TeamAGoals, TeamBGoals
-    FROM Predicts
-    WHERE UserId = ?
-    `;
-
-    // Ejecuta la consulta preparada
-    const [rows] = await connection.query(query, [userId]);
-    // Enviar las predicciones como respuesta
-    res.json(rows);
-    
-  } catch (error) {
-    // Manejar errores
-    console.error('Error fetching predictions:', error);
-    res.status(500).json({ success: false, error: 'Failed to fetch predictions. Please try again later.' });
   }
 };
 export default matchController;

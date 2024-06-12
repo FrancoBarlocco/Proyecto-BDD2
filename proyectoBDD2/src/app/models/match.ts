@@ -2,22 +2,23 @@ import { Team } from "./team";
 
 export class Match {
     matchId : number;
-    location : string;
-    date : Date;
-    localTeamResult : number;
-    visitantTeamResult : number
     localTeamId: number;
     visitantTeamId: number;
-    localTeam?: Team;  // Propiedad opcional
-    visitantTeam?: Team;  // Propiedad opcional
+    date : Date;
+    stadium: number
+    category: string
+    localTeamResult : number;
+    visitantTeamResult : number
 
-    constructor(matchId : number, location : string, date : Date, localTeamResult : number, visitantTeamResult : number, localTeamId: number, visitantTeamId: number) {
+    constructor(matchId : number, localTeamId: number, visitantTeamId: number,  date : Date, stadium: number, category: string, localTeamResult : number, visitantTeamResult : number) {
         this.matchId = matchId;
-        this.location = location;
+        this.localTeamId = localTeamId;
+        this.visitantTeamId = visitantTeamId
         this.date = date;
+        this.stadium = stadium;
+        this.category = category;
         this.localTeamResult = localTeamResult;
         this.visitantTeamResult = visitantTeamResult
-        this.localTeamId = localTeamId;
-        this.visitantTeamId = visitantTeamId;
     }
 }
+
