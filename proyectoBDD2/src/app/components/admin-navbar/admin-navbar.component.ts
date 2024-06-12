@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-admin-navbar',
   standalone: true,
@@ -9,4 +9,10 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminNavbarComponent {
 
+  constructor(private router: Router) {}
+
+  logOut(){
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
 }

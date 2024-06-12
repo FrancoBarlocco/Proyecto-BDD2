@@ -1,123 +1,132 @@
 .navbar {
-    width: 100%;
-    background-color: #f0f2f5;
-    padding: 0.5rem 2rem; /* Ajusta el padding horizontal */
-    display: flex;
-    justify-content: space-between; /* Espacio entre elementos */
-    align-items: center;
-    box-sizing: border-box;
-    border-radius: 20px;
-  }
-  
-  .logo-container {
-    display: inline-block;
-    width: auto; /* Ajusta automáticamente el ancho para adaptarse al logo */
-    height: 7vh; /* Ajusta la altura del contenedor del logo */
-    padding: 0;
-    margin: 0;
-  }
-  
-  .logo {
-    width: 14vw; /* Ajusta el ancho del logo según el ancho de la pantalla */
-    height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
-    object-fit: contain; /* Ajusta la imagen para adaptarse al contenedor sin deformarse */
-  }
-  
-  .navbar .logo {
-    cursor: pointer;
-    object-fit: cover;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 2rem;
-    align-items: center; /* Centra verticalmente los elementos de la lista */
-    justify-content: center; /* Centra horizontalmente la lista */
-  }
-  
-  .navbar ul li {
-    display: inline;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .navbar ul li a {
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.25rem;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar ul li a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: #000;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-  
-  .navbar ul li a:hover::after,
-  .navbar ul li a.active::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-  
-  .navbar ul li a:hover,
-  .navbar ul li a.active {
-    color: #116ac9;
-  }
-  
-  @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5rem 2rem; /* Ajusta el padding horizontal */
-    }
-  
-    .navbar ul {
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
+  width: 100%;
+  background-color: #f0f2f5;
+  padding: 0.5rem 2rem; /* Ajusta el padding horizontal */
+  display: flex;
+  justify-content: space-between; /* Espacio entre elementos */
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
 
-    }
-  
-    .navbar ul li {
-        width: 100%;
-    }
-  
-    .navbar ul li a {
-        width: 100%;
-        text-align: left;
-        padding: 0.5rem;
-    }
-  
-    .logo {
-        width: 15vw; /* Ajusta el ancho del logo según el ancho de la pantalla */
-    }
+.logo-container {
+  display: inline-block;
+  width: auto; /* Ajusta automáticamente el ancho para adaptarse al logo */
+  height: 7vh; /* Ajusta la altura del contenedor del logo */
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  width: 14vw; /* Ajusta el ancho del logo según el ancho de la pantalla */
+  height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
+  object-fit: contain; /* Ajusta la imagen para adaptarse al contenedor sin deformarse */
+  cursor: pointer;
+}
+
+.navbar .logo {
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+  align-items: center; /* Centra verticalmente los elementos de la lista */
+  justify-content: center; /* Centra horizontalmente la lista */
+}
+
+.navbar ul li {
+  display: inline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar ul li a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.25rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.profile-button {
+  background-color: transparent; /* Fondo transparente para el botón */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Puntero de cursor al pasar sobre el botón */
+  padding: 0; /* Sin relleno */
+}
+
+.profile-img {
+    width: 30px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    height: 30px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del borde */
+}
+
+.navbar ul li a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar ul li a:hover::after,
+.navbar ul li a.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+  color: #116ac9;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.5rem 2rem; /* Ajusta el padding horizontal */
   }
-  
-  @media (max-width: 480px) {
-    .logo {
-        width: 14vw; /* Ajusta el ancho del logo según el ancho de la pantalla */
-    }
-  
-    .navbar ul li a {
-        padding: 0.25rem;
-    }
+
+  .navbar ul {
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
   }
-  .active-link {
-    text-decoration: underline; /* Puedes agregar otros estilos según tus necesidades */
+
+  .navbar ul li {
+      width: 100%;
   }
-  
-  
+
+  .navbar ul li a {
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem;
+  }
+
+  .logo {
+      width: 15vw; /* Ajusta el ancho del logo según el ancho de la pantalla */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+      width: 14vw; /* Ajusta el ancho del logo según el ancho de la pantalla */
+  }
+
+  .navbar ul li a {
+      padding: 0.25rem;
+  }
+}
+
