@@ -3,7 +3,7 @@ import { getStudentByCi } from '../controllers/studentController';
 import { getStudents } from '../controllers/studentController';
 import { getTeamById } from '../controllers/teamControllet';
 import { getTeams } from '../controllers/teamControllet';
-import { getMatchById, getPredictions, savePredictions } from '../controllers/matchController';
+import { getMatchById, savePredictions } from '../controllers/matchController';
 import { getMatches } from '../controllers/matchController';
 import { getMatchesAndTeams } from '../controllers/matchController';
 import { registerUser } from '../controllers/acessController';
@@ -13,6 +13,7 @@ import { updateMatchResult } from '../controllers/matchController';
 import { getStadiumById } from '../controllers/stadiumController';
 import { getStadiums } from '../controllers/stadiumController';
 import { getRanking } from '../controllers/rankingController';
+import { getPredictions } from '../controllers/predictController';
 
 const router = Router();
 

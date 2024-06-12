@@ -40,6 +40,14 @@
     <option *ngFor="let stadium of stadiums" [value]="stadium.Name">{{ stadium.Name }}</option>
   </select>
 
+  <select 
+  name="categorySelected" 
+  required 
+  [(ngModel)]="categorySelected">
+  <option value="" disabled selected>Categoría</option>
+  <option *ngFor="let cat of category" [value]="cat">{{ cat }}</option>
+</select>
+
     <button type="submit" (click)="insertMatch()">ingresar</button>
   </form>
 </div>

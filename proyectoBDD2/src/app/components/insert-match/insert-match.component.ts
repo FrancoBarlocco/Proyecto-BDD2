@@ -22,6 +22,8 @@ export class InsertMatchComponent implements OnInit {
   stadiums!: Stadium[];
   stadium : string = '';
   teams!: Team[];
+  categorySelected : string = ''
+  category : string[] = ['Primera Fase', 'Segunda fase', 'Tercera fase']
 
   constructor(private matchService : MatchService, private stadiumService : StudentService, private teamService : TeamService) { }
 
@@ -68,7 +70,7 @@ export class InsertMatchComponent implements OnInit {
 
     const date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    this.matchService.postMatch(localTeam!.TeamId, visitantTeam!.TeamId, date, this.stadium).subscribe({
+    this.matchService.postMatch(localTeam!.TeamId, visitantTeam!.TeamId, date, this.stadium, this.categorySelected).subscribe({
       next: (response) => {
         alert('Partido ingresado correctamente');
         console.log('Partido infresado correctamente!', response);

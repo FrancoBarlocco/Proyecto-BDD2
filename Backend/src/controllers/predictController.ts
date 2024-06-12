@@ -9,7 +9,6 @@ class predictController {
 //TODO borrar de matches y usar esta implementacion 
 export const getPredictions = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Obtén el ID de usuario de la solicitud
     const userId: number = parseInt(req.params.userId, 10);
     // Consulta para obtener las predicciones del usuario
     const query = `
