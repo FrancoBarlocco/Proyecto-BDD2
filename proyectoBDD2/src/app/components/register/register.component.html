@@ -40,12 +40,14 @@
             placeholder="Número de Teléfono"
             [(ngModel)]="contact"
         />
-        <input
-            type="text"
-            name="career"
-            placeholder="Carrera"
-            [(ngModel)]="career"
-         />
+        <select 
+        name="selectedCareer" 
+        required 
+        [(ngModel)]="selectedCareer">
+        <option value="" disabled selected>Carrera</option>
+        <option *ngFor="let career of career" [value]="career">{{ career }}</option>
+      </select>
+
         <input
             type="password"
             name="password"

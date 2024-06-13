@@ -26,15 +26,16 @@ export class RegisterComponent {
   lastName : string = ''
   email: string = '';
   password: string = '';
-  career: string = '';
+  career: string[] = ['Informatica', 'Direccion de empresa', 'Contador'];
   championTeamId: number | null = null;
   subChampionTeamId: number | null = null;
   championTeamName: string = '';
   subChampionTeamName: string = '';
+  selectedCareer: string = '';
   contact: string = '';
 
   register() {
-    this.registerService.register(this.ci, this.firstName, this.lastName, this.email, this.password, this.career, this.championTeamId!, this.subChampionTeamId!, this.contact).subscribe({
+    this.registerService.register(this.ci, this.firstName, this.lastName, this.email, this.password, this.selectedCareer, this.championTeamId!, this.subChampionTeamId!, this.contact).subscribe({
       next: (response) => {
         alert('Registrado correctamente!');
         console.log('Registrado correctamente!', response);

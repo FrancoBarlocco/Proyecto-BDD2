@@ -1,16 +1,26 @@
-
-
 <div class="statisticsContainer">
 
-    <div class="home-container">
         <app-navbar></app-navbar>
-        
-    <h1>Estadisticas generales de los participantes</h1>
-    <div *ngFor="let career of getCareers()" class="careerStatistics">
-      <h3>Estadísticas de la carrera: {{ career }}</h3>
-      <p>Partidos donde la predicción fue exacta: {{ statistics[career]?.exact }}</p>
-      <p>Partidos donde la predicción fue correcta: {{ statistics[career]?.correct }}</p>
-      <p>Partidos donde la predicción falló: {{ statistics[career]?.failed }}</p>
-    </div>
+
+        <h1>Estadisticas generales de los participantes</h1>
+        <table class="statistic-table">
+          <thead>
+            <tr>
+              <th>Carrera</th>
+              <th>Predicciones exactas</th>
+              <th>Predicciones acertadas</th>
+              <th>predicciones erradas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let career of getCareers()">
+              <td> {{ career }}</td>
+              <td> {{ statistics[career]?.exact }}</td>
+              <td> {{ statistics[career]?.correct }}</td>
+              <td> {{ statistics[career]?.failed }}</td>
+            </tr>
+          </tbody>
+        </table>
+
 
   </div>
