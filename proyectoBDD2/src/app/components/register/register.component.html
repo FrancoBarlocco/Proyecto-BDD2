@@ -52,18 +52,24 @@
             placeholder="Contraseña"
             [(ngModel)]="password"
         />
-        <input
-            type="text"
-            name="championTeamId"
-            placeholder="Numero del primer equipo ganador"
-            [(ngModel)]="championTeamId"
-        />
-        <input
-            type="text"
-            name="subChampionTeamId"
-            placeholder="Numero del segundo equipo ganador"
-            [(ngModel)]="subChampionTeamId"
-        />
+
+        <select 
+        name="championTeamName" 
+        required 
+        [(ngModel)]="championTeamName"
+        (change)="setChampionTeam($event)">
+        <option value="" disabled selected>Primer equipo ganador</option>
+        <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
+      </select>
+
+      <select 
+      name="subChampionTeamName" 
+      required 
+      [(ngModel)]="subChampionTeamName"
+      (change)="setSubChampionTeam($event)">
+      <option value="" disabled selected>Segundo equipo ganador</option>
+      <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
+    </select>
 
         <button type="submit" (click)="register()">Registrarse</button>
     </form>

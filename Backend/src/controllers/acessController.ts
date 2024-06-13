@@ -13,8 +13,8 @@ export const registerUser = async (req: Request, res: Response) => {
     const { Ci, FirstName, LastName, Email, Password, Career, ChampionTeamId, SubChampionTeamId, Contact } = req.body;
 
     const ci = +Ci
-    const championTeamId = +ChampionTeamId
-    const subChampionTeamId = +SubChampionTeamId
+    const championTeamId = ChampionTeamId
+    const subChampionTeamId = SubChampionTeamId
 
     try {
 
