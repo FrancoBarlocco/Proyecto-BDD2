@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { statisticService } from '../../services/statistic.service';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-statistics',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css',
   

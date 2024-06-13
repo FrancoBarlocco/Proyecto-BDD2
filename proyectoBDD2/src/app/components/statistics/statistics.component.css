@@ -19,3 +19,15 @@
     border-radius: 0.5rem;
     width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor principal */
 }
+
+/* Ajustes para la barra de navegación */
+app-navbar {
+    width: 100%;
+  }
+  
+  /* Ajustes para hacer responsive */
+  @media (max-width: 768px) {
+    app-navbar {
+      position: relative; /* Añadido para corregir posibles problemas de superposición */
+    }
+}
