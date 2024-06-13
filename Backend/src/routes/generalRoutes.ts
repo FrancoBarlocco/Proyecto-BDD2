@@ -14,6 +14,7 @@ import { getStadiumById } from '../controllers/stadiumController';
 import { getStadiums } from '../controllers/stadiumController';
 import { getRanking } from '../controllers/rankingController';
 import { getPredictions } from '../controllers/predictController';
+import { getStatisticsByCareer } from '../controllers/statisticController';
 
 const router = Router();
 
@@ -33,5 +34,6 @@ router.get('/getPredictions/:userId', getPredictions);
 router.get('/getStadiumsById/:id', getStadiumById);
 router.get('/getStadiums', getStadiums);
 router.get('/getRanking', getRanking);
+router.get('/getStatistics', getStatisticsByCareer);
 
 export default router;

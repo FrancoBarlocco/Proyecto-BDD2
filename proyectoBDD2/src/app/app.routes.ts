@@ -11,8 +11,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { Router } from '@angular/router';
 import { InsertMatchComponent } from './components/insert-match/insert-match.component';
 import { InsertResultComponent } from './components/insert-result/insert-result.component';
-import path from 'path';
-
 
 const authGuard: CanActivateFn = (route, state) => {
   const login = localStorage.getItem('userId');
