@@ -89,5 +89,4 @@ export class HomeComponent implements OnInit {
   isValidPrediction(value: number): boolean {
     return value >= 0 && Number.isInteger(value) && value <=20 ;
   }
-  
 }
