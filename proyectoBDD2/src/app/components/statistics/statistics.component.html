@@ -15,9 +15,9 @@
           <tbody>
             <tr *ngFor="let career of getCareers()">
               <td> {{ career }}</td>
-              <td> {{ statistics[career]?.exact }}</td>
-              <td> {{ statistics[career]?.correct }}</td>
-              <td> {{ statistics[career]?.failed }}</td>
+              <td> {{ statistics[career].exact }}</td>
+              <td> {{ statistics[career].correct }}</td>
+              <td> {{ statistics[career].failed }}</td>
             </tr>
           </tbody>
         </table>

@@ -15,14 +15,14 @@
           <p class="visitantTeam">{{ match.VisitantTeamName }}</p>
         </div>
       </div>
-      <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult">Resultado: {{match.LocalTeamResult}} -
+      <div *ngIf="match.LocalTeamResult != null">Resultado: {{match.LocalTeamResult}} -
         {{match.VisitantTeamResult}}</div>
       <div class="prediction-inputs">
         <div *ngIf="match.predictionSubmitted">
           <!-- Mostrar predicciones ingresadas -->
           <p>Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
         </div>
-        <div *ngIf="!match.predictionSubmitted">
+        <div *ngIf="!match.predictionSubmitted && match.LocalTeamResult == null">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
           <input type="number" [placeholder]="match.LocalTeamName" [(ngModel)]="match.localPrediction" class="prediction-input" min="0"
             step="1" (input)="validateInput($event)">
@@ -30,7 +30,6 @@
             min="0" step="1" (input)="validateInput($event)">
           <button class="submit-button"
             (click)="onSubmit(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
-
         </div>
       </div>
       <div class="match-details">
