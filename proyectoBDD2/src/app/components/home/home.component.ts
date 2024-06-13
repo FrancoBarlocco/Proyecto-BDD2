@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
           this.predictions.forEach(element => {
             if (element.MatchId == match.MatchId) {
               match.predictionSubmitted = true;
-              match.localPrediction = element.TeamAGoals
-              match.visitantPrediction = element.TeamBGoals
+              match.localPrediction = element.LocalTeamGoals
+              match.visitantPrediction = element.VisitantTeamGoals
             }
           });
         })

@@ -11,7 +11,7 @@ export const getPredictions = async (req: Request, res: Response): Promise<void>
     const userId: number = parseInt(req.params.userId, 10);
     // Consulta para obtener las predicciones del usuario
     const query = `
-    SELECT MatchId, TeamAGoals, TeamBGoals
+    SELECT MatchId, LocalTeamGoals, VisitantTeamGoals
     FROM Predicts
     WHERE UserId = ?
     `;

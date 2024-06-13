@@ -1,17 +1,17 @@
 export class Predict {
     UserId : number;
     MatchId : number;
-    TeamAGoals : number;
-    TeamBGoals : number;
+    LocalTeamGoals : number;
+    VisitantTeamGoals : number;
     Score : number;
     
 
 
-    constructor(userId : number, matchId : number, teamAGoals : number, teamBGoals : number, score : number) {
+    constructor(userId : number, matchId : number, LocalTeamGoals : number, VisitantTeamGoals : number, score : number) {
         this.UserId = userId;
         this.MatchId = matchId;
-        this.TeamAGoals = teamAGoals;
-        this.TeamBGoals = teamBGoals;
+        this.LocalTeamGoals = LocalTeamGoals;
+        this.VisitantTeamGoals = VisitantTeamGoals;
         this.Score = score
     }
 }

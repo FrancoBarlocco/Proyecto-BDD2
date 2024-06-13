@@ -13,8 +13,8 @@ export const getRanking = async (req: Request, res: Response) => {
             s.FirstName,
             s.LastName,
             p.MatchId, 
-            p.TeamAGoals AS PredictedTeamAGoals, 
-            p.TeamBGoals AS PredictedTeamBGoals, 
+            p.LocalTeamGoals AS PredictedTeamAGoals, 
+            p.VisitantTeamGoals AS PredictedTeamBGoals, 
             m.LocalTeamResult AS ActualTeamAGoals, 
             m.VisitantTeamResult AS ActualTeamBGoals 
         FROM Predicts p

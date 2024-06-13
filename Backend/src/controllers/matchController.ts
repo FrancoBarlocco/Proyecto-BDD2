@@ -57,7 +57,7 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
   try {
 
     const query = `
-      INSERT INTO Predicts (UserId, MatchId, TeamAGoals, TeamBGoals, Score)
+      INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
       VALUES (?, ?, ?, ?, ?)
     `;
 
