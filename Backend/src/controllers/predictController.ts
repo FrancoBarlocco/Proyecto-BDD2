@@ -6,7 +6,6 @@ import MailService from '../services/mailService';
 class predictController {
 }
 
-//TODO borrar de matches y usar esta implementacion 
 export const getPredictions = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId: number = parseInt(req.params.userId, 10);
@@ -17,13 +16,10 @@ export const getPredictions = async (req: Request, res: Response): Promise<void>
     WHERE UserId = ?
     `;
 
-    // Ejecuta la consulta preparada
     const [rows] = await connection.query(query, [userId]);
-    // Enviar las predicciones como respuesta
     res.json(rows);
     
   } catch (error) {
-    // Manejar errores
     console.error('Error fetching predictions:', error);
     res.status(500).json({ success: false, error: 'Failed to fetch predictions. Please try again later.' });
   }

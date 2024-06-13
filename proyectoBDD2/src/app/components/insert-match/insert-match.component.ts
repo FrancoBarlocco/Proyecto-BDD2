@@ -23,7 +23,7 @@ export class InsertMatchComponent implements OnInit {
   stadium : string = '';
   teams!: Team[];
   categorySelected : string = ''
-  category : string[] = ['Primera Fase', 'Segunda fase', 'Tercera fase']
+  category : string[] = ['Grupo A', 'Grupo B', 'Grupo C', 'Grupo D', 'Cuartos de final', 'Semifinal', 'Tercer puesto', 'Final']
 
   constructor(private matchService : MatchService, private stadiumService : StudentService, private teamService : TeamService) { }
 

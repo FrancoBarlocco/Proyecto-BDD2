@@ -29,7 +29,7 @@ export const getMatches = async (req: Request, res: Response) => {
     }
 };
 
-// Nueva función para obtener los partidos junto con la información de los equipos
+//Función para obtener los partidos junto con la información de los equipos
 export const getMatchesAndTeams = async (req: Request, res: Response) => {
     try {
         const query = `
@@ -54,17 +54,15 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
   // Obtén los datos de la solicitud
   const { userId, matchId, localPrediction, visitantPrediction } = req.body;
   
-
   try {
-    // Realiza la inserción de predicciones en la base de datos
+
     const query = `
       INSERT INTO Predicts (UserId, MatchId, TeamAGoals, TeamBGoals, Score)
       VALUES (?, ?, ?, ?, ?)
     `;
-    // Ejecuta la consulta preparada
+
     await connection.query(query, [userId, matchId, localPrediction, visitantPrediction, 0]);
 
-    // Si la inserción fue exitosa, envía una respuesta de éxito
     const response = {
       success: true,
       message: 'Predictions saved successfully.'
@@ -81,7 +79,6 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
   }
 };
 
-//Endpoint para agregar un partido a la tabla matches
 export const postMatch = async (req: Request, res: Response) => {
   const { localTeam, visitantTeam, date, stadiumId, category} = req.body;
 
