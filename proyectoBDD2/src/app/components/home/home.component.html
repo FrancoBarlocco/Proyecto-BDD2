@@ -24,9 +24,9 @@
         </div>
         <div *ngIf="!match.predictionSubmitted">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
-          <input type="number" placeholder="Local" [(ngModel)]="match.localPrediction" class="prediction-input" min="0"
+          <input type="number" [placeholder]="match.LocalTeamName" [(ngModel)]="match.localPrediction" class="prediction-input" min="0"
             step="1" (input)="validateInput($event)">
-          <input type="number" placeholder="Visitante" [(ngModel)]="match.visitantPrediction" class="prediction-input"
+          <input type="number" [placeholder]="match.VisitantTeamName" [(ngModel)]="match.visitantPrediction" class="prediction-input"
             min="0" step="1" (input)="validateInput($event)">
           <button class="submit-button"
             (click)="onSubmit(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
