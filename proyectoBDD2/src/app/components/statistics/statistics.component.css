@@ -9,16 +9,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%; /* Ocupa el 90% del ancho de la pantalla */
     max-width: 1200px; /* Ancho máximo para pantallas grandes */
-  }
 
-.careerStatistics {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background-color: #f9f9f9; /* Fondo ligeramente gris para cada sección de carrera */
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor principal */
-}
+  }
 
 /* Ajustes para la barra de navegación */
 app-navbar {
@@ -30,6 +22,33 @@ app-navbar {
     app-navbar {
       position: relative; /* Añadido para corregir posibles problemas de superposición */
     }
+}
+
+h1 {
+  color: #116ac9;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.statistic-table {
+  width: 70%;
+  border-collapse: collapse;
+}
+
+.statistic-table th,
+.statistic-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.statistic-table th {
+  background-color: #116ac9;
+  color: white;
+}
+
+.statistic-table tr:hover {
+  background-color: #f1f1f1;
 }
 
 
