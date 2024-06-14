@@ -15,7 +15,7 @@ import { getStadiums } from '../controllers/stadiumController';
 import { getRanking } from '../controllers/rankingController';
 import { getPredictions } from '../controllers/predictController';
 import { getStatisticsByCareer } from '../controllers/statisticController';
-
+const { check, validationResult } = require('express-validator');
 const router = Router();
 
 router.get('/getStudentByCi/:ci', getStudentByCi);
@@ -25,8 +25,8 @@ router.get('/getTeams', getTeams);
 router.get('/getMatchById/:id', getMatchById);
 router.get('/getMatches', getMatches);
 router.get('/getMatchesAndTeams', getMatchesAndTeams);
-router.post('/postStudent', registerUser);
-router.post('/getCredentials', login);
+router.post('/postStudent', [check('Ci').matches(/^[0-9]+$/),check('Email').isEmail()], registerUser);
+router.post('/getCredentials',check('Email').isEmail(), login);
 router.post('/postMatch', postMatch);
 router.post('/updateMatch/:matchId', updateMatchResult);
 router.post('/savePredictions', savePredictions);
