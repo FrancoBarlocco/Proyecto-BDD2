@@ -51,6 +51,14 @@ h1 {
   background-color: #f1f1f1;
 }
 
+.predictions-info p {
+  margin: 0.5rem 0; 
+}
+
+.predictions-info{
+  margin-top: 3em;
+}
+
 
 
 
