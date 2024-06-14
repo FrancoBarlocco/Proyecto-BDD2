@@ -3,19 +3,22 @@ import mysql from 'mysql2/promise';
 import connection from '../db/connection';
 import { Request, Response } from 'express'
 import bcryptjs from 'bcryptjs';;
-
+const { validationResult } = require('express-validator');
 class acessController {
 }
 
 
 
 export const registerUser = async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array(), msg: 'Error de validación' });
+    }
     const { Ci, FirstName, LastName, Email, Password, Career, ChampionTeamId, SubChampionTeamId, Contact } = req.body;
 
     const ci = +Ci
     const championTeamId = ChampionTeamId
     const subChampionTeamId = SubChampionTeamId
-
     try {
 
         // Buscar si el usuario ya existe
