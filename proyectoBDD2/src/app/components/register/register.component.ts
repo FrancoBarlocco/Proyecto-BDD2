@@ -26,7 +26,7 @@ export class RegisterComponent {
   lastName : string = ''
   email: string = '';
   password: string = '';
-  career: string[] = ['Informatica', 'Direccion de empresa', 'Contador'];
+  career: string[] = ['FIT -Facultad de Ingeniería y Tecnología', 'FCE - Facultad de Ciencias Empresariales', 'FCS - Facultad de Ciencias de la Salud', 'FDAL - Facultad de Derecho y Artes Liberales'];
   championTeamId: number | null = null;
   subChampionTeamId: number | null = null;
   championTeamName: string = '';

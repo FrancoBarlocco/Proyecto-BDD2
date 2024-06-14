@@ -15,7 +15,9 @@
           <p class="visitantTeam">{{ match.VisitantTeamName }}</p>
         </div>
       </div>
-      <div *ngIf="match.LocalTeamResult != null">Resultado: {{match.LocalTeamResult}} -
+
+      <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Resultado: {{match.LocalTeamResult}} -
+
         {{match.VisitantTeamResult}}</div>
       <div class="prediction-inputs">
         <div *ngIf="match.predictionSubmitted">
@@ -35,6 +37,7 @@
       <div class="match-details">
         <p>{{ match.Date | date: 'dd/MMM HH:mm' }}</p>
         <p>{{ match.Location }}</p>
+        <p>{{ match.Category }}</p>
       </div>
     </div>
   </div>

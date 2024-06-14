@@ -13,4 +13,5 @@ export interface MatchAndTeams {
   localPrediction: number;
   visitantPrediction: number;
   predictionSubmitted: boolean;
+  Category : string
 }

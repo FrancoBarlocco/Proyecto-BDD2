@@ -34,7 +34,7 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
     try {
         const query = `
             SELECT 
-                Matches.MatchId, Matches.Date, Matches.LocalTeamResult, Matches.VisitantTeamResult,
+                Matches.MatchId, Matches.Date, Matches.LocalTeamResult, Matches.VisitantTeamResult, Matches.Category,
                 localTeam.TeamId AS LocalTeamId, localTeam.Name AS LocalTeamName, localTeam.Flag AS LocalTeamFlag,
                 visitantTeam.TeamId AS VisitantTeamId, visitantTeam.Name AS VisitantTeamName, visitantTeam.Flag AS VisitantTeamFlag
             FROM Matches
@@ -103,7 +103,6 @@ export const postMatch = async (req: Request, res: Response) => {
 export const updateMatchResult = async (req: Request, res: Response) => {
   const { matchId } = req.params;
   const { visitantTeamResult, localTeamResult } = req.body;
-  console.log(matchId + visitantTeamResult + localTeamResult + '##############')
 
   if (visitantTeamResult === undefined || localTeamResult === undefined) {
     return res.status(400).json({ msg: 'Faltan datos del resultado del partido' });
