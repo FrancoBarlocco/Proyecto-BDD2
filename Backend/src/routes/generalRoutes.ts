@@ -18,7 +18,7 @@ import { getStatisticsByCareer } from '../controllers/statisticController';
 const { check, validationResult } = require('express-validator');
 const router = Router();
 
-router.get('/getStudentByCi/:ci', getStudentByCi);
+router.get('/getStudentByCi/:ci',[check('Ci').matches(/^[0-9]+$/),check('Email').isEmail()], getStudentByCi);
 router.get('/getStudents', getStudents);
 router.get('/getTeamById/:id', getTeamById);
 router.get('/getTeams', getTeams);

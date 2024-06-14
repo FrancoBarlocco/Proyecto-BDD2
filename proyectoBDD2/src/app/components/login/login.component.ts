@@ -19,17 +19,6 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-
-  /*  
-  asi se obtiene el userId de un estudiante en cualqueir componente 
-  
-    userId: string | null = '';
-
-    ngOnInit() {
-    this.userId = localStorage.getItem('ci');
-
-  }*/ 
-
   userIds: string | null = '';
 
   constructor(private loginService : LoginService,  private router: Router) { }
@@ -63,8 +52,11 @@ export class LoginComponent {
         error => {
           if (error.status === 401) {
             alert('Datos incorrectos');
-          } else {
-            alert('An error occurred during registration');
+          }else if(error.status === 400){
+            alert(error.error.msg || error.error.error);
+          }
+           else {
+            alert('Ocurrió un error al iniciar sesión, verifica tus datos');
           }
         }
       );

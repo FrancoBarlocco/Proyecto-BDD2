@@ -74,7 +74,7 @@ export class RegisterComponent {
         },
         error: (error) => {
           if (error.status === 401) {
-            alert('El usuario no está registrado');
+            alert('El usuario ya está registrado');
           } else if (error.status === 400) {
             alert(error.error.msg || error.error.error);
           }
