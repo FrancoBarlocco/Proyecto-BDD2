@@ -12,7 +12,7 @@
     name="localTeam" 
     required 
     [(ngModel)]="localTeam">
-    <option value="" disabled selected>Equipo Local</option>
+    <option value="" selected>Equipo Local</option>
     <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
   </select>
 

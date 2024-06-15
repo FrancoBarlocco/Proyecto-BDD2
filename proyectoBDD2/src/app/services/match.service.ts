@@ -13,14 +13,6 @@ export class MatchService {
 
   constructor(private http: HttpClient) {}
 
-  getMatches(): Promise<Match[]> {
-    return firstValueFrom(this.http.get<Match[]>(`${this.apiUrl}/getMatches`));
-  }
-
-  getMatchById(id: number): Promise<Match> {
-    return firstValueFrom(this.http.get<Match>(`${this.apiUrl}/getMatchById/${id}`));
-  }
-
   getMatchesAndTeams(): Promise<MatchAndTeams[]> {
     return firstValueFrom(this.http.get<MatchAndTeams[]>(`${this.apiUrl}/getMatchesAndTeams`));
   }
@@ -41,7 +33,7 @@ export class MatchService {
     return this.http.post<Match>(`${this.apiUrl}/updateMatch/${matchId}`, body);
   }
 
-  getPredictions(userId: number): Promise<any> {  // Ajusta el tipo de retorno si tienes un modelo para las predicciones
+  getPredictions(userId: number): Promise<any> { 
     return firstValueFrom(this.http.get<any>(`${this.apiUrl}/getPredictions/${userId}`));
   }
 }

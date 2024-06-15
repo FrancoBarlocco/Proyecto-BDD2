@@ -12,7 +12,6 @@ export class registerService {
 
 
   register(Ci : string, FirstName : string, LastName: string, Email : string, Password : string, Career : string, ChampionTeamId : number, SubChampionTeamId : number, Contact : string) {
-    console.log("#######################" + ChampionTeamId + SubChampionTeamId)
     const body = { Ci, FirstName, LastName, Email, Password, Career, ChampionTeamId, SubChampionTeamId, Contact};
     return this.http.post<Student>(`${this.apiUrl}/postStudent`, body);
   }

@@ -17,6 +17,7 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
             JOIN Team AS visitantTeam ON Matches.visitantTeamId = visitantTeam.TeamId`;
 
     const [results] = await connection.query(query);
+    
     console.log(results);
     res.json(results);
   } catch (error) {
