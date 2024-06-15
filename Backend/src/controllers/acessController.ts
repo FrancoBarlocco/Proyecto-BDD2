@@ -7,8 +7,6 @@ const { validationResult } = require('express-validator');
 class acessController {
 }
 
-
-
 export const registerUser = async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -23,10 +21,10 @@ export const registerUser = async (req: Request, res: Response) => {
 
         // Buscar si el usuario ya existe
         const [result]: any[] = await connection.execute(
-            'SELECT * FROM Student WHERE Email = ?',
-            [Email]
-            
+            'SELECT * FROM Student WHERE Email = ? OR Ci = ?',
+            [Email, ci]
         );
+            
         console.log([result])
 
         // Si no encuentra el usuario 
