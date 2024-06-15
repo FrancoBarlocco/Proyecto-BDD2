@@ -95,3 +95,4 @@ export const getRanking = async (req: Request, res: Response) => {
         res.status(500).json({ msg: 'Error interno del servidor' });
     }
 };
+export default rankingController

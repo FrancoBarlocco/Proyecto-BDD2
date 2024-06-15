@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 class teamController {
 }
     export const getTeamById = async (req: Request, res: Response) => {
-        const { id } = req.params; // Asume que la cédula viene como parámetro de ruta
+        const { id } = req.params; // Asume que el id viene como parámetro de ruta
         try {
           const results = await connection.query('SELECT * FROM Team WHERE TeamId = ?', [id]);
            console.log(results);

@@ -3,8 +3,6 @@ import { getStudentByCi } from '../controllers/studentController';
 import { getStudents } from '../controllers/studentController';
 import { getTeamById } from '../controllers/teamControllet';
 import { getTeams } from '../controllers/teamControllet';
-import { getMatchById, savePredictions } from '../controllers/matchController';
-import { getMatches } from '../controllers/matchController';
 import { getMatchesAndTeams } from '../controllers/matchController';
 import { registerUser } from '../controllers/acessController';
 import { login } from '../controllers/acessController';
@@ -15,6 +13,8 @@ import { getStadiums } from '../controllers/stadiumController';
 import { getRanking } from '../controllers/rankingController';
 import { getPredictions } from '../controllers/predictController';
 import { getStatisticsByCareer } from '../controllers/statisticController';
+import { savePredictions } from '../controllers/predictController';
+
 const { check, validationResult } = require('express-validator');
 const router = Router();
 
@@ -22,8 +22,6 @@ router.get('/getStudentByCi/:ci',[check('Ci').matches(/^[0-9]+$/),check('Email')
 router.get('/getStudents', getStudents);
 router.get('/getTeamById/:id', getTeamById);
 router.get('/getTeams', getTeams);
-router.get('/getMatchById/:id', getMatchById);
-router.get('/getMatches', getMatches);
 router.get('/getMatchesAndTeams', getMatchesAndTeams);
 router.post('/postStudent', [check('Ci').matches(/^[0-9]+$/),check('Email').isEmail()], registerUser);
 router.post('/getCredentials',check('Email').isEmail(), login);
