@@ -5,8 +5,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Ranking } from '../../models/ranking';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
-import { StudentService } from '../../services/student.service';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-ranking',
@@ -20,7 +18,7 @@ export class RankingComponent implements OnInit {
   isAdmin: boolean = false;
   userId: string | null = '';
 
-  constructor(private rankingService: RankingService, private studentService : StudentService) { }
+  constructor(private rankingService: RankingService) { }
 
   ngOnInit(): void {
 

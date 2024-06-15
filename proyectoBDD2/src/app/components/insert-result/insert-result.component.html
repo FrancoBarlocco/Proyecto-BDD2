@@ -15,7 +15,7 @@
       [(ngModel)]="matchId"
       (change)="selectTeamNames()">
       <option [ngValue]="null" disabled selected>Seleccionar partido</option>
-      <option *ngFor="let match of matchesAndTeams" [value]="match.MatchId">{{ match.LocalTeamName }} - {{ match.VisitantTeamName }}</option>
+      <option *ngFor="let match of matchesAndTeams" [value]="match.MatchId">{{ match.LocalTeamName }} - {{ match.VisitantTeamName }} - {{ match.Date }}</option>
   </select>
 
     <input
