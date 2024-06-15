@@ -37,7 +37,7 @@ export const getRanking = async (req: Request, res: Response) => {
         JOIN Team t1 ON t1.TeamId = m.LocalTeamId
         JOIN Team t2 ON t2.TeamId = m.VisitantTeamId;
     `;
-    
+
     try {
         const [users] = await connection.query<any[]>(queryUsers);
         const [results] = await connection.query<any[]>(query);
@@ -65,22 +65,22 @@ export const getRanking = async (req: Request, res: Response) => {
             }
 
             // Comprueba si el partido es una final y si el usuario predijo correctamente el campeón y el subcampeón
-            if (result.Category === 'Final') { 
+            if (result.Category === 'Final') {
                 if (result.ChampionTeamId === result.LocalTeamId && localWin) { //si el predecido es el equipo local y gana, entonces es campeon 
-                        points += 10; 
+                    points += 10;
                 } else if (result.ChampionTeamId === result.VisitantTeamId && visitantWin) { //si el predecido es el equipo visitante y gana, entonces es campeon
-                        points += 10; 
+                    points += 10;
                 }
-                
+
                 if (result.SubChampionTeamId === result.LocalTeamId && visitantWin) { //si el predecido como subcampeon es el equipo local y gana visitante, entonces local fue subcampeon
-                        points += 5; 
+                    points += 5;
                 } else if (result.SubChampionTeamId === result.VisitantTeamId && localWin) { //si el predecido como subcampeon es el visitante y gana local, entonces visitante es subcampeon 
-                        points += 5; 
+                    points += 5;
                 }
             }
             userPoints[result.UserId] += points;
         });
-    
+
         const ranking = users.map(user => ({
             UserId: user.UserId,
             FirstName: user.FirstName,
@@ -88,8 +88,8 @@ export const getRanking = async (req: Request, res: Response) => {
             Points: userPoints[user.UserId]
         }));
 
-    ranking.sort((a, b) => b.Points - a.Points); //ordena de forma descendente 
-    res.json(ranking);
+        ranking.sort((a, b) => b.Points - a.Points); //ordena de forma descendente 
+        res.json(ranking);
     } catch (error) {
         console.error('Error al ejecutar la consulta:', error);
         res.status(500).json({ msg: 'Error interno del servidor' });
