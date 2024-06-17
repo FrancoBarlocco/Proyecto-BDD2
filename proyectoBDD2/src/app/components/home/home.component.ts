@@ -50,6 +50,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  isMatchTime(dateString: string): boolean {
+    const matchDate = new Date(dateString);
+    const now = new Date();
+    const timeDiff = matchDate.getTime() - now.getTime();
+    const oneHourInMs = 60 * 60 * 1000; // una hora en milisegundos
+
+    return timeDiff < oneHourInMs;
+  }
+
   savePredictions(matchId: number, localPrediction: number, visitantPrediction: number): void {
     this.matchService.savePredictions(this.user, matchId, localPrediction, visitantPrediction)
       .then(response => {
