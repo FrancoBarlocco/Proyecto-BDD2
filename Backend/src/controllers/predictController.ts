@@ -57,6 +57,7 @@ export const sendEmails = async (): Promise<{ success: boolean, message?: string
   const mailService = new MailService();
 
   try {
+    const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const query = `
       SELECT s.Email, s.FirstName, m.MatchId, t1.Name as LocalTeam, t2.Name as VisitantTeam, m.Date as MatchDate
       FROM Student s
@@ -64,7 +65,8 @@ export const sendEmails = async (): Promise<{ success: boolean, message?: string
       LEFT JOIN Predicts p ON s.Ci = p.UserId AND m.MatchId = p.MatchId
       JOIN Team t1 ON m.localTeamId = t1.TeamId
       JOIN Team t2 ON m.visitantTeamId = t2.TeamId
-      WHERE p.MatchId IS NULL;
+      WHERE p.MatchId IS NULL
+      AND m.Date > '${currentDate}';
     `;
     const [rows] = await connection.query(query);
     const dataPredicts = rows as { Email: string, FirstName: string, MatchId: number, LocalTeam: string, VisitantTeam: string, MatchDate: string }[];
