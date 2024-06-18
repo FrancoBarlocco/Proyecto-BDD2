@@ -28,9 +28,9 @@ export class HomeComponent implements OnInit {
   constructor(private matchService: MatchService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-
     this.matchService.getMatchesAndTeams().then((data) => {
       this.matchesAndTeams = data;
+      console.log(this.matchesAndTeams);
       this.user = this.loginService.getUser();
       this.matchService.getPredictions(this.user).then((data) => {
         this.predictions = data;
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
       input.value = 0;
     }
   }
-  
+
   onSubmit(matchId: number, localPrediction: number, visitantPrediction: number) {
     if (this.isValidPrediction(localPrediction) && this.isValidPrediction(visitantPrediction)) {
       this.savePredictions(matchId, localPrediction, visitantPrediction);
@@ -95,8 +95,41 @@ export class HomeComponent implements OnInit {
       alert('Las predicciones deben ser números no negativos menores a 21.');
     }
   }
-  
+
   isValidPrediction(value: number): boolean {
-    return value >= 0 && Number.isInteger(value) && value <=20 ;
+    return value >= 0 && Number.isInteger(value) && value <= 20;
   }
+
+  modifyPrediction(match: MatchAndTeams, currentLocalPrediction: number, currentVisitantPrediction: number) {
+    const userId = Number(localStorage.getItem('userId')); // Obtén el ID del usuario desde el almacenamiento local
+    const matchId = match.MatchId;
+    const localPrediction = currentLocalPrediction;
+    const visitantPrediction = currentVisitantPrediction;
+  
+    // Validar predicciones
+    if (!this.isValidPrediction(localPrediction) || !this.isValidPrediction(visitantPrediction)) {
+      alert('Las predicciones deben ser números no negativos menores a 21.');
+      return; // Salir del método si las predicciones no son válidas
+    }
+  
+    if (localPrediction !== null && visitantPrediction !== null) {
+      this.matchService.updatePredict(userId, matchId, Number(localPrediction), Number(visitantPrediction)).then(response => {
+        alert('Predicción modificada correctamente!');
+        console.log('Predicción modificada correctamente!', response);
+        this.showPredictionInput[matchId] = false; 
+        match.predictionSubmitted = true;
+      }).catch(error => {
+        console.error('Error al modificar la predicción', error);
+        alert('Ocurrió un error al modificar la predicción');
+      });
+    }
+  }
+  // Variable para controlar la visibilidad del div de predicción
+  showPredictionInput: { [key: number]: boolean } = {};
+
+  // Método para mostrar el div de predicción
+  enablePredictionInput(matchId: number) {
+    this.showPredictionInput[matchId] = true;
+  }
+
 }
