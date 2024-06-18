@@ -1,4 +1,3 @@
-
 <div class="home-container">
   <app-navbar></app-navbar>
 
@@ -11,7 +10,6 @@
         <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Resultado: {{match.LocalTeamResult}} - {{match.VisitantTeamResult}}</div>
       </div>
     
-      
       <div class="match-info">
         <div class="team-info">
           <img [src]="'../assets/images/Flags/' + match.LocalTeamFlag" [alt]="match.LocalTeamName" class="team-badge">
