@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
               match.predictionSubmitted = true;
               match.localPrediction = element.LocalTeamGoals
               match.visitantPrediction = element.VisitantTeamGoals
+              match.Score = element.Score;
             }
           });
         })

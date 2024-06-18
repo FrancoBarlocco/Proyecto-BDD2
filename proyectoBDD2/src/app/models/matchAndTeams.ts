@@ -14,4 +14,5 @@ export interface MatchAndTeams {
   visitantPrediction: number;
   predictionSubmitted: boolean;
   Category : string
+  Score : number
 }
