@@ -9,15 +9,18 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
   try {
     const query = `
             SELECT 
-                Matches.MatchId, Matches.Date, Matches.LocalTeamResult, Matches.VisitantTeamResult, Matches.Category,
+                Matches.MatchId, Matches.Date,Matches.StadiumId, Matches.LocalTeamResult, Matches.VisitantTeamResult, Matches.Category,
                 localTeam.TeamId AS LocalTeamId, localTeam.Name AS LocalTeamName, localTeam.Flag AS LocalTeamFlag,
-                visitantTeam.TeamId AS VisitantTeamId, visitantTeam.Name AS VisitantTeamName, visitantTeam.Flag AS VisitantTeamFlag
+                visitantTeam.TeamId AS VisitantTeamId, visitantTeam.Name AS VisitantTeamName, visitantTeam.Flag AS VisitantTeamFlag,
+                Stadium.Name AS StadiumName
             FROM Matches
             JOIN Team AS localTeam ON Matches.localTeamId = localTeam.TeamId
-            JOIN Team AS visitantTeam ON Matches.visitantTeamId = visitantTeam.TeamId`;
+            JOIN Team AS visitantTeam ON Matches.visitantTeamId = visitantTeam.TeamId
+            JOIN Stadium ON Matches.StadiumId = Stadium.stadiumId`;
+
 
     const [results] = await connection.query(query);
-    
+
     console.log(results);
     res.json(results);
   } catch (error) {

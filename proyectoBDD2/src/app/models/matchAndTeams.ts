@@ -1,6 +1,6 @@
 export interface MatchAndTeams {
   MatchId: number;
-  Location: string;
+  StadiumId: number;
   Date: string;
   LocalTeamResult: number;
   VisitantTeamResult: number;
@@ -13,6 +13,7 @@ export interface MatchAndTeams {
   localPrediction: number;
   visitantPrediction: number;
   predictionSubmitted: boolean;
-  Category : string
-  Score : number
+  Category : string;
+  Score : number;
+  StadiumName: string;
 }
