@@ -53,6 +53,34 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
   }
 };
 
+export const updatePredictions = async (req: Request, res: Response): Promise<void> => {
+  const { userId, matchId, localPrediction, visitantPrediction } = req.body;
+  
+  try {
+    const query = `
+      UPDATE Predicts
+      SET LocalTeamGoals = ?, VisitantTeamGoals = ?
+      WHERE UserId = ? AND MatchId = ?
+    `;
+
+    await connection.query(query, [localPrediction, visitantPrediction, userId, matchId]);
+
+    const response = {
+      success: true,
+      message: 'Prediction updated successfully.'
+    };
+    res.json(response);
+  } catch (error) {
+    // Si hay algún error, envía una respuesta de error
+    console.error('Error updating predictions:', error);
+    const response = {
+      success: false,
+      error: 'Failed to update predictions.'
+    };
+    res.status(500).json(response);
+  }
+}
+
 export const sendEmails = async (): Promise<{ success: boolean, message?: string, error?: string }> => {
   const mailService = new MailService();
 
