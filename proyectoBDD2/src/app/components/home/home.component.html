@@ -3,13 +3,6 @@
 
   <div class="matches-container">
     <div *ngFor="let match of matchesAndTeams" class="card">
-      <div class="match-details">
-        <p>{{ match.Date | date: 'dd/MMM HH:mm' }}</p>
-        <p>{{ match.Location }}</p>
-        <p>{{ match.Category }}</p>
-        <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Resultado: {{match.LocalTeamResult}} - {{match.VisitantTeamResult}}</div>
-      </div>
-    
       <div class="match-info">
         <div class="team-info">
           <img [src]="'../assets/images/Flags/' + match.LocalTeamFlag" [alt]="match.LocalTeamName" class="team-badge">
@@ -17,28 +10,48 @@
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName" class="team-badge">
+          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName"
+            class="team-badge">
           <p class="visitantTeam">{{ match.VisitantTeamName }}</p>
         </div>
       </div>
-     
+      <div class="match-details">
+        <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Resultado:
+          {{match.LocalTeamResult}} - {{match.VisitantTeamResult}}
+        </div>
+      </div>
       <div class="prediction-inputs">
         <div *ngIf="match.predictionSubmitted">
           <!-- Mostrar predicciones ingresadas -->
-          <p>Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
-          <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Puntos ganados: {{match.Score}}</div>
+          <p class="predict">Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
+          <!-- Botón para habilitar el div de predicción -->
+          <button class="submit-button modify-prediction-btn"
+            *ngIf="!showPredictionInput[match.MatchId] && match.LocalTeamResult == null" class="modify-prediction-btn"
+            (click)="enablePredictionInput(match.MatchId)">
+            Modificar Predicción
+          </button>
+          <div *ngIf="showPredictionInput[match.MatchId]">
+            <input type="number" [placeholder]="match.LocalTeamName" [(ngModel)]="match.localPrediction"
+              class="prediction-input" min="0" step="1" (input)="validateInput($event)">
+            <input type="number" [placeholder]="match.VisitantTeamName" [(ngModel)]="match.visitantPrediction"
+              class="prediction-input" min="0" step="1" (input)="validateInput($event)" >
+            <button class="submit-button"
+              (click)="modifyPrediction(match,match.localPrediction, match.visitantPrediction)">Ingresar</button>
+          </div>
+          <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Puntos ganados: {{match.Score}}
+          </div>
         </div>
         <div *ngIf="!match.predictionSubmitted && match.LocalTeamResult == null && !isMatchTime(match.Date)">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
-          <input type="number" [placeholder]="match.LocalTeamName" [(ngModel)]="match.localPrediction" class="prediction-input" min="0"
-            step="1" (input)="validateInput($event)">
-          <input type="number" [placeholder]="match.VisitantTeamName" [(ngModel)]="match.visitantPrediction" class="prediction-input"
-            min="0" step="1" (input)="validateInput($event)">
+          <input type="number" [placeholder]="match.LocalTeamName" [(ngModel)]="match.localPrediction"
+            class="prediction-input" min="0" step="1" (input)="validateInput($event)">
+          <input type="number" [placeholder]="match.VisitantTeamName" [(ngModel)]="match.visitantPrediction"
+            class="prediction-input" min="0" step="1" (input)="validateInput($event)">
           <button class="submit-button"
             (click)="onSubmit(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
         </div>
       </div>
-
+      <p>{{ match.Date | date: 'dd/MMM HH:mm' }} | {{ match.Category }} | {{match.StadiumName}}</p>
     </div>
   </div>
 </div>

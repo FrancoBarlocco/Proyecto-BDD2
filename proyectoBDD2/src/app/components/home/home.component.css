@@ -27,7 +27,7 @@ h1 {
   color: #116ac9;
   text-align: center;
   margin-bottom: 2rem;
-}/* home.component.css */
+}
 
 
 /* Ajustes para la barra de navegación */
@@ -59,8 +59,19 @@ app-navbar {
   transition: background-color 0.3s ease;
 }
 
-.submit-button:hover {
+.submit-button:hover,  .submit-button2:hover{
   background-color: #0d4a8b;
+}
+.modify-prediction-btn {
+  /* Estilos adicionales para el botón de modificar predicción */
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background-color: #116ac9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 
@@ -68,7 +79,12 @@ app-navbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+  margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+}
+.predict{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .local{
