@@ -23,14 +23,12 @@
           <p class="visitantTeam">{{ match.VisitantTeamName }}</p>
         </div>
       </div>
-
-
      
       <div class="prediction-inputs">
         <div *ngIf="match.predictionSubmitted">
           <!-- Mostrar predicciones ingresadas -->
           <p>Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
-          <p>Puntos ganados: {{match.Score}}</p>
+          <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Puntos ganados: {{match.Score}}</div>
         </div>
         <div *ngIf="!match.predictionSubmitted && match.LocalTeamResult == null && !isMatchTime(match.Date)">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
