@@ -17,4 +17,3 @@ export const getStadiums = async (req: Request, res: Response) => {
 }
 
 export default stadiumController;
-
