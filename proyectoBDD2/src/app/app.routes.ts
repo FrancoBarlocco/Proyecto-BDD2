@@ -11,6 +11,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { Router } from '@angular/router';
 import { InsertMatchComponent } from './components/insert-match/insert-match.component';
 import { InsertResultComponent } from './components/insert-result/insert-result.component';
+import { TermsComponent } from './components/terms/terms.component';
 
 const authGuard: CanActivateFn = (route, state) => {
   const login = localStorage.getItem('userId');
@@ -36,6 +37,8 @@ export const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent, canActivate: [authGuard] },
   { path: 'insertMatch', component: InsertMatchComponent},
   { path: 'insertResult', component: InsertResultComponent},
+  { path: 'terms', component: TermsComponent},
+
 
 
 ];

@@ -10,6 +10,7 @@ import { getPredictions } from '../controllers/predictController';
 import { getStatisticsByCareer } from '../controllers/statisticController';
 import { savePredictions } from '../controllers/predictController';
 import { getTeams } from '../controllers/teamController';
+import { updatePredictions } from '../controllers/predictController';
 
 const { check, validationResult } = require('express-validator');
 const router = Router();
@@ -25,5 +26,7 @@ router.get('/getPredictions/:userId',[check('userId').matches(/^[0-9]+$/)], getP
 router.get('/getStadiums', getStadiums);
 router.get('/getRanking', getRanking);
 router.get('/getStatistics', getStatisticsByCareer);
+router.patch('/updatePrediction', updatePredictions);
+    
 
 export default router;

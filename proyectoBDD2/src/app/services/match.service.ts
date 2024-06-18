@@ -36,4 +36,10 @@ export class MatchService {
   getPredictions(userId: number): Promise<any> { 
     return firstValueFrom(this.http.get<any>(`${this.apiUrl}/getPredictions/${userId}`));
   }
-}
+
+  updatePredict(userId: number, matchId: number, localPrediction: number, visitantPrediction: number){
+    const body = { userId, matchId, localPrediction, visitantPrediction };
+    return firstValueFrom(this.http.patch<ApiResponse>(`${this.apiUrl}/updatePrediction`, body));
+  }
+  }
+
