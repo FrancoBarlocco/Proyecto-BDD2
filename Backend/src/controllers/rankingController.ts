@@ -57,22 +57,18 @@ export const getRanking = async (req: Request, res: Response) => {
   
       finalMatches.forEach(finalMatch => {
         users.forEach(user => {
-            console.log('entro a matchfinal' + user.ChampionTeamId + finalMatch.LocalTeamId + 'result' + finalMatch.LocalTeamResult +finalMatch.VisitantTeamResult );
 
           if (user.ChampionTeamId === finalMatch.LocalTeamId && finalMatch.LocalTeamResult > finalMatch.VisitantTeamResult) {//si el predecido es el equipo local y gana, entonces es campeon 
-
-            userPoints[user.UserId] =+ 10; // Asignar 10 puntos extras por predicción correcta de campeón
+            userPoints[user.UserId] += 10; // Asigna 10 puntos extras por predicción correcta de campeón
           }
-          if(user.ChampionTeamId === finalMatch.VisiantTeamId && finalMatch.VisitantTeamResult > finalMatch.LocalTeamResult){ //si el predecido es el equipo visitante y gana, entonces es campeon
-
+          if(user.ChampionTeamId === finalMatch.VisitantTeamId && finalMatch.VisitantTeamResult > finalMatch.LocalTeamResult){ //si el predecido es el equipo visitante y gana, entonces es campeon
+            userPoints[user.UserId] += 10; 
           }
           if (user.SubChampionTeamId === finalMatch.LocalTeamId && finalMatch.LocalTeamResult < finalMatch.VisitantTeamResult) { //si el predecido como subcampeon es el equipo local y gana visitante, entonces local fue subcampeon
-            userPoints[user.UserId] + 5; // Asignar 5 puntos extras por predicción correcta de subcampeón
-
+            userPoints[user.UserId] += 5; // Asigna 5 puntos extras por predicción correcta de subcampeón
           }
-          if (user.SubChampionTeamId === finalMatch.VisitantTeamId && finalMatch.LocalTeamResul > finalMatch.VisitantTeamResult) { //si el predecido como subcampeon es el visitante y gana local, entonces visitante es subcampeon 
-            userPoints[user.UserId] + 5; 
-            
+          if (user.SubChampionTeamId === finalMatch.VisitantTeamId && finalMatch.LocalTeamResult > finalMatch.VisitantTeamResult) { //si el predecido como subcampeon es el visitante y gana local, entonces visitante es subcampeon            
+            userPoints[user.UserId] += 5; 
           }
         });
       });
