@@ -1,8 +1,17 @@
+
 <div class="home-container">
   <app-navbar></app-navbar>
 
   <div class="matches-container">
     <div *ngFor="let match of matchesAndTeams" class="card">
+      <div class="match-details">
+        <p>{{ match.Date | date: 'dd/MMM HH:mm' }}</p>
+        <p>{{ match.Location }}</p>
+        <p>{{ match.Category }}</p>
+        <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Resultado: {{match.LocalTeamResult}} - {{match.VisitantTeamResult}}</div>
+      </div>
+    
+      
       <div class="match-info">
         <div class="team-info">
           <img [src]="'../assets/images/Flags/' + match.LocalTeamFlag" [alt]="match.LocalTeamName" class="team-badge">
@@ -10,19 +19,18 @@
         </div>
         <p class="vs">vs</p>
         <div class="team-info">
-          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName"
-            class="team-badge">
+          <img [src]="'../assets/images/Flags/' + match.VisitantTeamFlag" [alt]="match.VisitantTeamName" class="team-badge">
           <p class="visitantTeam">{{ match.VisitantTeamName }}</p>
         </div>
       </div>
 
-      <div *ngIf="match.LocalTeamResult != null && match.VisitantTeamResult != null">Resultado: {{match.LocalTeamResult}} -
 
-        {{match.VisitantTeamResult}}</div>
+     
       <div class="prediction-inputs">
         <div *ngIf="match.predictionSubmitted">
           <!-- Mostrar predicciones ingresadas -->
           <p>Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
+          <p>Puntos ganados: {{match.Score}}</p>
         </div>
         <div *ngIf="!match.predictionSubmitted && match.LocalTeamResult == null && !isMatchTime(match.Date)">
           <!-- Inputs para ingresar predicciones si no han sido ingresadas -->
@@ -34,11 +42,7 @@
             (click)="onSubmit(match.MatchId, match.localPrediction, match.visitantPrediction)">Ingresar</button>
         </div>
       </div>
-      <div class="match-details">
-        <p>{{ match.Date | date: 'dd/MMM HH:mm' }}</p>
-        <p>{{ match.Location }}</p>
-        <p>{{ match.Category }}</p>
-      </div>
+
     </div>
   </div>
 </div>
