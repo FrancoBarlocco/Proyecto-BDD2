@@ -55,19 +55,66 @@ export const updateMatchResult = async (req: Request, res: Response) => {
     return res.status(400).json({ msg: 'Faltan datos del resultado del partido' });
   }
 
-  const query = `
+  const queryUpdateMatch = `
     UPDATE Matches
     SET visitantTeamResult = ?, localTeamResult = ?
     WHERE MatchId = ?
   `;
 
+  const queryGetPredictions = `
+    SELECT 
+      p.UserId, 
+      p.LocalTeamGoals AS PredictedTeamAGoals, 
+      p.VisitantTeamGoals AS PredictedTeamBGoals, 
+      m.LocalTeamResult AS ActualTeamAGoals, 
+      m.VisitantTeamResult AS ActualTeamBGoals,
+      m.Category, 
+      m.LocalTeamId, 
+      m.VisitantTeamId,
+      s.ChampionTeamId, 
+      s.SubChampionTeamId 
+    FROM Predicts p
+    JOIN Matches m ON p.MatchId = m.MatchId
+    JOIN Student s ON p.UserId = s.Ci
+    WHERE p.MatchId = ?;
+  `;
+
+  const queryUpdatePredict = `
+    UPDATE Predicts
+    SET Score = ?
+    WHERE MatchId = ? AND UserId = ?
+  `;
+
   try {
-    const [result] = await connection.query(query, [visitantTeamResult, localTeamResult, matchId]) as [any, any];
+    const [result] = await connection.query(queryUpdateMatch, [visitantTeamResult, localTeamResult, matchId]) as [any, any];
     console.log(result);
     if (result.affectedRows === 0) {
       return res.status(404).json({ msg: 'Partido no encontrado' });
     }
-    res.status(200).json({ msg: 'Resultados del partido actualizados exitosamente' });
+
+    const [predictions] = await connection.query<any[]>(queryGetPredictions, [matchId]); //traigo solo las predicciones para el partido que se ingresa
+
+    for (const prediction of predictions) {
+      let points = 0;
+      const predictedWin = prediction.PredictedTeamAGoals > prediction.PredictedTeamBGoals;
+      const predictedDraw = prediction.PredictedTeamAGoals === prediction.PredictedTeamBGoals;
+      const predictedLose = prediction.PredictedTeamAGoals < prediction.PredictedTeamBGoals;
+
+      const localWin = prediction.ActualTeamAGoals > prediction.ActualTeamBGoals; // gana local 
+      const draw = prediction.ActualTeamAGoals === prediction.ActualTeamBGoals; // empate
+      const visitantWin = prediction.ActualTeamAGoals < prediction.ActualTeamBGoals; // gana visitante
+
+      if (prediction.PredictedTeamAGoals === prediction.ActualTeamAGoals && prediction.PredictedTeamBGoals === prediction.ActualTeamBGoals) {
+        points = 4;
+      } else if ((predictedWin && localWin) || (predictedDraw && draw) || (predictedLose && visitantWin)) {
+        points = 2;
+      }
+
+      // Actualizar los puntos de la predicción
+      await connection.query(queryUpdatePredict, [points, matchId, prediction.UserId]);
+    }
+
+    res.status(200).json({ msg: 'Resultados del partido y puntajes actualizados exitosamente' });
   } catch (error) {
     console.error('Error al ejecutar la actualización:', error);
     res.status(500).json({ msg: 'Error interno del servidor' });
