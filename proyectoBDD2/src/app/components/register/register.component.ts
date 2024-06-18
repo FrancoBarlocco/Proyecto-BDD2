@@ -70,7 +70,7 @@ export class RegisterComponent {
           alert('Registrado correctamente!');
           console.log('Registrado correctamente!', response);
           localStorage.setItem('userId', this.ci);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/terms']);
         },
         error: (error) => {
           if (error.status === 401) {
