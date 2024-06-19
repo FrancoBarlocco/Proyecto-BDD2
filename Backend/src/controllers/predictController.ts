@@ -18,7 +18,7 @@ export const getPredictions = async (req: Request, res: Response): Promise<void>
 
     const [rows] = await connection.query(query, [userId]);
     res.json(rows);
-    
+
   } catch (error) {
     console.error('Error fetching predictions:', error);
     res.status(500).json({ success: false, error: 'Failed to fetch predictions. Please try again later.' });
@@ -27,7 +27,7 @@ export const getPredictions = async (req: Request, res: Response): Promise<void>
 
 export const savePredictions = async (req: Request, res: Response): Promise<void> => {
   const { userId, matchId, localPrediction, visitantPrediction } = req.body;
-  
+
   try {
     const query = `
       INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
@@ -54,7 +54,7 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
 
 export const updatePredictions = async (req: Request, res: Response): Promise<void> => {
   const { userId, matchId, localPrediction, visitantPrediction } = req.body;
-  
+
   try {
     const query = `
       UPDATE Predicts

@@ -2,82 +2,37 @@
     <form class="custom-form" method="post">
         <div class="back-button-container">
             <button type="button" class="back-button" (click)="goBack()">
-              &#8592;
+                &#8592;
             </button>
-          </div>
+        </div>
         <div class="logo-container">
-            <img src="/assets/images/Banners/copa-america-2024-logo-png-transparente.png" alt="Copa America Logo" class="logo">
+            <img src="/assets/images/Banners/copa-america-2024-logo-png-transparente.png" alt="Copa America Logo"
+                class="logo">
         </div>
         <h1>Registrarse</h1>
 
-        <input
-            type="text"
-            name="ci"
-            required 
-            placeholder="Cedula de identidad"
-            [(ngModel)]="ci"
-        />
-        <input
-            type="text"
-            name="firstName"
-            required 
-            placeholder="Nombre"
-            [(ngModel)]="firstName"
-        />
-        <input
-            type="text"
-            name="lastName"
-            required 
-            placeholder="Apellido"
-            [(ngModel)]="lastName"
-        />
-        <input
-            type="email"
-            name="email"
-            required 
-            placeholder="Email"
-            [(ngModel)]="email"
-        />
-        <input
-            type="text"
-            name="contact"
-            required 
-            placeholder="Número de Teléfono"
-            [(ngModel)]="contact"
-        />
-        <select 
-        name="selectedCareer" 
-        required 
-        [(ngModel)]="selectedCareer">
-        <option value="" disabled selected>Carrera</option>
-        <option *ngFor="let career of career" [value]="career">{{ career }}</option>
-      </select>
+        <input type="text" name="ci" required placeholder="Cedula de identidad" [(ngModel)]="ci" />
+        <input type="text" name="firstName" required placeholder="Nombre" [(ngModel)]="firstName" />
+        <input type="text" name="lastName" required placeholder="Apellido" [(ngModel)]="lastName" />
+        <input type="email" name="email" required placeholder="Email" [(ngModel)]="email" />
+        <input type="text" name="contact" required placeholder="Número de Teléfono" [(ngModel)]="contact" />
+        <select name="selectedCareer" required [(ngModel)]="selectedCareer">
+            <option value="" disabled selected>Carrera</option>
+            <option *ngFor="let career of career" [value]="career">{{ career }}</option>
+        </select>
 
-        <input
-            type="password"
-            name="password"
-            required 
-            placeholder="Contraseña"
-            [(ngModel)]="password"
-        />
+        <input type="password" name="password" required placeholder="Contraseña" [(ngModel)]="password" />
 
-        <select 
-        name="championTeamName" 
-        required 
-        [(ngModel)]="championTeamName"
-        (change)="setChampionTeam($event)">
-        <option value="" disabled selected>Primer equipo ganador</option>
-        <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
-      </select>
+        <select name="championTeamName" required [(ngModel)]="championTeamName" (change)="setChampionTeam($event)">
+            <option value="" disabled selected>Primer equipo ganador</option>
+            <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
+        </select>
 
-      <select 
-      name="subChampionTeamName" 
-      required 
-      [(ngModel)]="subChampionTeamName"
-      (change)="setSubChampionTeam($event)">
-      <option value="" disabled selected>Segundo equipo ganador</option>
-      <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
-    </select>
+        <select name="subChampionTeamName" required [(ngModel)]="subChampionTeamName"
+            (change)="setSubChampionTeam($event)">
+            <option value="" disabled selected>Segundo equipo ganador</option>
+            <option *ngFor="let team of teams" [value]="team.Name">{{ team.Name }}</option>
+        </select>
 
         <button type="submit" (click)="register()">Registrarse</button>
     </form>

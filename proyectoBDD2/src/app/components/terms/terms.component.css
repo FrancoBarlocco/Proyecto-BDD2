@@ -1,58 +1,62 @@
 .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    padding: 2rem;
-    border-radius: 1rem;
-    width: 90%; /* Ocupa el 90% del ancho de la pantalla */
-    max-width: 1200px; /* Ancho máximo para pantallas grandes */
-  }
-  
-  h1 {
-    color: #116ac9;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  /* Estilo para el botón de ingresar */
-  .submit-button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    color: #ffffff;
-    background-color: #116ac9;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    max-width: 7em;
-  }
-  
-  .submit-button:hover {
-    background-color: #0d4a8b;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  
-    background: #fff;
-    border: 1px solid #d3d3d3; /* Borde gris */
-    border-radius: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    margin: 1rem;
-    width: calc(50% - 2rem); /* Dos tarjetas por fila */
-    max-width: 450px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  /* Contenedor del botón para centrarlo */
-  .button-container {
-    display: flex;
-    justify-content: center; /* Centra el botón horizontalmente */
-    width: 100%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  /* Ocupa el 90% del ancho de la pantalla */
+  max-width: 1200px;
+  /* Ancho máximo para pantallas grandes */
+}
+
+h1 {
+  color: #116ac9;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Estilo para el botón de ingresar */
+.submit-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background-color: #116ac9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 7em;
+}
+
+.submit-button:hover {
+  background-color: #0d4a8b;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: #fff;
+  border: 1px solid #d3d3d3;
+  /* Borde gris */
+  border-radius: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem;
+  width: calc(50% - 2rem);
+  /* Dos tarjetas por fila */
+  max-width: 450px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Contenedor del botón para centrarlo */
+.button-container {
+  display: flex;
+  justify-content: center;
+  /* Centra el botón horizontalmente */
+  width: 100%;
+}

@@ -19,13 +19,13 @@ export class InsertResultComponent {
   localTeamResult: number | null = null;
   visitantTeamResult: number | null = null;
   matchesAndTeams: MatchAndTeams[] = [];
-  localTeam : string = '';
-  visitantTeam : string = '';
+  localTeam: string = '';
+  visitantTeam: string = '';
 
-  constructor(private matchService : MatchService) { }
+  constructor(private matchService: MatchService) { }
 
   ngOnInit(): void {
-  
+
     this.matchService.getMatchesAndTeams().then((data) => {
       this.matchesAndTeams = data;
       this.matchesAndTeams.forEach(element => {
@@ -42,28 +42,28 @@ export class InsertResultComponent {
       alert('Selecciona un partido.');
       return;
     }
-  
+
     if (this.localTeamResult! < 0 || this.visitantTeamResult! < 0 || typeof this.localTeamResult !== 'number' || typeof this.visitantTeamResult !== 'number') {
       alert('Ingresa datos válidos o completa todos los campos');
       return;
     }
-  
-    else{
-    this.matchService.updateMatchResult(this.matchId!, this.localTeamResult!, this.visitantTeamResult!).subscribe({
-      next: (response) => {
-        alert('Resultado ingresado correctamente');
-        console.log('Resultado infresado correctamente!', response);
-        this.resetForm()
-      },
-      error: (error) => {
-        if (error.status === 500) {
-          alert('Ocurrió un error');
-        } else {
-          alert('Ocurrió un error inesperado' + error.status);
+
+    else {
+      this.matchService.updateMatchResult(this.matchId!, this.localTeamResult!, this.visitantTeamResult!).subscribe({
+        next: (response) => {
+          alert('Resultado ingresado correctamente');
+          console.log('Resultado infresado correctamente!', response);
+          this.resetForm()
+        },
+        error: (error) => {
+          if (error.status === 500) {
+            alert('Ocurrió un error');
+          } else {
+            alert('Ocurrió un error inesperado' + error.status);
+          }
         }
-      }
-    });
-  }
+      });
+    }
   }
 
   private formatDateToDDMMYYYY(date: string | Date): string {
@@ -74,10 +74,10 @@ export class InsertResultComponent {
 
     return `${day}/${month}/${year}`;
   }
-  
-  selectTeamNames(){
+
+  selectTeamNames() {
     this.matchesAndTeams.forEach(element => {
-      if(element.MatchId == this.matchId){
+      if (element.MatchId == this.matchId) {
         this.localTeam = element.LocalTeamName
         this.visitantTeam = element.VisitantTeamName
       }

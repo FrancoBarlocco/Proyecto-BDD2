@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './terms.component.html',
   styleUrl: './terms.component.css',
   imports: [NavbarComponent],
-  standalone:true
+  standalone: true
 })
 export class TermsComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   accept() {
-    this.router.navigate(['/home']); 
+    this.router.navigate(['/home']);
   }
 }

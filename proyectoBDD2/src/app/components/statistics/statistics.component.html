@@ -1,29 +1,29 @@
 <div class="statisticsContainer">
 
-        <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 
-        <h1>Estadisticas generales de los participantes</h1>
-        <table class="statistic-table">
-          <thead>
-            <tr>
-              <th>Carrera</th>
-              <th>Predicciones exactas</th>
-              <th>Predicciones acertadas</th>
-              <th>predicciones erradas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let career of getCareers()">
-              <td> {{ career }}</td>
-              <td> {{ statistics[career].exact }}</td>
-              <td> {{ statistics[career].correct }}</td>
-              <td> {{ statistics[career].failed }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="predictions-info">
-          <p>Predicción exacta: Cuando un participante predice el resultado exacto de un partido</p>
-          <p>Predicción acertada: Cuando un participante no predice el resultado exacto, pero si quien gana el partido</p>
-          <p>Predicción errada: Cuando un participante no predice el resultado exacto ni quien gana el partido</p>
-      </div>
+  <h1>Estadisticas generales de los participantes</h1>
+  <table class="statistic-table">
+    <thead>
+      <tr>
+        <th>Carrera</th>
+        <th>Predicciones exactas</th>
+        <th>Predicciones acertadas</th>
+        <th>predicciones erradas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let career of getCareers()">
+        <td> {{ career }}</td>
+        <td> {{ statistics[career].exact }}</td>
+        <td> {{ statistics[career].correct }}</td>
+        <td> {{ statistics[career].failed }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="predictions-info">
+    <p>Predicción exacta: Cuando un participante predice el resultado exacto de un partido</p>
+    <p>Predicción acertada: Cuando un participante no predice el resultado exacto, pero si quien gana el partido</p>
+    <p>Predicción errada: Cuando un participante no predice el resultado exacto ni quien gana el partido</p>
   </div>
+</div>

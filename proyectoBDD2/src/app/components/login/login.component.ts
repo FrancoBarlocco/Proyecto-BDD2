@@ -17,45 +17,44 @@ export class LoginComponent {
 
   userIds: string | null = '';
 
-  constructor(private loginService : LoginService,  private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   login() {
-      this.loginService.login(this.email, this.password).subscribe(
-        response => {
-          alert('Inicio de sesion exitoso')
-          const userResponse = {
-            Ci: response.Ci,
-            FirstName: response.FirstName,
-            LastName: response.LastName,
-            Email: response.Email,
-            Career: response.Career,
-            ChampionTeamId: response.ChampionTeamId,
-            SubChampionTeamId: response.SubChampionTeamId,
-            Contact: response.Contact
+    this.loginService.login(this.email, this.password).subscribe(
+      response => {
+        alert('Inicio de sesion exitoso')
+        const userResponse = {
+          Ci: response.Ci,
+          FirstName: response.FirstName,
+          LastName: response.LastName,
+          Email: response.Email,
+          Career: response.Career,
+          ChampionTeamId: response.ChampionTeamId,
+          SubChampionTeamId: response.SubChampionTeamId,
+          Contact: response.Contact
         };
-          this.loginService.setUser(userResponse);
-          localStorage.setItem('userId', response.userId);
-          //console.log(localStorage.getItem("user"));
-          if(response.userType == 'admin') //es admin
-          {
-            this.router.navigate(['/insertMatch']);
-          }
-          else{ //es un usuario
-            this.router.navigate(['/home']);
-          }
-          
-        },
-        error => {
-          if (error.status === 401) {
-            alert('Datos incorrectos');
-          }else if(error.status === 400){
-            alert(error.error.msg || error.error.error);
-          }
-           else {
-            alert('Ocurrió un error al iniciar sesión, verifica tus datos');
-          }
+        this.loginService.setUser(userResponse);
+        localStorage.setItem('userId', response.userId);
+        if (response.userType == 'admin') //es admin
+        {
+          this.router.navigate(['/insertMatch']);
         }
-      );
+        else { //es un usuario
+          this.router.navigate(['/home']);
+        }
+
+      },
+      error => {
+        if (error.status === 401) {
+          alert('Datos incorrectos');
+        } else if (error.status === 400) {
+          alert(error.error.msg || error.error.error);
+        }
+        else {
+          alert('Ocurrió un error al iniciar sesión, verifica tus datos');
+        }
+      }
+    );
   }
 
   logout() {
@@ -63,7 +62,7 @@ export class LoginComponent {
   }
 
   goBack() {
-    this.router.navigate(['']); // Reemplaza '/home' con la ruta a la que quieres que el usuario vuelva
+    this.router.navigate(['']);
   }
 }
 

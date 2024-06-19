@@ -1,23 +1,22 @@
 <!-- src/app/info/info.component.html -->
 <div class="info-container">
-    <app-navbar></app-navbar>
-    <h1>Información del Torneo</h1>
-    <h2>Grupos</h2>
-    <img src="../assets/images/grupos.jpg" alt="Grupos" class="Group-image"> 
-    <h2>Mascota</h2>
-    <img src="../assets/images/Mascota.jpeg" alt="Mascota" class="Mascota-image"> 
-    <h2>Estadios</h2>
-    <img src="../assets/images/image.webp" alt="Torneo" class="Tournament-image"> 
-    <h2></h2>
-    <div class="stadiums-container">
-      <div *ngFor="let stadium of stadiums" class="stadium-card">
-        <img [src]="'../assets/images/Stadiums/' + stadium.Image" [alt]="stadium.Image" class="stadium-image">
-        <div class="stadium-info">
-          <h3>{{ stadium.Name }}</h3>
-          <p>{{ stadium.City }}</p>
-          <p>Capacidad: {{ stadium.Capacity }} espectadores</p>
-        </div>
+  <app-navbar></app-navbar>
+  <h1>Información del Torneo</h1>
+  <h2>Grupos</h2>
+  <img src="../assets/images/grupos.jpg" alt="Grupos" class="Group-image">
+  <h2>Mascota</h2>
+  <img src="../assets/images/Mascota.jpeg" alt="Mascota" class="Mascota-image">
+  <h2>Estadios</h2>
+  <img src="../assets/images/image.webp" alt="Torneo" class="Tournament-image">
+  <h2></h2>
+  <div class="stadiums-container">
+    <div *ngFor="let stadium of stadiums" class="stadium-card">
+      <img [src]="'../assets/images/Stadiums/' + stadium.Image" [alt]="stadium.Image" class="stadium-image">
+      <div class="stadium-info">
+        <h3>{{ stadium.Name }}</h3>
+        <p>{{ stadium.City }}</p>
+        <p>Capacidad: {{ stadium.Capacity }} espectadores</p>
       </div>
     </div>
   </div>
-  
+</div>

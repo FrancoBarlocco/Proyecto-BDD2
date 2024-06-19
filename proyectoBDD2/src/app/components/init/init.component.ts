@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   selector: 'app-init',
   templateUrl: './init.component.html',
   styleUrls: ['./init.component.css'],
-  standalone:true
+  standalone: true
 })
 export class InitComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   navigateToLogin() {
     this.router.navigate(['/login']);
@@ -20,4 +20,3 @@ export class InitComponent {
     this.router.navigate(['/register']);
   }
 }
-  

@@ -24,7 +24,7 @@ export class RankingComponent implements OnInit {
 
     //si la id es 53333 entonces es admin
     this.userId = localStorage.getItem('userId');
-    if(this.userId == '54332111') {
+    if (this.userId == '54332111') {
       this.isAdmin = true
     }
 

@@ -19,11 +19,11 @@ export class InfoComponent implements OnInit {
   fixtures!: Fixture[];
   stadiums!: Stadium[];
 
-  constructor(private infoService: InfoService, private stadiumService : StudentService) { }
+  constructor(private infoService: InfoService, private stadiumService: StudentService) { }
 
   ngOnInit(): void {
     this.fixtures = this.infoService.getFixtures();
-    
+
     this.stadiumService.getStadiums().subscribe({
       next: (data: Stadium[]) => {
         this.stadiums = data;
