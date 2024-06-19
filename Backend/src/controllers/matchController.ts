@@ -16,11 +16,11 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
             FROM Matches
             JOIN Team AS localTeam ON Matches.localTeamId = localTeam.TeamId
             JOIN Team AS visitantTeam ON Matches.visitantTeamId = visitantTeam.TeamId
-            JOIN Stadium ON Matches.StadiumId = Stadium.stadiumId`;
+            JOIN Stadium ON Matches.StadiumId = Stadium.stadiumId
+            ORDER BY Matches.Date ASC`;
 
 
     const [results] = await connection.query(query);
-
     console.log(results);
     res.json(results);
   } catch (error) {
