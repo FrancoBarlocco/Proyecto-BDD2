@@ -37,7 +37,7 @@ export const getRanking = async (req: Request, res: Response) => {
       });
   
       userScores.forEach(score => {
-        userPoints[score.UserId] = score.TotalPoints;
+        userPoints[score.UserId] = parseInt(score.TotalPoints, 10); //por defecto Totalpoints viene como cadena de texto, se parsea a int
       });
   
       //Para obtener los partidos de tipo final
