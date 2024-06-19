@@ -48,8 +48,8 @@ export const routes: Routes = [
   { path: 'ranking', component: RankingComponent, canActivate: [authGuard] },
   { path: 'info', component: InfoComponent, canActivate: [authGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [authGuard] },
-  { path: 'insertMatch', component: InsertMatchComponent, canActivate: [adminGuard]},
-  { path: 'insertResult', component: InsertResultComponent, canActivate: [adminGuard]},
+  { path: 'insertMatch', component: InsertMatchComponent, },
+  { path: 'insertResult', component: InsertResultComponent, },
   { path: 'terms', component: TermsComponent},
 
 
