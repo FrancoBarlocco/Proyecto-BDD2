@@ -8,19 +8,19 @@ import { NavbarComponent } from '../navbar/navbar.component';
   imports: [CommonModule, NavbarComponent],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css',
-  
+
 })
 export class StatisticsComponent {
-  
+
   statistics: { [career: string]: { exact: number, correct: number, failed: number } } = {};
 
-  constructor(private statisticService : statisticService){}
+  constructor(private statisticService: statisticService) { }
 
   ngOnInit() {
     this.getStatistics();
   }
 
-  getStatistics(){
+  getStatistics() {
     this.statisticService.getStatisticsByCareer().subscribe(
       (data) => {
         this.statistics = data;

@@ -6,14 +6,13 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
   imports: [RouterModule],
-  standalone:true
+  standalone: true
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  logOut(){
+  logOut() {
     localStorage.clear();
     this.router.navigate(['']);
   }
 }
-

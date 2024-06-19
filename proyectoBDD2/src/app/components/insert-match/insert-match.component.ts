@@ -16,19 +16,19 @@ import { TeamService } from '../../services/team.service';
   styleUrl: './insert-match.component.css'
 })
 export class InsertMatchComponent implements OnInit {
-  localTeam: string =''
+  localTeam: string = ''
   visitantTeam: string = '';
   date: string = '';
   stadiums!: Stadium[];
-  stadium : string = '';
+  stadium: string = '';
   teams!: Team[];
-  categorySelected : string = ''
-  category : string[] = ['Grupo A', 'Grupo B', 'Grupo C', 'Grupo D', 'Cuartos de final', 'Semifinal', 'Tercer puesto', 'Final']
+  categorySelected: string = ''
+  category: string[] = ['Grupo A', 'Grupo B', 'Grupo C', 'Grupo D', 'Cuartos de final', 'Semifinal', 'Tercer puesto', 'Final']
 
-  constructor(private matchService : MatchService, private stadiumService : StudentService, private teamService : TeamService) { }
+  constructor(private matchService: MatchService, private stadiumService: StudentService, private teamService: TeamService) { }
 
   ngOnInit(): void {
-  
+
     this.stadiumService.getStadiums().subscribe({
       next: (data: Stadium[]) => {
         this.stadiums = data;
@@ -54,8 +54,8 @@ export class InsertMatchComponent implements OnInit {
     const localTeam = this.teams.find(team => team.Name === this.localTeam);
     const visitantTeam = this.teams.find(team => team.Name === this.visitantTeam);
     const stadiumSelected = this.stadiums.find(stadium => stadium.Name === this.stadium);
-    
-    if (!localTeam || !visitantTeam || !this.date || !this.stadium ) {
+
+    if (!localTeam || !visitantTeam || !this.date || !this.stadium) {
       alert('Selecciona todos los campos');
       return;
     }
