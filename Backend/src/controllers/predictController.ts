@@ -29,7 +29,6 @@ export const savePredictions = async (req: Request, res: Response): Promise<void
   const { userId, matchId, localPrediction, visitantPrediction } = req.body;
   
   try {
-
     const query = `
       INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
       VALUES (?, ?, ?, ?, ?)

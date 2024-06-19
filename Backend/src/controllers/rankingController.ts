@@ -40,7 +40,7 @@ export const getRanking = async (req: Request, res: Response) => {
         userPoints[score.UserId] = score.TotalPoints;
       });
   
-      // Obtener los partidos de tipo final
+      //Para obtener los partidos de tipo final
       const queryFinalMatches = `
         SELECT
           m.MatchId,
