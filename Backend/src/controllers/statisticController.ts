@@ -13,7 +13,7 @@ export const getStatisticsByCareer = async (req: Request, res: Response) => {
                 p.VisitantTeamGoals,
                 m.LocalTeamResult,
                 m.VisitantTeamResult
-              FROM
+                FROM
                 Predicts p
                 JOIN Matches m ON p.MatchId = m.MatchId
                 JOIN Student s ON p.UserId = s.Ci;
@@ -37,7 +37,7 @@ export const getStatisticsByCareer = async (req: Request, res: Response) => {
       if (!statistics[Career]) {
         statistics[Career] = { exact: 0, correct: 0, failed: 0 };
       }
-      if(LocalTeamResult != null && VisitantTeamResult != null){
+      if (LocalTeamResult != null && VisitantTeamResult != null) {
         if (LocalTeamGoals === LocalTeamResult && VisitantTeamGoals === VisitantTeamResult) {
           statistics[Career].exact += 1;
         } else if (
@@ -46,7 +46,7 @@ export const getStatisticsByCareer = async (req: Request, res: Response) => {
           (LocalTeamGoals === VisitantTeamGoals && LocalTeamResult === VisitantTeamResult)
         ) {
           statistics[Career].correct += 1;
-        } else{
+        } else {
           statistics[Career].failed += 1;
         }
       }
