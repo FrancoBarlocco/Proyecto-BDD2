@@ -72,7 +72,7 @@ export const updateMatchResult = async (req: Request, res: Response) => {
       m.LocalTeamResult AS ActualTeamAGoals, 
       m.VisitantTeamResult AS ActualTeamBGoals,
       m.LocalTeamId, 
-      m.VisitantTeamId,
+      m.VisitantTeamId
     FROM Predicts p
     JOIN Matches m ON p.MatchId = m.MatchId
     JOIN Student s ON p.UserId = s.Ci
