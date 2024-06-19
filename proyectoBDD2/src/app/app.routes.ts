@@ -13,6 +13,7 @@ import { InsertMatchComponent } from './components/insert-match/insert-match.com
 import { InsertResultComponent } from './components/insert-result/insert-result.component';
 import { TermsComponent } from './components/terms/terms.component';
 
+//verifica que este logueado sino redirige a login
 const authGuard: CanActivateFn = (route, state) => {
   const login = localStorage.getItem('userId');
   const router = inject(Router);
@@ -20,6 +21,18 @@ const authGuard: CanActivateFn = (route, state) => {
     return true;
   } else {
     router.navigate(['/login']);
+    return false;
+  }
+};
+
+//Verifica que sea admin sino redirige a home
+const adminGuard: CanActivateFn = (route, state) => {
+  const userId = localStorage.getItem('userId');
+  const router = inject(Router);
+  if (userId == '54332111') {
+    return true;
+  } else {
+    router.navigate(['/home']);
     return false;
   }
 };
@@ -35,8 +48,8 @@ export const routes: Routes = [
   { path: 'ranking', component: RankingComponent, canActivate: [authGuard] },
   { path: 'info', component: InfoComponent, canActivate: [authGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [authGuard] },
-  { path: 'insertMatch', component: InsertMatchComponent},
-  { path: 'insertResult', component: InsertResultComponent},
+  { path: 'insertMatch', component: InsertMatchComponent, canActivate: [adminGuard]},
+  { path: 'insertResult', component: InsertResultComponent, canActivate: [adminGuard]},
   { path: 'terms', component: TermsComponent},
 
 

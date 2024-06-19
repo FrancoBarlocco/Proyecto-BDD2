@@ -71,11 +71,8 @@ export const updateMatchResult = async (req: Request, res: Response) => {
       p.VisitantTeamGoals AS PredictedTeamBGoals, 
       m.LocalTeamResult AS ActualTeamAGoals, 
       m.VisitantTeamResult AS ActualTeamBGoals,
-      m.Category, 
       m.LocalTeamId, 
       m.VisitantTeamId,
-      s.ChampionTeamId, 
-      s.SubChampionTeamId 
     FROM Predicts p
     JOIN Matches m ON p.MatchId = m.MatchId
     JOIN Student s ON p.UserId = s.Ci
