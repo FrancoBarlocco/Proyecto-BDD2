@@ -74,7 +74,7 @@ export class InsertMatchComponent implements OnInit {
     this.matchService.postMatch(localTeam!.TeamId, visitantTeam!.TeamId, date, stadiumSelected!.stadiumId, this.categorySelected).subscribe({
       next: (response) => {
         alert('Partido ingresado correctamente');
-        console.log('Partido infresado correctamente!', response);
+        console.log('Partido ingresado correctamente!', response);
 
         // Restablece los campos del formulario
         this.localTeam = '';
