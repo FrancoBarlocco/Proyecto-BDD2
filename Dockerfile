@@ -17,7 +17,7 @@ COPY ./proyectoBDD2 /app/proyectoBDD2
 WORKDIR /app/proyectoBDD2
 
 RUN npm install -g @angular/cli
-RUN npm install
+RUN npm install --force
 
 # Fase final: Combina el Backend y el Frontend
 FROM node:21.6.2
