@@ -1,5 +1,4 @@
 import { NgModule, inject } from '@angular/core';
-import { AppComponent } from "./app.component";
 import { RouterModule, Routes, CanActivateFn } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -37,10 +36,7 @@ const adminGuard: CanActivateFn = (route, state) => {
   }
 };
 
-
-
 export const routes: Routes = [
-  //{ path: '', component: AppComponent },
   { path: '', component: InitComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -51,9 +47,6 @@ export const routes: Routes = [
   { path: 'insertMatch', component: InsertMatchComponent, canActivate: [adminGuard] },
   { path: 'insertResult', component: InsertResultComponent, canActivate: [adminGuard]},
   { path: 'terms', component: TermsComponent},
-
-
-
 ];
 
 @NgModule({
