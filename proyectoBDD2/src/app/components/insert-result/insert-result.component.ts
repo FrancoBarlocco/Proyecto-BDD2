@@ -52,7 +52,7 @@ export class InsertResultComponent {
       this.matchService.updateMatchResult(this.matchId!, this.localTeamResult!, this.visitantTeamResult!).subscribe({
         next: (response) => {
           alert('Resultado ingresado correctamente');
-          console.log('Resultado infresado correctamente!', response);
+          console.log('Resultado ingresado correctamente!', response);
           this.resetForm()
         },
         error: (error) => {

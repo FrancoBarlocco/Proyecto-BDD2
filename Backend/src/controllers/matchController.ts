@@ -19,7 +19,6 @@ export const getMatchesAndTeams = async (req: Request, res: Response) => {
             JOIN Stadium ON Matches.StadiumId = Stadium.stadiumId
             ORDER BY Matches.Date ASC`;
 
-
     const [results] = await connection.query(query);
     console.log(results);
     res.json(results);

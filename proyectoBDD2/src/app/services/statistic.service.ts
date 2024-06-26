@@ -11,7 +11,6 @@ export class statisticService {
   constructor(private http: HttpClient) {}
 
 getStatisticsByCareer(): Observable<any> {
-    console.log('llega service' + this.apiUrl + '/getStatistics')
   return this.http.get<any>(this.apiUrl + '/getStatistics');
 }
 
