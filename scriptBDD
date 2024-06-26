@@ -2,22 +2,36 @@ CREATE DATABASE proyectoBDD2;
 
 USE proyectoBDD2;
 
+
+-- Table Stadium
+CREATE TABLE Stadium (
+    stadiumId INT PRIMARY KEY,
+    Name VARCHAR(50),
+    City VARCHAR(50),
+    Capacity INT,
+    Image VARCHAR(50)
+);
+
 -- Table Team
 CREATE TABLE Team (
     TeamId INT PRIMARY KEY,
     Name VARCHAR(50),
-    Flag VARCHAR(100)
+    Flag VARCHAR(50)
 );
 
 -- Table Matches
 CREATE TABLE Matches (
-    MatchId INT PRIMARY KEY,
-    Location VARCHAR(100),
-    Date DATE,
+    MatchId INT AUTO_INCREMENT PRIMARY KEY,
+    LocalTeamId INT,
+    VisitantTeamId INT,
+    Date DATETIME,
+    StadiumId INT,
+    Category VARCHAR(20),
     LocalTeamResult INT,
     VisitantTeamResult INT,
-    localTeamId INT,
-    visitantTeamId INT
+    FOREIGN KEY (localTeamId) REFERENCES Team(TeamId),
+    FOREIGN KEY (visitantTeamId) REFERENCES Team(TeamId),
+    FOREIGN KEY (stadiumId) REFERENCES Stadium(stadiumId)
 );
 
 -- Table Student
@@ -25,21 +39,22 @@ CREATE TABLE Student (
     Ci INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    Email VARCHAR(100),
+    Email VARCHAR(50),
     Password VARCHAR(100),
-    Major VARCHAR(100),
+    Career VARCHAR(50),
     ChampionTeamId INT,
     SubChampionTeamId INT,
+    Contact VARCHAR(20),
     FOREIGN KEY (ChampionTeamId) REFERENCES Team(TeamId),
-    FOREIGN KEY (subChampionTeamId) REFERENCES Team(TeamId)
+    FOREIGN KEY (SubChampionTeamId) REFERENCES Team(TeamId)
 );
 
--- Table Administrator
+-- Table Admin
 CREATE TABLE Admin (
-    Id INT PRIMARY KEY,
+    Ci INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    Email VARCHAR(100),
+    Email VARCHAR(50),
     Password VARCHAR(100)
 );
 
@@ -47,42 +62,385 @@ CREATE TABLE Admin (
 CREATE TABLE Predicts (
     UserId INT,
     MatchId INT,
-    TeamAGoals INT,
-    TeamBGoals INT,
+    LocalTeamGoals INT,
+    VisitantTeamGoals INT,
     Score INT,
     PRIMARY KEY (UserId, MatchId),
     FOREIGN KEY (UserId) REFERENCES Student(Ci),
     FOREIGN KEY (MatchId) REFERENCES Matches(MatchId)
 );
 
-INSERT INTO Team (TeamId, Name, Flag)
-VALUES (1, 'Team A', 'flagA.png');
-
-
-INSERT INTO Student (Ci, FirstName, LastName, Email, Password, Major, ChampionTeamId, SubChampionTeamId)
-VALUES
-(12345678, 'Juan', 'Perez', 'juan.perez@example.com', 'password123', 'Computer Science', 1, 1),
-(87654321, 'Ana', 'Gomez', 'ana.gomez@example.com', 'password456', 'Mathematics', 1, 1),
-(11223344, 'Carlos', 'Lopez', 'carlos.lopez@example.com', 'password789', 'Physics', 1, 1);
-
-INSERT INTO Matches (MatchId, Location, Date, LocalTeamResult, VisitantTeamResult, localTeamId, visitantTeamId)
-VALUES
-(1, 'Buenos Aires', '2024-06-15', 3, 2, 1, 2),
-(2, 'Rio de Janeiro', '2024-06-16', 1, 1, 3, 4),
-(3, 'Santiago', '2024-06-17', 0, 0, 5, 6),
-(4, 'Lima', '2024-06-18', 2, 1, 7, 8),
-(5, 'Bogotá', '2024-06-19', 4, 3, 9, 10);
-
+-- Insert initial data into Team
 INSERT INTO Team (TeamId, Name, Flag)
 VALUES
-(2, 'Brasil', 'brazil.png'),
-(3, 'Uruguay', 'uruguay.png'),
+(1, 'Argentina', 'argentina_flag.png'),
+(2, 'Brazil', 'brazil_flag.png'),
+(3, 'Uruguay', 'uruguay_flag.png'),
 (4, 'Chile', 'chile_flag.png'),
 (5, 'Perú', 'peru_flag.png'),
 (6, 'Colombia', 'colombia_flag.png'),
 (7, 'Paraguay', 'paraguay_flag.png'),
 (8, 'Ecuador', 'ecuador_flag.png'),
 (9, 'Venezuela', 'venezuela_flag.png'),
-(10, 'Bolivia', 'bolivia_flag.png');
+(10, 'Bolivia', 'bolivia_flag.png'),
+(11, 'Estados Unidos', 'estados-unidos_flag.png'),
+(12, 'Panama', 'panama_flag.png'),
+(13, 'Jamaica', 'jamaica_flag.webp'),
+(14, 'Costa Rica', 'costa-rica_flag.png'),
+(15, 'Canada', 'canada_flag.png'),
+(16, 'Mexico', 'mexico_flag.png');
 
-select * FROM Team
+-- Insert initial data into Stadium
+INSERT INTO Stadium (stadiumId, Name, City, Capacity, Image)
+VALUES
+(1, 'Allegiant Stadium', 'Las Vegas, Nevada', 65000, 'Allegiant Stadium.webp'),
+(2, 'AT&T Stadium', 'Arlington, Texas', 80000, 'AT&T.webp'),
+(3, 'Bank of America Stadium', 'Charlotte, North Carolina', 74867, 'Bank-of-America.webp'),
+(4, 'Children’s Mercy Park', 'Kansas City, Kansas', 18467, 'Children.webp'),
+(5, 'Inter&Co Stadium', 'Orlando, Florida', 25500, 'InterCo.webp'),
+(6, 'GEHA Field at Arrowhead Stadium', 'Kansas City, Missouri', 79451, 'GEHA.webp'),
+(7, 'Hard Rock Stadium', 'Miami Gardens, Florida', 65326, 'Hard-Rock.webp'),
+(8, 'Levi’s Stadium', 'Santa Clara, California', 68500, 'Levis.webp'),
+(9, 'Mercedes-Benz Stadium', 'Atlanta, Georgia', 71000, 'Mercedes-Benz.webp'),
+(10, 'MetLife Stadium', 'East Rutherford, New Jersey', 82500, 'MetLife.webp'),
+(11, 'NRG Stadium', 'Houston, Texas', 72220, 'NRG.webp'),
+(12, 'Q2 Stadium', 'Austin, Texas', 20738, 'Q2.webp'),
+(13, 'SoFi Stadium', 'Inglewood, California', 70000, 'SoFi.webp'),
+(14, 'State Farm Stadium', 'Glendale, Arizona', 63400, 'State-Farm.webp');
+
+
+-- Insert initial data into Student
+INSERT INTO Student (Ci, FirstName, LastName, Email, Password, Career, ChampionTeamId, SubChampionTeamId, Contact)
+VALUES
+(54332624, 'Juan', 'Perez', 'juan.perez@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FIT - Facultad de Ingeniería y Tecnología', 1, 2, '092614317'),
+(54332625, 'Ana', 'Gonzalez', 'ana.gonzalez@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FCE - Facultad de Ciencias Empresariales', 3, 4, '091234567'),
+(54332626, 'Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FCS - Facultad de Ciencias de la Salud', 5, 6, '099876543'),
+(54332627, 'Maria', 'Lopez', 'maria.lopez@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FDAL - Facultad de Derecho y Artes Liberales', 7, 8, '098765432'),
+(54332628, 'Luis', 'Martinez', 'luis.martinez@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FIT - Facultad de Ingeniería y Tecnología', 1, 2, '093456789'),
+(54332629, 'Sofia', 'Diaz', 'sofia.diaz@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FCE - Facultad de Ciencias Empresariales', 3, 4, '094567890'),
+(54332630, 'Pedro', 'Fernandez', 'pedro.fernandez@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FCS - Facultad de Ciencias de la Salud', 5, 6, '095678901'),
+(54332631, 'Laura', 'Garcia', 'laura.garcia@example.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG', 'FDAL - Facultad de Derecho y Artes Liberales', 7, 8, '096789012');
+
+INSERT INTO Admin (Ci, FirstName, LastName, Email, Password) VALUES
+(54332111, 'Admin', 'Admin', 'admin@gmail.com', '$2a$10$D45yR28lOICJhh7m/8UVmOmYRolQekbQknyFaDEMUBeZinmAZ50SG');
+
+-- Insert initial data into Matches
+INSERT INTO Matches (localTeamId, visitantTeamId, date, stadiumId, category, localTeamResult, visitantTeamResult) VALUES
+(1, 15, '2024-06-20 21:00:00', 9, 'Grupo A', NULL, NULL),  -- Argentina vs. Canadá | Mercedes-Benz Stadium
+(5, 4, '2024-06-21 21:00:00', 2, 'Grupo A', NULL, NULL),   -- Perú vs. Chile | AT&T Stadium
+(8, 9, '2024-06-22 19:00:00', 8, 'Grupo B', NULL, NULL),   -- Ecuador vs. Venezuela | Levi’s Stadium
+(16, 13, '2024-06-22 22:00:00', 11, 'Grupo B', NULL, NULL),-- México vs. Jamaica | NRG Stadium
+(11, 10, '2024-06-23 19:00:00', 2, 'Grupo C', NULL, NULL), -- Estados Unidos vs. Bolivia | AT&T Stadium
+(3, 12, '2024-06-23 22:00:00', 7, 'Grupo C', NULL, NULL),  -- Uruguay vs. Panamá | Hard Rock Stadium
+(6, 7, '2024-06-24 19:00:00', 11, 'Grupo D', NULL, NULL),  -- Colombia vs. Paraguay | NRG Stadium
+(2, 14, '2024-06-24 20:00:00', 13, 'Grupo D', NULL, NULL), -- Brasil vs. Costa Rica | SoFi Stadium
+
+-- Fecha 2
+(5, 15, '2024-06-25 19:00:00', 4, 'Grupo A', NULL, NULL),  -- Perú vs. Canadá | Children’s Mercy Park
+(4, 1, '2024-06-25 22:00:00', 10, 'Grupo A', NULL, NULL),  -- Chile vs. Argentina | MetLife Stadium
+(8, 13, '2024-06-26 19:00:00', 1, 'Grupo B', NULL, NULL),  -- Ecuador vs. Jamaica | Allegiant Stadium
+(9, 16, '2024-06-26 22:00:00', 13, 'Grupo B', NULL, NULL), -- Venezuela vs. México | SoFi Stadium
+(12, 11, '2024-06-27 19:00:00', 9, 'Grupo C', NULL, NULL), -- Panamá vs. Estados Unidos | Mercedes-Benz Stadium
+(3, 10, '2024-06-27 22:00:00', 10, 'Grupo C', NULL, NULL), -- Uruguay vs. Bolivia | MetLife Stadium
+(6, 14, '2024-06-28 19:00:00', 14, 'Grupo D', NULL, NULL), -- Colombia vs. Costa Rica | State Farm Stadium
+(7, 2, '2024-06-28 22:00:00', 1, 'Grupo D', NULL, NULL),   -- Paraguay vs. Brasil | Allegiant Stadium
+
+-- Fecha 3
+(1, 5, '2024-06-29 21:00:00', 7, 'Grupo A', NULL, NULL),   -- Argentina vs. Perú | Hard Rock Stadium
+(15, 4, '2024-06-29 21:00:00', 5, 'Grupo A', NULL, NULL),  -- Canadá vs. Chile | Inter&Co Stadium
+(16, 8, '2024-06-30 21:00:00', 14, 'Grupo B', NULL, NULL), -- México vs. Ecuador | State Farm Stadium
+(13, 9, '2024-06-30 21:00:00', 12, 'Grupo B', NULL, NULL), -- Jamaica vs. Venezuela | Q2 Stadium
+(10, 12, '2024-07-01 22:00:00', 5, 'Grupo C', NULL, NULL), -- Bolivia vs. Panamá | Inter&Co Stadium
+(11, 3, '2024-07-01 22:00:00', 6, 'Grupo C', NULL, NULL),  -- Estados Unidos vs. Uruguay | GEHA Field at Arrowhead Stadium
+(2, 6, '2024-07-02 22:00:00', 8, 'Grupo D', NULL, NULL),   -- Brasil vs. Colombia | Levi’s Stadium
+(14, 7, '2024-07-02 22:00:00', 12, 'Grupo D', NULL, NULL); -- Costa Rica vs. ParaguayStadium
+
+
+-- INSERT DE PREDICCIONES
+-- Insertar predicciones para el usuario Juan Perez (Ci: 54332624)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332624, 1, 2, 1, NULL), -- Argentina vs. Canadá
+(54332624, 2, 0, 2, NULL), -- Perú vs. Chile
+(54332624, 3, 1, 0, NULL), -- Ecuador vs. Venezuela
+(54332624, 4, 3, 0, NULL), -- México vs. Jamaica
+(54332624, 5, 1, 1, NULL), -- Estados Unidos vs. Bolivia
+(54332624, 6, 2, 0, NULL), -- Uruguay vs. Panamá
+(54332624, 7, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332624, 8, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Ana Gonzalez (Ci: 54332625)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332625, 1, 1, 2, NULL), -- Argentina vs. Canadá
+(54332625, 2, 0, 1, NULL), -- Perú vs. Chile
+(54332625, 3, 2, 0, NULL), -- Ecuador vs. Venezuela
+(54332625, 4, 1, 0, NULL), -- México vs. Jamaica
+(54332625, 5, 0, 1, NULL), -- Estados Unidos vs. Bolivia
+(54332625, 6, 2, 0, NULL), -- Uruguay vs. Panamá
+(54332625, 7, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332625, 8, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Carlos Rodriguez (Ci: 54332626)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332626, 1, 2, 0, NULL), -- Argentina vs. Canadá
+(54332626, 2, 1, 1, NULL), -- Perú vs. Chile
+(54332626, 3, 0, 2, NULL), -- Ecuador vs. Venezuela
+(54332626, 4, 3, 1, NULL), -- México vs. Jamaica
+(54332626, 5, 1, 0, NULL), -- Estados Unidos vs. Bolivia
+(54332626, 6, 0, 2, NULL), -- Uruguay vs. Panamá
+(54332626, 7, 2, 0, NULL), -- Colombia vs. Paraguay
+(54332626, 8, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Maria Lopez (Ci: 54332627)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332627, 1, 1, 1, NULL), -- Argentina vs. Canadá
+(54332627, 2, 0, 2, NULL), -- Perú vs. Chile
+(54332627, 3, 2, 0, NULL), -- Ecuador vs. Venezuela
+(54332627, 4, 1, 0, NULL), -- México vs. Jamaica
+(54332627, 5, 0, 1, NULL), -- Estados Unidos vs. Bolivia
+(54332627, 6, 2, 0, NULL), -- Uruguay vs. Panamá
+(54332627, 7, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332627, 8, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Luis Martinez (Ci: 54332628)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332628, 1, 0, 2, NULL), -- Argentina vs. Canadá
+(54332628, 2, 1, 1, NULL), -- Perú vs. Chile
+(54332628, 3, 2, 0, NULL), -- Ecuador vs. Venezuela
+(54332628, 4, 1, 0, NULL), -- México vs. Jamaica
+(54332628, 5, 0, 1, NULL), -- Estados Unidos vs. Bolivia
+(54332628, 6, 2, 0, NULL), -- Uruguay vs. Panamá
+(54332628, 7, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332628, 8, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Sofia Diaz (Ci: 54332629)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332629, 1, 2, 1, NULL), -- Argentina vs. Canadá
+(54332629, 2, 0, 2, NULL), -- Perú vs. Chile
+(54332629, 3, 1, 0, NULL), -- Ecuador vs. Venezuela
+(54332629, 4, 3, 0, NULL), -- México vs. Jamaica
+(54332629, 5, 1, 1, NULL), -- Estados Unidos vs. Bolivia
+(54332629, 6, 2, 0, NULL), -- Uruguay vs. Panamá
+(54332629, 7, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332629, 8, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Pedro Fernandez (Ci: 54332630)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332630, 1, 1, 2, NULL), -- Argentina vs. Canadá
+(54332630, 2, 0, 1, NULL), -- Perú vs. Chile
+(54332630, 3, 2, 0, NULL), -- Ecuador vs. Venezuela
+(54332630, 4, 1, 0, NULL), -- México vs. Jamaica
+(54332630, 5, 0, 1, NULL), -- Estados Unidos vs. Bolivia
+(54332630, 6, 2, 0, NULL), -- Uruguay vs. Panamá
+(54332630, 7, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332630, 8, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para el usuario Laura Garcia (Ci: 54332631)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332631, 1, 2, 0, NULL), -- Argentina vs. Canadá
+(54332631, 2, 1, 1, NULL), -- Perú vs. Chile
+(54332631, 3, 0, 2, NULL), -- Ecuador vs. Venezuela
+(54332631, 4, 3, 1, NULL), -- México vs. Jamaica
+(54332631, 5, 1, 0, NULL), -- Estados Unidos vs. Bolivia
+(54332631, 6, 0, 2, NULL), -- Uruguay vs. Panamá
+(54332631, 7, 2, 0, NULL), -- Colombia vs. Paraguay
+(54332631, 8, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Juan Perez (Ci: 54332624)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332624, 9, 2, 1, NULL),  -- Perú vs. Canadá
+(54332624, 10, 0, 2, NULL), -- Chile vs. Argentina
+(54332624, 11, 1, 0, NULL), -- Ecuador vs. Jamaica
+(54332624, 12, 3, 1, NULL), -- Venezuela vs. México
+(54332624, 13, 1, 1, NULL), -- Panamá vs. Estados Unidos
+(54332624, 14, 2, 0, NULL), -- Uruguay vs. Bolivia
+(54332624, 15, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332624, 16, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Ana Gonzalez (Ci: 54332625)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332625, 9, 1, 2, NULL),  -- Perú vs. Canadá
+(54332625, 10, 0, 1, NULL), -- Chile vs. Argentina
+(54332625, 11, 2, 0, NULL), -- Ecuador vs. Jamaica
+(54332625, 12, 1, 0, NULL), -- Venezuela vs. México
+(54332625, 13, 0, 1, NULL), -- Panamá vs. Estados Unidos
+(54332625, 14, 2, 0, NULL), -- Uruguay vs. Bolivia
+(54332625, 15, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332625, 16, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Carlos Rodriguez (Ci: 54332626)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332626, 9, 2, 0, NULL),  -- Perú vs. Canadá
+(54332626, 10, 1, 1, NULL), -- Chile vs. Argentina
+(54332626, 11, 0, 2, NULL), -- Ecuador vs. Jamaica
+(54332626, 12, 3, 1, NULL), -- Venezuela vs. México
+(54332626, 13, 1, 0, NULL), -- Panamá vs. Estados Unidos
+(54332626, 14, 0, 2, NULL), -- Uruguay vs. Bolivia
+(54332626, 15, 2, 0, NULL), -- Colombia vs. Paraguay
+(54332626, 16, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Maria Lopez (Ci: 54332627)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332627, 9, 1, 1, NULL),  -- Perú vs. Canadá
+(54332627, 10, 0, 2, NULL), -- Chile vs. Argentina
+(54332627, 11, 2, 0, NULL), -- Ecuador vs. Jamaica
+(54332627, 12, 1, 0, NULL), -- Venezuela vs. México
+(54332627, 13, 0, 1, NULL), -- Panamá vs. Estados Unidos
+(54332627, 14, 2, 0, NULL), -- Uruguay vs. Bolivia
+(54332627, 15, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332627, 16, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Luis Martinez (Ci: 54332628)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332628, 9, 0, 2, NULL),  -- Perú vs. Canadá
+(54332628, 10, 1, 1, NULL), -- Chile vs. Argentina
+(54332628, 11, 2, 0, NULL), -- Ecuador vs. Jamaica
+(54332628, 12, 1, 0, NULL), -- Venezuela vs. México
+(54332628, 13, 0, 1, NULL), -- Panamá vs. Estados Unidos
+(54332628, 14, 2, 0, NULL), -- Uruguay vs. Bolivia
+(54332628, 15, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332628, 16, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Sofia Diaz (Ci: 54332629)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332629, 9, 2, 1, NULL),  -- Perú vs. Canadá
+(54332629, 10, 0, 2, NULL), -- Chile vs. Argentina
+(54332629, 11, 1, 0, NULL), -- Ecuador vs. Jamaica
+(54332629, 12, 3, 0, NULL), -- Venezuela vs. México
+(54332629, 13, 1, 1, NULL), -- Panamá vs. Estados Unidos
+(54332629, 14, 2, 0, NULL), -- Uruguay vs. Bolivia
+(54332629, 15, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332629, 16, 3, 1, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Pedro Fernandez (Ci: 54332630)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332630, 9, 1, 2, NULL),  -- Perú vs. Canadá
+(54332630, 10, 0, 1, NULL), -- Chile vs. Argentina
+(54332630, 11, 2, 0, NULL), -- Ecuador vs. Jamaica
+(54332630, 12, 1, 0, NULL), -- Venezuela vs. México
+(54332630, 13, 0, 1, NULL), -- Panamá vs. Estados Unidos
+(54332630, 14, 2, 0, NULL), -- Uruguay vs. Bolivia
+(54332630, 15, 0, 2, NULL), -- Colombia vs. Paraguay
+(54332630, 16, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 2 para el usuario Laura Garcia (Ci: 54332631)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332631, 9, 2, 0, NULL),  -- Perú vs. Canadá
+(54332631, 10, 1, 1, NULL), -- Chile vs. Argentina
+(54332631, 11, 0, 2, NULL), -- Ecuador vs. Jamaica
+(54332631, 12, 3, 1, NULL), -- Venezuela vs. México
+(54332631, 13, 1, 0, NULL), -- Panamá vs. Estados Unidos
+(54332631, 14, 0, 2, NULL), -- Uruguay vs. Bolivia
+(54332631, 15, 2, 0, NULL), -- Colombia vs. Paraguay
+(54332631, 16, 1, 3, NULL); -- Brasil vs. Costa Rica
+
+-- Insertar predicciones para la fecha 3 para el usuario Juan Perez (Ci: 54332624)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332624, 17, 2, 1, NULL), -- Argentina vs. Perú
+(54332624, 18, 0, 2, NULL), -- Canadá vs. Chile
+(54332624, 19, 1, 0, NULL), -- México vs. Ecuador
+(54332624, 20, 3, 1, NULL), -- Jamaica vs. Venezuela
+(54332624, 21, 1, 1, NULL), -- Bolivia vs. Panamá
+(54332624, 22, 2, 0, NULL), -- Estados Unidos vs. Uruguay
+(54332624, 23, 0, 2, NULL), -- Paraguay vs. Brasil
+(54332624, 24, 3, 1, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Ana Gonzalez (Ci: 54332625)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332625, 17, 1, 2, NULL), -- Argentina vs. Perú
+(54332625, 18, 0, 1, NULL), -- Canadá vs. Chile
+(54332625, 19, 2, 0, NULL), -- México vs. Ecuador
+(54332625, 20, 1, 0, NULL), -- Jamaica vs. Venezuela
+(54332625, 21, 0, 1, NULL), -- Bolivia vs. Panamá
+(54332625, 22, 2, 0, NULL), -- Estados Unidos vs. Uruguay
+(54332625, 23, 0, 2, NULL), -- Paraguay vs. Brasil
+(54332625, 24, 1, 3, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Carlos Rodriguez (Ci: 54332626)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332626, 17, 2, 0, NULL), -- Argentina vs. Perú
+(54332626, 18, 1, 1, NULL), -- Canadá vs. Chile
+(54332626, 19, 0, 2, NULL), -- México vs. Ecuador
+(54332626, 20, 3, 1, NULL), -- Jamaica vs. Venezuela
+(54332626, 21, 1, 0, NULL), -- Bolivia vs. Panamá
+(54332626, 22, 0, 2, NULL), -- Estados Unidos vs. Uruguay
+(54332626, 23, 2, 0, NULL), -- Paraguay vs. Brasil
+(54332626, 24, 1, 3, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Maria Lopez (Ci: 54332627)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332627, 17, 1, 1, NULL), -- Argentina vs. Perú
+(54332627, 18, 0, 2, NULL), -- Canadá vs. Chile
+(54332627, 19, 2, 0, NULL), -- México vs. Ecuador
+(54332627, 20, 1, 0, NULL), -- Jamaica vs. Venezuela
+(54332627, 21, 0, 1, NULL), -- Bolivia vs. Panamá
+(54332627, 22, 2, 0, NULL), -- Estados Unidos vs. Uruguay
+(54332627, 23, 0, 2, NULL), -- Paraguay vs. Brasil
+(54332627, 24, 3, 1, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Luis Martinez (Ci: 54332628)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332628, 17, 0, 2, NULL), -- Argentina vs. Perú
+(54332628, 18, 1, 1, NULL), -- Canadá vs. Chile
+(54332628, 19, 2, 0, NULL), -- México vs. Ecuador
+(54332628, 20, 1, 0, NULL), -- Jamaica vs. Venezuela
+(54332628, 21, 0, 1, NULL), -- Bolivia vs. Panamá
+(54332628, 22, 2, 0, NULL), -- Estados Unidos vs. Uruguay
+(54332628, 23, 0, 2, NULL), -- Paraguay vs. Brasil
+(54332628, 24, 3, 1, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Sofia Diaz (Ci: 54332629)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332629, 17, 2, 1, NULL), -- Argentina vs. Perú
+(54332629, 18, 0, 2, NULL), -- Canadá vs. Chile
+(54332629, 19, 1, 0, NULL), -- México vs. Ecuador
+(54332629, 20, 3, 0, NULL), -- Jamaica vs. Venezuela
+(54332629, 21, 1, 1, NULL), -- Bolivia vs. Panamá
+(54332629, 22, 2, 0, NULL), -- Estados Unidos vs. Uruguay
+(54332629, 23, 0, 2, NULL), -- Paraguay vs. Brasil
+(54332629, 24, 3, 1, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Pedro Fernandez (Ci: 54332630)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332630, 17, 1, 2, NULL), -- Argentina vs. Perú
+(54332630, 18, 0, 1, NULL), -- Canadá vs. Chile
+(54332630, 19, 2, 0, NULL), -- México vs. Ecuador
+(54332630, 20, 1, 0, NULL), -- Jamaica vs. Venezuela
+(54332630, 21, 0, 1, NULL), -- Bolivia vs. Panamá
+(54332630, 22, 2, 0, NULL), -- Estados Unidos vs. Uruguay
+(54332630, 23, 0, 2, NULL), -- Paraguay vs. Brasil
+(54332630, 24, 1, 3, NULL); -- Costa Rica vs. Colombia
+
+-- Insertar predicciones para la fecha 3 para el usuario Laura Garcia (Ci: 54332631)
+INSERT INTO Predicts (UserId, MatchId, LocalTeamGoals, VisitantTeamGoals, Score)
+VALUES
+(54332631, 17, 2, 0, NULL), -- Argentina vs. Perú
+(54332631, 18, 1, 1, NULL), -- Canadá vs. Chile
+(54332631, 19, 0, 2, NULL), -- México vs. Ecuador
+(54332631, 20, 3, 1, NULL), -- Jamaica vs. Venezuela
+(54332631, 21, 1, 0, NULL), -- Bolivia vs. Panamá
+(54332631, 22, 0, 2, NULL), -- Estados Unidos vs. Uruguay
+(54332631, 23, 2, 0, NULL), -- Paraguay vs. Brasil
+(54332631, 24, 1, 3, NULL); -- Costa Rica vs. Colombia
