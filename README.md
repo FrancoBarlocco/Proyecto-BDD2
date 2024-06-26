@@ -1,4 +1,6 @@
 # Proyecto de Base de Datos 2
 
 Penca de la Copa América
-![images](https://github.com/FrancoBarlocco/Proyecto-BDD2/assets/88661584/e8739924-f4d9-4a7d-a610-edf557b49e34)
+
+![MicrosoftTeams-image-2-2048x1150](https://github.com/FrancoBarlocco/Proyecto-BDD2/assets/88661622/557843b1-7099-4964-b4d3-26f9c89ef3c7)
+
