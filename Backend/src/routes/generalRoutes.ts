@@ -12,7 +12,7 @@ import { savePredictions } from '../controllers/predictController';
 import { getTeams } from '../controllers/teamController';
 import { updatePredictions } from '../controllers/predictController';
 
-const { check, validationResult } = require('express-validator');
+const { check} = require('express-validator');
 const router = Router();
 
 router.get('/getTeams', getTeams);
