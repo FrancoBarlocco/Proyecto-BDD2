@@ -26,7 +26,7 @@
           <p class="predict">Predicción: {{ match.localPrediction }} - {{ match.visitantPrediction }}</p>
           <!-- Botón para habilitar el div de predicción -->
           <button class="submit-button modify-prediction-btn"
-            *ngIf="!showPredictionInput[match.MatchId] && match.LocalTeamResult == null" class="modify-prediction-btn"
+            *ngIf="!showPredictionInput[match.MatchId] && match.LocalTeamResult == null && !isMatchTime(match.Date)" class="modify-prediction-btn"
             (click)="enablePredictionInput(match.MatchId)">
             Modificar Predicción
           </button>
